@@ -6,20 +6,14 @@ const App = () => {
     <Routes>
       <Route path='/' element={<div>Layout <Outlet/></div>}>
         <Route path='posts' element={<div>Posts</div>} />
-        <Route path='posts/creator' element={<div>Creator</div>} />
+        <Route path='posts/create' element={<div>Creator</div>} />
         <Route path='posts/:postId' element={<div>Single Post</div>} />
-        {/*TODO: ROUTE GUARD*/}
-        <Route path='posts/:postId/edit' element={<div>Editor</div>} />
-        {/*//*/}
 
         <Route path='announcements' element={<div>Announcements</div>} />
         {/*TODO: ROUTE GUARD*/}
-        <Route path='announcements/creator' element={<div>Creator</div>} />
+        <Route path='announcements/create' element={<div>Creator</div>} />
         {/*//*/}
         <Route path='announcements/:announcementsId' element={<div>Single announcement</div>} />
-        {/*TODO: ROUTE GUARD*/}
-        <Route path='announcements/:announcementsId/edit' element={<div>Editor</div>} />
-        {/*//*/}
 
 
         {/*TODO: ROUTE GUARD*/}
