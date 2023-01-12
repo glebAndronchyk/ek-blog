@@ -22,7 +22,7 @@ module.exports = {
       },
       fontFamily: {
         code: ['Code7x5', 'sans-serif'],
-        poppins: ['Poppins', "sans-serif"],
+        graphik: ['Graphik', "sans-serif"],
         lato: ['Lato', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
       }
