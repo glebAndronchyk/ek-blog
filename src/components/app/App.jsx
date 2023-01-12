@@ -13,7 +13,9 @@ const App = () => {
         {/*//*/}
 
         <Route path='announcements' element={<div>Announcements</div>} />
+        {/*TODO: ROUTE GUARD*/}
         <Route path='announcements/creator' element={<div>Creator</div>} />
+        {/*//*/}
         <Route path='announcements/:announcementsId' element={<div>Single announcement</div>} />
         {/*TODO: ROUTE GUARD*/}
         <Route path='announcements/:announcementsId/edit' element={<div>Editor</div>} />
