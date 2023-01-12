@@ -10,7 +10,6 @@ axiosInstance.interceptors.request.use((config) => {
       interceptorConfig.headers = {
         Authorization: `Bearer ${token}`
       }
-      return interceptorConfig;
     }
     return interceptorConfig;
   },
