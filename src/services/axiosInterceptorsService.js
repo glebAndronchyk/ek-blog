@@ -6,10 +6,11 @@ axiosInstance.interceptors.request.use((config) => {
 
     const interceptorConfig = {...config};
 
-    //TODO: isAuth checker
-
-    interceptorConfig.headers = {
-      Authorization: `Bearer ${token ? token : 'no-token'}`
+    if (token) {
+      interceptorConfig.headers = {
+        Authorization: `Bearer ${token}`
+      }
+      return interceptorConfig;
     }
     return interceptorConfig;
   },
