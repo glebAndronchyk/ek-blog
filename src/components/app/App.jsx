@@ -11,7 +11,6 @@ const App = () => {
         {/*TODO: ROUTE GUARD*/}
         <Route path='posts/:postId/edit' element={<div>Editor</div>} />
         {/*//*/}
-        <Route path='posts/:postId/comments' element={<div>Comments</div>} />
 
         <Route path='announcements' element={<div>Announcements</div>} />
         <Route path='announcements/creator' element={<div>Creator</div>} />
