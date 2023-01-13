@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Graphik', sans-serif;
+}
+
+input {
+    font-family: 'Lato', sans-serif;
+}
+
 @font-face {
     font-family: 'Code7x5';
     src: url("assets/fonts/Code_7x5.ttf");
