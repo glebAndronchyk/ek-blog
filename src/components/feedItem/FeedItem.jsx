@@ -8,7 +8,10 @@ const FeedItem = () => {
         <h3 className='font-[600] text-black text-2xl mb-2.5 2xl:text-3xl'>10 Hilarious Cartoons That Depict Real-Life Problems</h3>
         <p className='text-lg text-gray-600 2xl:text-lg'>Redefined the user acquisition and redesigned the onboarding experience, all within 3 working weeks...</p>
       </div>
-      <img className='hidden lg:block lg:pl-1' src={FeedItemPlug} alt="item"/>
+      <img className='hidden lg:block lg:pl-1'
+           src={FeedItemPlug}
+           alt="item"
+      />
     </li>
   );
 }

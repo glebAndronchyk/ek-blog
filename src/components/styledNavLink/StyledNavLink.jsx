@@ -12,7 +12,11 @@ const StyledNavLink = () => {
   }
 
   return (
-    <NavLink to='/posts' className={({isActive}) => currentClassName(isActive)}>Hello</NavLink>
+    <NavLink to='/posts'
+             className={({isActive}) => currentClassName(isActive)}
+    >
+      Hello
+    </NavLink>
   )
 }
 
