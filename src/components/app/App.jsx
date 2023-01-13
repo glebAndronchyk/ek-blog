@@ -1,14 +1,13 @@
 import {Navigate, Outlet, Route, Routes} from "react-router-dom";
 
-import FeedItem from "../feedItem/FeedItem";
-import StyledNavLink from "../styledNavLink/StyledNavLink";
+import FormInput from "../formInput/FormInput";
 
 
 const App = () => {
   return (
     <>
       <div>
-        <StyledNavLink />
+        <FormInput />
       </div>
       <Routes>
         <Route path='/' element={<div>Layout <Outlet/></div>}>

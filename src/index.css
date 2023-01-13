@@ -2,12 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: 'Graphik', sans-serif;
+@layer base {
+    body {
+        @apply font-graphik;
+    }
+
+    input {
+        @apply font-lato
+    }
 }
 
-input {
-    font-family: 'Lato', sans-serif;
+@layer components {
+    .form-input {
+        @apply rounded-full border-0 placeholder:text-xl placeholder:text-gray-100 font-semibold w-3/4 py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300
+    }
+    .nav-link {
+        @apply relative text-app-red font-inter font-[500] text-base after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 hover:after:w-full after:duration-300 after:w-0
+    }
+    .nav-link__active {
+        @apply relative text-app-red font-inter font-[500] text-base after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 after:w-full
+    }
 }
 
 @font-face {
