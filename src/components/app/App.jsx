@@ -1,13 +1,14 @@
 import {Navigate, Outlet, Route, Routes} from "react-router-dom";
 
 import FeedItem from "../feedItem/FeedItem";
+import StyledNavLink from "../styledNavLink/StyledNavLink";
 
 
 const App = () => {
   return (
     <>
       <div>
-        <FeedItem />
+        <StyledNavLink />
       </div>
       <Routes>
         <Route path='/' element={<div>Layout <Outlet/></div>}>
