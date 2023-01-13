@@ -1,6 +1,7 @@
 import {Navigate, Outlet, Route, Routes} from "react-router-dom";
 
 import FormInput from "../formInput/FormInput";
+import AuthButton from "../authButton/AuthButton";
 
 
 const App = () => {
@@ -8,6 +9,7 @@ const App = () => {
     <>
       <div className='w-[38rem]'>
         <FormInput />
+        <AuthButton />
       </div>
       <Routes>
         <Route path='/' element={<div>Layout <Outlet/></div>}>
