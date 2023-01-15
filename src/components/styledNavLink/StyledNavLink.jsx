@@ -1,21 +1,31 @@
 import {NavLink} from "react-router-dom";
 import classNames from "classnames";
 
-const StyledNavLink = () => {
+import './styledNavLink.css';
+
+const StyledNavLink = (props) => {
+
+  const {to, type, children} = props;
 
   const currentClassName = (checker) => {
-    const className = classNames({
-      'nav-link': !checker,
-      'nav-link__active': checker
+    return classNames({
+      'nav-link-header': !checker && type === 'header',
+      'nav-link-header__active': checker && type === 'header',
+      //TODO: add more types
     });
-    return className;
+  }
+
+  const getActive = (value) => {
+    const {isActive} = value;
+    return currentClassName(isActive);
   }
 
   return (
-    <NavLink to='/posts'
-             className={({isActive}) => currentClassName(isActive)}
+    <NavLink
+      to={to}
+      className={getActive}
     >
-      Hello
+      {children}
     </NavLink>
   )
 }
