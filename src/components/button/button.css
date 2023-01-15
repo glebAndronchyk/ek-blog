@@ -1,0 +1,14 @@
+@tailwind components;
+
+@layer components {
+    .btn {
+        @apply rounded-full duration-300 text-center border-2
+    }
+    .auth-btn {
+        @apply w-3/4 py-4 bg-blue-100 text-white hover:bg-white hover:text-blue-100 hover:border-blue-100
+    }
+    .disabled {
+        @apply bg-blue-100 border-0 opacity-60 hover:bg-blue-100 hover:text-white
+    }
+    /*TODO: support different types*/
+}
