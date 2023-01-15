@@ -1,12 +1,8 @@
-const FormInput = (props) => {
-
-  const {placeholder, type} = props;
-
+const FormInput = () => {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className='form-input'
+    <input type='text'
+           placeholder='Placeholder'
+           className='form-input'
     />
   )
 }
