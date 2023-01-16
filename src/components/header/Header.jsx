@@ -6,17 +6,18 @@ import Logo from '../../assets/images/logo.png';
 
 const Header = () => {
   return (
-    <header className='px-16 py-4 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100'>
-      <Link to='/'>
-        <h1>
-          <img
-            className='h-8'
-            src={Logo}
-            alt="ekreative"
-          />
-        </h1>
-      </Link>
+    <header className='px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100'>
       <div className='flex justify-between'>
+        <Link className='mr-7' to='/'>
+          <h1 className='text-center'>
+            <img
+              className='h-8'
+              src={Logo}
+              alt="ekreative"
+            />
+            <span className='text-app-red font-[600]'>Blog</span>
+          </h1>
+        </Link>
         <ul className='flex justify-between items-center'>
           <li className='mr-7'>
             <StyledNavLink
@@ -35,8 +36,8 @@ const Header = () => {
             </StyledNavLink>
           </li>
         </ul>
-        <Button className='ml-7' type='header-btn'>Login</Button>
       </div>
+      <Button type='header-btn'>Login</Button>
     </header>
   );
 }
