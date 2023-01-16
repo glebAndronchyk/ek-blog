@@ -1,17 +1,22 @@
 import {useMemo} from "react";
+import classNames from "classnames";
 
 import './button.css';
 
 const Button = (props) => {
   const {type, onClick, children, disabled} = props;
 
-  const isDisabled = useMemo(() => {
-    return disabled ? 'disabled' : null;
+  const className = useMemo(() => {
+    return classNames({
+      btn: true,
+      disabled,
+      [type]: true
+    });
   }, [disabled]);
 
   return (
     <button
-      className={`btn ${isDisabled} ${type}`}
+      className={className}
       disabled={disabled}
       onClick={onClick}
     >
