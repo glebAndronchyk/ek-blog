@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'app-red': '#DD424C',
+        'app-red': '#D03450',
         'black': '#1D2939',
         'blue': {
           100: '#253661'
@@ -22,7 +22,7 @@ module.exports = {
       },
       fontFamily: {
         code: ['Code7x5', 'sans-serif'],
-        graphik: ['Graphik', "sans-serif"],
+        graphik: ['Graphik', 'sans-serif'],
         lato: ['Lato', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
       }
