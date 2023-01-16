@@ -3,12 +3,11 @@ import {Link} from "react-router-dom";
 import Logo from '../../assets/images/logo.png'
 
 const Header = () => {
-
   return (
     <header className='px-16 py-4 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100'>
       <Link to='/'>
         <h1>
-          <img className='h-8' src={Logo} alt="ekreative" />
+          <img className='h-8' src={Logo} alt="ekreative"/>
         </h1>
       </Link>
       <div className='flex justify-between'>
