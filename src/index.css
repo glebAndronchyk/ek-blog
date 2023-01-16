@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    body {
+        @apply font-graphik;
+    }
+
+    input {
+        @apply font-lato
+    }
+}
+
+@layer components {
+    .form-input {
+        @apply rounded-full border-0 placeholder:text-xl placeholder:text-gray-100 font-semibold w-3/4 py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300
+    }
+}
+
 @font-face {
     font-family: 'Code7x5';
     src: url("assets/fonts/Code_7x5.ttf");
@@ -51,7 +67,7 @@
 
 @font-face {
     font-family: 'Lato';
-    src: url('assets/fonts/Lato-Regular.ttf');
+    src: url('assets/fonts/Lato-Thin.ttf');
     font-weight: 400;
 }
 
