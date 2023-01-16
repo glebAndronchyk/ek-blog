@@ -17,7 +17,7 @@ const Header = () => {
         </h1>
       </Link>
       <div className='flex justify-between'>
-        <ul className='flex justify-between '>
+        <ul className='flex justify-between items-center'>
           <li className='mr-7'>
             <StyledNavLink
               to='/posts'
