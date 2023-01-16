@@ -8,14 +8,14 @@ const Header = () => {
   return (
     <header className='px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100'>
       <div className='flex justify-between'>
-        <Link className='mr-7' to='/'>
+        <Link className='mr-24' to='/'>
           <h1 className='text-center'>
             <img
               className='h-8'
               src={Logo}
               alt="ekreative"
             />
-            <span className='text-app-red font-[600]'>Blog</span>
+            <span className='text-app-red font-[600] pt-2'>Blog</span>
           </h1>
         </Link>
         <ul className='flex justify-between items-center'>

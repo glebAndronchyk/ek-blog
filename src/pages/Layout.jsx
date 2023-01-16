@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className='min-h-[calc(100vh-80px-24px)]'>
+      <main className='min-h-[calc(100vh-80px-24px)] py-4'>
         <Outlet />
       </main>
       <Footer />
