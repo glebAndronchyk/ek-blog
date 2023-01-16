@@ -1,13 +1,18 @@
 import {Outlet} from "react-router-dom";
 
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 const Layout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <main className='min-h-[calc(100vh-64px-24px)]'>
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
 }
+
+export default Layout;
