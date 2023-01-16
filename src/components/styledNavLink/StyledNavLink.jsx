@@ -7,10 +7,10 @@ const StyledNavLink = (props) => {
 
   const {to, type, children} = props;
 
-  const currentClassName = (checker) => {
+  const currentClassName = (isActive) => {
     return classNames({
-      'nav-link-header': !checker && type === 'header',
-      'nav-link-header__active': checker && type === 'header',
+      'nav-link-header': !isActive && type === 'header',
+      'nav-link-header__active': isActive && type === 'header',
       //TODO: add more types
     });
   }
