@@ -9,8 +9,8 @@ const Button = (props) => {
   const className = useMemo(() => {
     return classNames({
       btn: true,
+      [type]: true,
       disabled,
-      [type]: true
     });
   }, [disabled]);
 
