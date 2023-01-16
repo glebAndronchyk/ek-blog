@@ -7,11 +7,7 @@ const Button = (props) => {
   const {type, onClick, children, disabled} = props;
 
   const className = useMemo(() => {
-    return classNames({
-      btn: true,
-      [type]: true,
-      disabled,
-    });
+    return classNames('btn', type, { disabled, });
   }, [disabled]);
 
   return (
