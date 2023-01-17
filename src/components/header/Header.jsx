@@ -6,7 +6,7 @@ import Logo from '../../assets/images/logo.png';
 
 const Header = () => {
   return (
-    <header className="px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100">
+    <header className="relative z-10 px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100">
       <div className="flex justify-between">
         <Link
           className="mr-24"
