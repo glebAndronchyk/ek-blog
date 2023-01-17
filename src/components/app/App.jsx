@@ -48,7 +48,8 @@ const App = () => {
             path="user"
             element={
               <div>
-                Profile Layout <Outlet />
+                Profile Layout
+                <Outlet />
               </div>
             }
           >

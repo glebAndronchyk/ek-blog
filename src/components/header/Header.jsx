@@ -27,7 +27,7 @@ const Header = () => {
               to="/posts"
               type="header"
             >
-              Posts
+              <span>Posts</span>
             </StyledNavLink>
           </li>
           <li className="mr-7">
@@ -35,7 +35,7 @@ const Header = () => {
               to="/announcements"
               type="header"
             >
-              Announcements
+              <span>Announcements</span>
             </StyledNavLink>
           </li>
         </ul>

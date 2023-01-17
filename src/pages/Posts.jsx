@@ -4,7 +4,9 @@ import PostsContentSection from '../components/postsContentSection/PostsContentS
 const Posts = () => {
   return (
     <>
-      <Banner label="Posts">Read them, or add them</Banner>
+      <Banner label="Posts">
+        <span>Read them, or add them</span>
+      </Banner>
       <PostsContentSection />
     </>
   );

@@ -1,4 +1,5 @@
 import './banner.css';
+import PropTypes from 'prop-types';
 
 const Banner = props => {
   const { label, children } = props;
@@ -11,6 +12,11 @@ const Banner = props => {
       </div>
     </section>
   );
+};
+
+Banner.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Banner;
