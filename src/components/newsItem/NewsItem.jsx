@@ -34,7 +34,11 @@ const NewsItem = props => {
   );
 };
 NewsItem.propTypes = {
-  feedData: PropTypes.objectOf(PropTypes.string).isRequired,
+  feedData: PropTypes.exact({
+    createdAt: PropTypes.string,
+    title: PropTypes.string,
+    body: PropTypes.string,
+  }).isRequired,
   to: PropTypes.string.isRequired,
 };
 
