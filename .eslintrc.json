@@ -26,7 +26,7 @@
         "prettier"
     ],
     "rules": {
-        "prettier/prettier": 2,
+        "prettier/prettier": 1,
         "eqeqeq": [1, "smart"],
         "curly": [1, "all"],
         "prefer-const": 1,
@@ -40,6 +40,8 @@
         "arrow-parens": [1, "as-needed"],
         "linebreak-style": 0,
         "jsx-quotes": 0,
-        "object-curly-newline": 0
+        "object-curly-newline": 0,
+        "spaced-comment": 1,
+        "react/jsx-wrap-multilines": 1
     }
 }
