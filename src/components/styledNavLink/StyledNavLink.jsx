@@ -1,25 +1,24 @@
-import {NavLink} from "react-router-dom";
-import classNames from "classnames";
+import { NavLink } from 'react-router-dom';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 import './styledNavLink.css';
 
-const StyledNavLink = (props) => {
+const StyledNavLink = props => {
+  const { to, type, children } = props;
 
-  const {to, type, children} = props;
-
-  const currentClassName = (isActive) => {
+  const currentClassName = isActive => {
     return classNames({
       'nav-link-header': !isActive && type === 'header',
       'nav-link-header__active': isActive && type === 'header',
-      //TODO: add more types
+      // TODO: add more types
     });
-  }
+  };
 
-  const getActive = (value) => {
-    const {isActive} = value;
+  const getActive = value => {
+    const { isActive } = value;
     return currentClassName(isActive);
-  }
+  };
 
   return (
     <NavLink
@@ -28,8 +27,8 @@ const StyledNavLink = (props) => {
     >
       {children}
     </NavLink>
-  )
-}
+  );
+};
 
 StyledNavLink.propTypes = {
   to: PropTypes.string.isRequired,
