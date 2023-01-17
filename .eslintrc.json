@@ -1,0 +1,36 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier",
+        "plugin:prettier/recommended",
+        "plugin:react/jsx-runtime"
+    ],
+    "overrides": [
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+            "jsx":true,
+            "modules": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": 0,
+        "eqeqeq": [1, "smart"],
+        "curly": [1, "all"],
+        "prefer-const": 2,
+        "no-multiple-empty-lines": [2, {"max": 3}],
+        "indent": [2, 2],
+        "semi": 2
+    }
+}

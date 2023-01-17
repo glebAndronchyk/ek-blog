@@ -52,7 +52,7 @@ const App = () => {
 
       </Routes>
     </Provider>
-  )
-}
+  );
+};
 
 export default App;
