@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import getOnlyDate from "../../helpers/getOnlyDate";
 
@@ -32,6 +33,11 @@ const FeedItem = (props) => {
       </Link>
     </li>
   );
+}
+
+FeedItem.propTypes = {
+  feedData: PropTypes.objectOf(PropTypes.string),
+  to: PropTypes.string
 }
 
 export default FeedItem;
