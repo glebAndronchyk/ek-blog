@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import getOnlyDate from '../../helpers/getOnlyDate';
+import getDateInCorrectFormat from '../../helpers/getDateInCorrectFormat';
 
 import FeedItemPlug from '../../assets/images/FeedItemPlug.png';
 
@@ -16,7 +17,7 @@ const NewsItem = props => {
       >
         <div className="flex flex-col pl-1.5 py-4 max-w-[610px] 2xl:max-w-full">
           <span className="font-[400] text-gray-500 uppercase text-xs mb-7 2xl:text-base">
-            {getOnlyDate(createdAt)}
+            {getDateInCorrectFormat(createdAt)}
           </span>
           <h3 className="font-[600] text-black text-2xl mb-2.5 2xl:text-3xl">
             {title}
@@ -31,6 +32,14 @@ const NewsItem = props => {
       </Link>
     </li>
   );
+};
+NewsItem.propTypes = {
+  feedData: PropTypes.exact({
+    createdAt: PropTypes.string,
+    title: PropTypes.string,
+    body: PropTypes.string,
+  }).isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default NewsItem;
