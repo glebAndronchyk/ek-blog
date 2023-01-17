@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply font-graphik;
+        @apply font-graphik bg-gray-50;
     }
 
     input {
