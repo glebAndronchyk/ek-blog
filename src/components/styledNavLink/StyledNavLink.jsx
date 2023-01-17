@@ -1,5 +1,6 @@
 import {NavLink} from "react-router-dom";
 import classNames from "classnames";
+import PropTypes from 'prop-types';
 
 import './styledNavLink.css';
 
@@ -28,6 +29,12 @@ const StyledNavLink = (props) => {
       {children}
     </NavLink>
   )
+}
+
+StyledNavLink.propTypes = {
+  to: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired
 }
 
 export default StyledNavLink;
