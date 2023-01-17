@@ -10,7 +10,7 @@ const StyledNavLink = props => {
     return classNames({
       'nav-link-header': !isActive && type === 'header',
       'nav-link-header__active': isActive && type === 'header',
-      //TODO: add more types
+      // TODO: add more types
     });
   };
 

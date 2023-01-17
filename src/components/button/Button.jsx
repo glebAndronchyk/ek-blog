@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import './button.css';
 
-const Button = props => {
+const Button = (props) => {
   const { type, onClick, children, disabled } = props;
 
   const className = useMemo(() => {
