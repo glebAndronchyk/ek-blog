@@ -1,4 +1,4 @@
-import React, { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import getOnlyDate from '../../helpers/getOnlyDate';
 
