@@ -4,12 +4,12 @@ import getOnlyDate from '../../helpers/getOnlyDate';
 
 import FeedItemPlug from '../../assets/images/FeedItemPlug.png';
 
-const FeedItem = props => {
+const NewsItem = props => {
   const { feedData, to } = props;
   const { createdAt, title, body } = feedData;
 
   return (
-    <li className="list-none duration-300 hover:scale-125 hover:shadow-lg">
+    <li className="list-none duration-300 hover:scale-[1.01] hover:shadow-lg md:rounded-3xl">
       <Link
         className="flex flex-row px-6 items-center justify-between border-2 md:rounded-3xl lg:p-4"
         to={to}
@@ -33,4 +33,4 @@ const FeedItem = props => {
   );
 };
 
-export default FeedItem;
+export default NewsItem;
