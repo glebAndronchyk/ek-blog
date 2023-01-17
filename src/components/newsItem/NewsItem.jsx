@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import getDateInCorrectFormat from '../../helpers/getDateInCorrectFormat';
 
@@ -31,6 +32,10 @@ const NewsItem = props => {
       </Link>
     </li>
   );
+};
+NewsItem.propTypes = {
+  feedData: PropTypes.objectOf(PropTypes.string).isRequired,
+  to: PropTypes.string.isRequired,
 };
 
 export default NewsItem;
