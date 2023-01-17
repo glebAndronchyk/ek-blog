@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
   content: [
     './public/index.html',
@@ -29,7 +30,9 @@ module.exports = {
     },
   },
   plugins: [
+    // eslint-disable-next-line no-undef
     require('@tailwindcss/forms'),
+    // eslint-disable-next-line no-undef
     require('@tailwindcss/line-clamp'),
   ],
-}
+};
