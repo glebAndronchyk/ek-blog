@@ -36,8 +36,8 @@ const FeedItem = (props) => {
 }
 
 FeedItem.propTypes = {
-  feedData: PropTypes.objectOf(PropTypes.string),
-  to: PropTypes.string
+  feedData: PropTypes.objectOf(PropTypes.string).isRequired,
+  to: PropTypes.string.isRequired
 }
 
 export default FeedItem;
