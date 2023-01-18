@@ -10,7 +10,7 @@ const NewsItem = props => {
   const { createdAt, title, body } = feedData;
 
   return (
-    <li className="list-none duration-300 hover:scale-[1.01] hover:shadow-lg md:rounded-3xl bg-white mb-4">
+    <li className="list-none duration-300 hover:shadow-lg md:rounded-3xl bg-white mb-4">
       <Link
         className="flex flex-row px-6 items-center justify-between md:rounded-3xl lg:p-4"
         to={to}
@@ -33,6 +33,7 @@ const NewsItem = props => {
     </li>
   );
 };
+
 NewsItem.propTypes = {
   feedData: PropTypes.exact({
     createdAt: PropTypes.string,

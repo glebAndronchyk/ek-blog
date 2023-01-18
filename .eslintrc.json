@@ -5,11 +5,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended",
-    "prettier",
-    "plugin:prettier/recommended",
     "airbnb",
-    "airbnb/hooks"
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
   ],
   "overrides": [],
   "parserOptions": {
@@ -22,27 +22,13 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "prettier/prettier": [
-      1,
-      {
-        "endOfLine": "auto"
-      }
-    ],
-    "eqeqeq": [1, "smart"],
-    "curly": [1, "all"],
-    "prefer-const": 1,
-    "no-multiple-empty-lines": [1, { "max": 3 }],
-    "indent": [1, 2],
-    "semi": 1,
+    "prettier/prettier": 1,
+    "arrow-body-style": 0,
+    "spaced-comment": 0,
     "react/react-in-jsx-scope": 0,
     "react/function-component-definition": 0,
     "react-hooks/exhaustive-deps": 0,
-    "arrow-body-style": 0,
-    "linebreak-style": 0,
-    "jsx-quotes": 0,
-    "object-curly-newline": 0,
-    "spaced-comment": 1,
-    "react/jsx-wrap-multilines": 1,
+    "react/jsx-wrap-multilines": 0,
     "react/require-default-props": 0,
     "react/jsx-filename-extension": 1
   }
