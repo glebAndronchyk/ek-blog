@@ -20,12 +20,9 @@ axiosInstance.interceptors.request.use(config => {
 });
 
 axiosInstance.interceptors.response.use(
-  config => {
-    //TODO: makeAnErrorHandler
-    return config;
-  },
+  response => response,
   error => {
-    return Promise.reject(error)
+    return Promise.reject(error);
   },
 );
 
