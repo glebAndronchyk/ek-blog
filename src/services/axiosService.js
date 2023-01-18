@@ -19,8 +19,14 @@ axiosInstance.interceptors.request.use(config => {
   return interceptorConfig;
 });
 
-axiosInstance.interceptors.response.use(config => {
-  //TODO: makeAnErrorHandler
-});
+axiosInstance.interceptors.response.use(
+  config => {
+    //TODO: makeAnErrorHandler
+    return config;
+  },
+  error => {
+    return Promise.reject(error)
+  },
+);
 
 export default axiosInstance;
