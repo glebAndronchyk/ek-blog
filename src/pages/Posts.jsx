@@ -1,5 +1,5 @@
 import Banner from '../components/banner/Banner';
-import PostsContentSection from '../components/postsContentSection/PostsContentSection';
+import PostsList from '../components/postsList/PostsList';
 
 const Posts = () => {
   return (
@@ -7,7 +7,7 @@ const Posts = () => {
       <Banner label="Posts">
         <span>Read them, or add them</span>
       </Banner>
-      <PostsContentSection />
+      <PostsList />
     </>
   );
 };
