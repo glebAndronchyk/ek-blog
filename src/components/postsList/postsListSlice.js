@@ -3,12 +3,16 @@ import axiosInstance from '../../services/axiosService';
 
 const initialState = {
   data: [],
-  dataLoading: 'idle',
+  dataLoading: 'loading',
 };
 
-export const getData = createAsyncThunk('posts/getData', async () => {
-  return await axiosInstance('/posts');
-});
+export const getData = createAsyncThunk(
+  'posts/getData', //
+  async () => {
+    const response = await axiosInstance.get('/posts?_page=1&_limit=5');
+    return response.data;
+  },
+);
 
 const postsListSlice = createSlice({
   name: 'posts',
@@ -27,7 +31,7 @@ const postsListSlice = createSlice({
         state.dataLoading = 'loading';
       })
       .addCase(getData.fulfilled, (state, action) => {
-        state.dataLoading = 'loaded';
+        state.dataLoading = 'idle';
         state.data = action.payload;
       })
       .addCase(getData.rejected, state => {
