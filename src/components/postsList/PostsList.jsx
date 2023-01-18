@@ -1,6 +1,16 @@
-import NewsItem from '../newsItem/NewsItem';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
-const PostsContentSection = () => {
+import NewsItem from '../newsItem/NewsItem';
+import { getData } from './postsListSlice';
+
+const PostsList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getData());
+  }, []);
+
   // EXAMPLE
   return (
     <ul className="px-40 pt-20">
@@ -24,4 +34,4 @@ const PostsContentSection = () => {
   );
 };
 
-export default PostsContentSection;
+export default PostsList;
