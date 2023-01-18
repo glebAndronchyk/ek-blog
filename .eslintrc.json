@@ -33,6 +33,7 @@
     "spaced-comment": 0,
     "no-return-await": 0,
     "no-unused-vars": 1,
+    "no-plusplus": 0,
     "object-property-newline": 1,
     "react/button-has-type": 1,
     "react/react-in-jsx-scope": 0,
