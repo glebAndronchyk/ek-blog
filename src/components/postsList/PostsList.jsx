@@ -4,13 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
+import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import { getAdditionalData, getInitialData } from './postsListSlice';
-import button from '../button/Button';
 
 const PostsList = () => {
-  const posts = useSelector(state => state.posts.data);
-  const initialLoading = useSelector(state => state.posts.initialLoading);
-  const page = useSelector(state => state.posts.page);
+  const { data, initialLoading, page } = useSelector(state => state.posts);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,42 +20,35 @@ const PostsList = () => {
     return content.length > 400 ? `${content.slice(0, 400)}...` : content;
   };
 
-  const handleClick = pageNumber => () => {
-    return dispatch(getAdditionalData(pageNumber));
+  const clickHandler = () => {
+    return dispatch(getAdditionalData(page));
   };
 
-  // NE FUNKCIYA
-  const renderList = data => {
-    const items = data.map(item => {
-      return (
-        <NewsItem
-          key={uuidv4()}
-          to={`/posts/${item.id}`}
-          feedData={{
-            createdAt: item.createdAt,
-            title: item.title,
-            body: calcVisiblePart(item.body),
-          }}
-        />
-      );
-    });
+  const newsItems = data.map(item => {
     return (
-      <>
-        {items}
-        <button
-          type="button"
-          onClick={handleClick(page)}
-        >
-          dsadsadas
-        </button>
-      </>
+      <NewsItem
+        key={uuidv4()}
+        to={`/posts/${item.id}`}
+        feedData={{
+          createdAt: item.createdAt,
+          title: item.title,
+          body: calcVisiblePart(item.body),
+        }}
+      />
     );
-  };
+  });
 
-  const shownContent =
-    initialLoading === 'loading' ? <Spinner /> : renderList(posts);
+  const shownContent = initialLoading === 'loading' ? <Spinner /> : newsItems;
 
-  return <ul className="px-40 pt-20">{shownContent}</ul>;
+  return (
+    <>
+      <ul className="px-40 pt-20">{shownContent}</ul>
+      <LoadMoreButton
+        onClick={clickHandler}
+        btnDisabled={false}
+      />
+    </>
+  );
 };
 
 export default PostsList;

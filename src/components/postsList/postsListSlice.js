@@ -57,6 +57,9 @@ const postsListSlice = createSlice({
         state.additionalLoading = 'idle';
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
+      })
+      .addCase(getAdditionalData.rejected, state => {
+        state.additionalLoading = 'rejected';
       });
   },
 });
