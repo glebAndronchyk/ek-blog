@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import NewsItem from '../newsItem/NewsItem';
+import Spinner from '../spinner/Spinner';
 import { getData } from './postsListSlice';
 
 const PostsList = () => {
@@ -34,7 +35,7 @@ const PostsList = () => {
     });
   };
 
-  const shownContent = loading === 'loading' ? 'Loading' : renderList(posts);
+  const shownContent = loading === 'loading' ? <Spinner /> : renderList(posts);
 
   return <ul className="px-40 pt-20">{shownContent}</ul>;
 };
