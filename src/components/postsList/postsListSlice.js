@@ -1,15 +1,31 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import axiosInstance from '../../services/axiosService';
 
 const initialState = {
   data: [],
-  dataLoading: 'loading',
+  initialLoading: 'loading',
+  additionalLoading: 'idle',
+  page: 2,
 };
 
-export const getData = createAsyncThunk(
-  'posts/getData', //
+export const getInitialData = createAsyncThunk(
+  'posts/getInitialData',
   async () => {
-    const response = await axiosInstance.get('/posts?_page=1&_limit=5');
+    const response = await axiosInstance.get(
+      `/posts?_page=1&_limit=5`, //
+    );
+    return response.data;
+  },
+);
+
+export const getAdditionalData = createAsyncThunk(
+  'posts/getAdditionalData',
+  async pageNumber => {
+    const response = await axiosInstance.get(
+      `/posts?_page=${pageNumber}&_limit=5`,
+    );
+    console.log(response);
     return response.data;
   },
 );
@@ -27,15 +43,20 @@ const postsListSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getData.pending, state => {
-        state.dataLoading = 'loading';
-      })
-      .addCase(getData.fulfilled, (state, action) => {
-        state.dataLoading = 'idle';
+      .addCase(getInitialData.fulfilled, (state, action) => {
+        state.initialLoading = 'idle';
         state.data = action.payload;
       })
-      .addCase(getData.rejected, state => {
-        state.dataLoading = 'rejected';
+      .addCase(getInitialData.rejected, state => {
+        state.initialLoading = 'rejected';
+      })
+      .addCase(getAdditionalData.pending, state => {
+        state.additionalLoading = 'loading';
+      })
+      .addCase(getAdditionalData.fulfilled, (state, action) => {
+        state.additionalLoading = 'idle';
+        state.page = ++state.page;
+        state.data = [...state.data, ...action.payload];
       });
   },
 });
