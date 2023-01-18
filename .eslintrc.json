@@ -4,12 +4,12 @@
     "es2021": true
   },
   "extends": [
+    "prettier",
     "eslint:recommended",
     "airbnb",
     "airbnb/hooks",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "overrides": [],
   "parserOptions": {
@@ -22,9 +22,19 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "prettier/prettier": 1,
+    "prettier/prettier": [
+      1,
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "no-param-reassign": 0,
     "arrow-body-style": 0,
     "spaced-comment": 0,
+    "no-return-await": 0,
+    "no-unused-vars": 1,
+    "object-property-newline": 1,
+    "react/button-has-type": 1,
     "react/react-in-jsx-scope": 0,
     "react/function-component-definition": 0,
     "react-hooks/exhaustive-deps": 0,
