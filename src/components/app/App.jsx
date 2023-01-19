@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 
 import Layout from '../../pages/Layout';
 import Posts from '../../pages/Posts';
+import SinglePostPage from '../../pages/SinglePostPage';
 import store from '../../store/store';
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
           {/* // */}
           <Route
             path="posts/:postId"
-            element={<div>Single Post</div>}
+            element={<SinglePostPage />}
           />
 
           <Route
