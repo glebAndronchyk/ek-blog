@@ -6,6 +6,7 @@ const initialState = {
   data: [],
   initialLoading: 'loading',
   additionalLoading: 'idle',
+  showLoadMoreButton: false,
   page: 2,
 };
 
@@ -15,7 +16,7 @@ export const getInitialData = createAsyncThunk(
     const response = await axiosInstance.get(
       `/posts?_page=1&_limit=5`, //
     );
-    return response.data;
+    return response.data.filter(item => item.body);
   },
 );
 
@@ -25,7 +26,7 @@ export const getAdditionalData = createAsyncThunk(
     const response = await axiosInstance.get(
       `/posts?_page=${pageNumber}&_limit=5`,
     );
-    return response.data;
+    return response.data.filter(item => item.body);
   },
 );
 
@@ -43,6 +44,7 @@ const postsListSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
         state.initialLoading = 'idle';
         state.data = action.payload;
       })
@@ -53,6 +55,7 @@ const postsListSlice = createSlice({
         state.additionalLoading = 'loading';
       })
       .addCase(getAdditionalData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
         state.additionalLoading = 'idle';
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];

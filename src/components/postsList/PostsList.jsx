@@ -6,12 +6,11 @@ import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
-import { getAdditionalData, getInitialData } from './postsListSlice';
+import { getAdditionalData, getInitialData } from '../../slices/postsListSlice';
 
 const PostsList = () => {
-  const { data, initialLoading, additionalLoading, page } = useSelector(
-    state => state.posts,
-  );
+  const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
+    useSelector(state => state.posts);
 
   const dispatch = useDispatch();
 
@@ -47,10 +46,14 @@ const PostsList = () => {
   return (
     <>
       <ul className="px-40 pt-20">{newsItems}</ul>
-      <LoadMoreButton
-        onClick={clickHandler}
-        btnDisabled={additionalLoading !== 'idle'}
-      />
+      {showLoadMoreButton ? (
+        <LoadMoreButton
+          onClick={clickHandler}
+          btnDisabled={additionalLoading !== 'idle'}
+        />
+      ) : (
+        <span className='block text-center'>Posts Ended</span>
+      )}
     </>
   );
 };
