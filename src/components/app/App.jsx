@@ -4,6 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import store from '../../store/store';
 import Layout from '../../pages/Layout';
+import Spinner from '../spinner/Spinner';
 
 const Announcements = lazy(() => import('../../pages/Announcements'));
 const Posts = lazy(() => import('../../pages/Posts'));
@@ -19,7 +20,7 @@ const App = () => {
           <Route
             path="posts"
             element={
-              <Suspense>
+              <Suspense fallback={<Spinner />}>
                 <Posts />
               </Suspense>
             }
@@ -38,7 +39,7 @@ const App = () => {
           <Route
             path="announcements"
             element={
-              <Suspense>
+              <Suspense fallback={<Spinner />}>
                 <Announcements />
               </Suspense>
             }
