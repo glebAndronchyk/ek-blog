@@ -2,10 +2,14 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import axiosInstance from '../services/axiosService';
 
+const loading = 'loading';
+const idle = 'idle';
+const rejected = 'rejected';
+
 const initialState = {
   data: [],
-  initialLoading: 'loading',
-  additionalLoading: 'idle',
+  initialLoading: loading,
+  additionalLoading: idle,
   showLoadMoreButton: false,
   page: 2,
 };
@@ -41,23 +45,23 @@ const postsListSlice = createSlice({
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
         state.showLoadMoreButton = action.payload.length > 0;
-        state.initialLoading = 'idle';
+        state.initialLoading = idle;
         state.data = action.payload;
       })
       .addCase(getInitialData.rejected, state => {
-        state.initialLoading = 'rejected';
+        state.initialLoading = rejected;
       })
       .addCase(getAdditionalData.pending, state => {
-        state.additionalLoading = 'loading';
+        state.additionalLoading = loading;
       })
       .addCase(getAdditionalData.fulfilled, (state, action) => {
         state.showLoadMoreButton = action.payload.length > 0;
-        state.additionalLoading = 'idle';
+        state.additionalLoading = idle;
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
       .addCase(getAdditionalData.rejected, state => {
-        state.additionalLoading = 'rejected';
+        state.additionalLoading = rejected;
       });
   },
 });
