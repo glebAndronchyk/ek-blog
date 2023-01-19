@@ -13,9 +13,8 @@ const initialState = {
 export const getInitialData = createAsyncThunk(
   'posts/getInitialData',
   async () => {
-    const response = await axiosInstance.get(
-      `/posts?_page=1&_limit=5`, //
-    );
+    const params = { _page: 1, _limit: 10 };
+    const response = await axiosInstance.get('/posts', { params });
     return response.data.filter(item => item.body);
   },
 );
@@ -23,9 +22,8 @@ export const getInitialData = createAsyncThunk(
 export const getAdditionalData = createAsyncThunk(
   'posts/getAdditionalData',
   async pageNumber => {
-    const response = await axiosInstance.get(
-      `/posts?_page=${pageNumber}&_limit=5`,
-    );
+    const params = { _page: pageNumber, _limit: 10 };
+    const response = await axiosInstance.get('/posts', { params });
     return response.data.filter(item => item.body);
   },
 );

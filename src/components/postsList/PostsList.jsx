@@ -52,7 +52,7 @@ const PostsList = () => {
           btnDisabled={additionalLoading !== 'idle'}
         />
       ) : (
-        <span className='block text-center'>Posts Ended</span>
+        <span className="block text-center">Posts Ended</span>
       )}
     </>
   );
