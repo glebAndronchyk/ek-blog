@@ -25,7 +25,6 @@ export const getAdditionalData = createAsyncThunk(
     const response = await axiosInstance.get(
       `/posts?_page=${pageNumber}&_limit=5`,
     );
-    console.log(response);
     return response.data;
   },
 );
@@ -54,7 +53,7 @@ const postsListSlice = createSlice({
         state.additionalLoading = 'loading';
       })
       .addCase(getAdditionalData.fulfilled, (state, action) => {
-        state.additionalLoading = 'idle';
+        state.additionalLoading = 'loading';
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
