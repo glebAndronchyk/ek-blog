@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
@@ -30,7 +29,7 @@ const PostsList = () => {
   const newsItems = data.map(item => {
     return (
       <NewsItem
-        key={uuidv4()}
+        key={item.id}
         to={`/posts/${item.id}`}
         feedData={{
           createdAt: item.createdAt,
