@@ -5,7 +5,11 @@ import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
-import { getAdditionalData, getInitialData } from '../../slices/announcementsListSlice';
+import {
+  stateReseted,
+  getAdditionalData,
+  getInitialData,
+} from '../../slices/announcementsListSlice';
 import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
 
 const AnnouncementsList = () => {
@@ -16,6 +20,10 @@ const AnnouncementsList = () => {
 
   useEffect(() => {
     dispatch(getInitialData());
+  }, []);
+
+  useEffect(() => {
+    return () => dispatch(stateReseted());
   }, []);
 
   const clickHandler = () => {

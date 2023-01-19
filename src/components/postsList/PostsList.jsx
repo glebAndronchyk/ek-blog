@@ -5,7 +5,11 @@ import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
-import { getAdditionalData, getInitialData } from '../../slices/postsListSlice';
+import {
+  getAdditionalData,
+  getInitialData,
+  stateReseted,
+} from '../../slices/postsListSlice';
 import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
 
 const PostsList = () => {
@@ -16,6 +20,10 @@ const PostsList = () => {
 
   useEffect(() => {
     dispatch(getInitialData());
+  }, []);
+
+  useEffect(() => {
+    return () => dispatch(stateReseted());
   }, []);
 
   const clickHandler = () => {
