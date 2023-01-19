@@ -2,7 +2,7 @@ import Error from '../../assets/images/error.png';
 
 const ErrorPlug = () => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center pt-20 justify-center">
       <span className="text-2xl text-black">Something went wrong...</span>
       <img
         src={Error}

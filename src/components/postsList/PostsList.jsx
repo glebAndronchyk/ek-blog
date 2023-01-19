@@ -1,56 +1,61 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
+import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
-import { getData } from './postsListSlice';
+import { getAdditionalData, getInitialData } from '../../slices/postsListSlice';
+import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
 
 const PostsList = () => {
-  const posts = useSelector(state => state.posts.data);
-  const loading = useSelector(state => state.posts.dataLoading);
+  const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
+    useSelector(state => state.posts);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getData());
+    dispatch(getInitialData());
   }, []);
 
-  const calcViewedPart = content => {
+  const calcVisiblePart = content => {
     return content.length > 400 ? `${content.slice(0, 400)}...` : content;
   };
 
-  const renderList = data => {
-    return data.map(item => {
-      return (
-        <NewsItem
-          key={uuidv4()}
-          to={`/posts/${item.id}`}
-          feedData={{
-            createdAt: item.createdAt,
-            title: item.title,
-            body: calcViewedPart(item.body),
-          }}
+  const clickHandler = () => {
+    return dispatch(getAdditionalData(page));
+  };
+
+  const newsItems = data.map(item => {
+    return (
+      <NewsItem
+        key={item.id}
+        to={`/posts/${item.id}`}
+        feedData={{
+          createdAt: item.createdAt,
+          title: item.title,
+          body: calcVisiblePart(item.body),
+        }}
+      />
+    );
+  });
+
+  if (initialLoading === LOADING) return <Spinner />;
+  if (initialLoading === REJECTED) return <ErrorPlug />;
+
+  return (
+    <>
+      <ul className="px-40 pt-20">{newsItems}</ul>
+      {showLoadMoreButton ? (
+        <LoadMoreButton
+          onClick={clickHandler}
+          btnDisabled={additionalLoading !== IDLE}
         />
-      );
-    });
-  };
-
-  // eslint-disable-next-line no-shadow
-  const loadingStatus = (status = loading) => {
-    switch (status) {
-      case 'loading':
-        return <Spinner />;
-      case 'rejected':
-        return <ErrorPlug />;
-      default:
-        return null;
-    }
-  };
-
-  const shownContent = loadingStatus() || renderList(posts);
-
-  return <ul className="px-40 pt-20">{shownContent}</ul>;
+      ) : (
+        <span className="block text-center">Posts Ended</span>
+      )}
+    </>
+  );
 };
 
 export default PostsList;
