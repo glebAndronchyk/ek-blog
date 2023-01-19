@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
 import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
-import { getAdditionalData, getInitialData } from '../../slices/postsListSlice';
+import { getAdditionalData, getInitialData } from '../../slices/announcementsListSlice';
+import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
 
 const AnnouncementsList = () => {
   const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
-    useSelector(state => state.posts);
+    useSelector(state => state.announcements);
 
   const dispatch = useDispatch();
 
@@ -25,8 +25,8 @@ const AnnouncementsList = () => {
   const newsItems = data.map(item => {
     return (
       <NewsItem
-        key={uuidv4()}
-        to={`/posts/${item.id}`}
+        key={item.id}
+        to={`/announcements/${item.id}`}
         feedData={{
           createdAt: item.createdAt,
           title: item.title,
@@ -36,8 +36,8 @@ const AnnouncementsList = () => {
     );
   });
 
-  if (initialLoading === 'loading') return <Spinner />;
-  if (initialLoading === 'rejected') return <ErrorPlug />;
+  if (initialLoading === LOADING) return <Spinner />;
+  if (initialLoading === REJECTED) return <ErrorPlug />;
 
   return (
     <>
@@ -45,13 +45,13 @@ const AnnouncementsList = () => {
       {showLoadMoreButton ? (
         <LoadMoreButton
           onClick={clickHandler}
-          btnDisabled={additionalLoading !== 'idle'}
+          btnDisabled={additionalLoading !== IDLE}
         />
       ) : (
-        <span className="block text-center">Posts Ended</span>
+        <span className="block text-center">Announcements Ended</span>
       )}
     </>
   );
 };
 
-export default PostsList;
+export default AnnouncementsList;
