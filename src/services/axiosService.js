@@ -6,24 +6,24 @@ const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE,
 });
 
-axiosInstance.interceptors.request.use(
-  config => {
-    const token = getToken();
+axiosInstance.interceptors.request.use(config => {
+  const token = getToken();
 
-    const interceptorConfig = { ...config };
+  const interceptorConfig = { ...config };
 
-    if (token) {
-      interceptorConfig.headers = {
-        Authorization: `Bearer ${token}`,
-      };
-    }
-    return interceptorConfig;
-  },
-  error => Promise.reject(error.message),
-);
-
-axiosInstance.interceptors.response.use(config => {
-  //TODO: makeAnErrorHandler
+  if (token) {
+    interceptorConfig.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }
+  return interceptorConfig;
 });
+
+axiosInstance.interceptors.response.use(
+  response => response,
+  error => {
+    return Promise.reject(error);
+  },
+);
 
 export default axiosInstance;

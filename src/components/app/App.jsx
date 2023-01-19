@@ -2,6 +2,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import Layout from '../../pages/Layout';
+import Posts from '../../pages/Posts';
 import store from '../../store/store';
 
 const App = () => {
@@ -14,14 +15,14 @@ const App = () => {
         >
           <Route
             path="posts"
-            element={<div>Posts</div>}
+            element={<Posts />}
           />
-          {/*TODO: ROUTE GUARD*/}
+          {/* TODO: ROUTE GUARD */}
           <Route
             path="posts/create"
             element={<div>Creator</div>}
           />
-          {/*//*/}
+          {/* // */}
           <Route
             path="posts/:postId"
             element={<div>Single Post</div>}
@@ -47,7 +48,8 @@ const App = () => {
             path="user"
             element={
               <div>
-                Profile Layout <Outlet />
+                Profile Layout
+                <Outlet />
               </div>
             }
           >

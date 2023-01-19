@@ -6,7 +6,7 @@ import Logo from '../../assets/images/logo.png';
 
 const Header = () => {
   return (
-    <header className="px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100">
+    <header className="relative z-10 px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100">
       <div className="flex justify-between">
         <Link
           className="mr-24"
@@ -27,7 +27,7 @@ const Header = () => {
               to="/posts"
               type="header"
             >
-              Posts
+              <span>Posts</span>
             </StyledNavLink>
           </li>
           <li className="mr-7">
@@ -35,7 +35,7 @@ const Header = () => {
               to="/announcements"
               type="header"
             >
-              Announcements
+              <span>Announcements</span>
             </StyledNavLink>
           </li>
         </ul>
