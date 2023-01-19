@@ -5,10 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
+import ErrorPlug from '../errorPlug/ErrorPlug';
 import { getAdditionalData, getInitialData } from './postsListSlice';
 
 const PostsList = () => {
-  const { data, initialLoading, page } = useSelector(state => state.posts);
+  const { data, initialLoading, additionalLoading, page } = useSelector(
+    state => state.posts,
+  );
 
   const dispatch = useDispatch();
 
@@ -38,14 +41,15 @@ const PostsList = () => {
     );
   });
 
-  const shownContent = initialLoading === 'loading' ? <Spinner /> : newsItems;
+  if (initialLoading === 'loading') return <Spinner />;
+  if (initialLoading === 'rejected') return <ErrorPlug />;
 
   return (
     <>
-      <ul className="px-40 pt-20">{shownContent}</ul>
+      <ul className="px-40 pt-20">{newsItems}</ul>
       <LoadMoreButton
         onClick={clickHandler}
-        btnDisabled={false}
+        btnDisabled={additionalLoading !== 'idle'}
       />
     </>
   );
