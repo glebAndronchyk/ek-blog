@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import axiosInstance from '../services/axiosService';
 import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
+import getNewsData from '../services/getNewsData';
 
 const initialState = {
   data: [],
@@ -11,20 +11,14 @@ const initialState = {
   page: 2,
 };
 
-const receiveData = async (pageNumber = 1) => {
-  const params = { _page: pageNumber, _limit: 10 };
-  const response = await axiosInstance.get('/announcements', { params });
-  return response.data.filter(item => item.body);
-};
-
 export const getInitialData = createAsyncThunk(
   'announcements/getInitialData', //
-  () => receiveData(),
+  () => getNewsData('announcements'),
 );
 
 export const getAdditionalData = createAsyncThunk(
   'announcements/getAdditionalData',
-  pageNumber => receiveData(pageNumber),
+  pageNumber => getNewsData('announcements', pageNumber),
 );
 
 const announcementsListSlice = createSlice({
