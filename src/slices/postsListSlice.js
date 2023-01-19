@@ -37,12 +37,8 @@ const postsListSlice = createSlice({
     postDeleted: (state, action) => {
       state.data = state.data.filter(item => item === action.payload);
     },
-    stateReseted: state => {
-      state.data = [];
-      state.initialLoading = LOADING;
-      state.additionalLoading = IDLE;
-      state.showLoadMoreButton = false;
-      state.page = 2;
+    stateReseted: () => {
+      return initialState;
     },
   },
   extraReducers: builder => {
