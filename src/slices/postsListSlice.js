@@ -1,31 +1,30 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import axiosInstance from '../services/axiosService';
+import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
 
 const initialState = {
   data: [],
-  initialLoading: 'loading',
-  additionalLoading: 'idle',
+  initialLoading: LOADING,
+  additionalLoading: IDLE,
   showLoadMoreButton: false,
   page: 2,
 };
 
+const receiveData = async (pageNumber = 1) => {
+  const params = { _page: pageNumber, _limit: 10 };
+  const response = await axiosInstance.get('/posts', { params });
+  return response.data.filter(item => item.body);
+};
+
 export const getInitialData = createAsyncThunk(
-  'posts/getInitialData',
-  async () => {
-    const params = { _page: 1, _limit: 10 };
-    const response = await axiosInstance.get('/posts', { params });
-    return response.data.filter(item => item.body);
-  },
+  'posts/getInitialData', //
+  () => receiveData(),
 );
 
 export const getAdditionalData = createAsyncThunk(
   'posts/getAdditionalData',
-  async pageNumber => {
-    const params = { _page: pageNumber, _limit: 10 };
-    const response = await axiosInstance.get('/posts', { params });
-    return response.data.filter(item => item.body);
-  },
+  pageNumber => receiveData(pageNumber),
 );
 
 const postsListSlice = createSlice({
@@ -43,23 +42,23 @@ const postsListSlice = createSlice({
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
         state.showLoadMoreButton = action.payload.length > 0;
-        state.initialLoading = 'idle';
+        state.initialLoading = IDLE;
         state.data = action.payload;
       })
       .addCase(getInitialData.rejected, state => {
-        state.initialLoading = 'rejected';
+        state.initialLoading = REJECTED;
       })
       .addCase(getAdditionalData.pending, state => {
-        state.additionalLoading = 'loading';
+        state.additionalLoading = LOADING;
       })
       .addCase(getAdditionalData.fulfilled, (state, action) => {
         state.showLoadMoreButton = action.payload.length > 0;
-        state.additionalLoading = 'idle';
+        state.additionalLoading = IDLE;
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
       .addCase(getAdditionalData.rejected, state => {
-        state.additionalLoading = 'rejected';
+        state.additionalLoading = REJECTED;
       });
   },
 });
