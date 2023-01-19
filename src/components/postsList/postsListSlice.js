@@ -53,7 +53,7 @@ const postsListSlice = createSlice({
         state.additionalLoading = 'loading';
       })
       .addCase(getAdditionalData.fulfilled, (state, action) => {
-        state.additionalLoading = 'loading';
+        state.additionalLoading = 'idle';
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
