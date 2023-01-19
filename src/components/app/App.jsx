@@ -1,10 +1,12 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { lazy, Suspense } from 'react';
 
 import store from '../../store/store';
 import Layout from '../../pages/Layout';
 import Posts from '../../pages/Posts';
-import Announcements from '../../pages/Announcements';
+
+const Announcements = lazy(() => import('../../pages/Announcements'));
 
 const App = () => {
   return (
@@ -16,7 +18,11 @@ const App = () => {
         >
           <Route
             path="posts"
-            element={<Posts />}
+            element={
+              <Suspense>
+                <Posts />
+              </Suspense>
+            }
           />
           {/* TODO: ROUTE GUARD */}
           <Route
@@ -31,7 +37,11 @@ const App = () => {
 
           <Route
             path="announcements"
-            element={<Announcements />}
+            element={
+              <Suspense>
+                <Announcements />
+              </Suspense>
+            }
           />
           {/*TODO: ROUTE GUARD*/}
           <Route
