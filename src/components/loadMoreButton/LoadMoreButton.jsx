@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
+import LoadMoreButtonSpinner from '../loadMoreButtonSpinner/LoadMoreButtonSpinner';
 
 import Button from '../button/Button';
 
 const LoadMoreButton = props => {
   const { onClick, btnDisabled } = props;
+
+  const insideContent = btnDisabled ? (
+    <LoadMoreButtonSpinner />
+  ) : (
+    <span>Load more</span>
+  );
 
   return (
     <Button
@@ -11,7 +18,7 @@ const LoadMoreButton = props => {
       disabled={btnDisabled}
       onClick={onClick}
     >
-      Load More
+      {insideContent}
     </Button>
   );
 };
