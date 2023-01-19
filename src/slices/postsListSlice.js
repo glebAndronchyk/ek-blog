@@ -37,6 +37,13 @@ const postsListSlice = createSlice({
     postDeleted: (state, action) => {
       state.data = state.data.filter(item => item === action.payload);
     },
+    stateReseted: state => {
+      state.data = [];
+      state.initialLoading = LOADING;
+      state.additionalLoading = IDLE;
+      state.showLoadMoreButton = false;
+      state.page = 2;
+    },
   },
   extraReducers: builder => {
     builder
@@ -63,8 +70,10 @@ const postsListSlice = createSlice({
   },
 });
 
-const { reducer } = postsListSlice;
+const { reducer, actions } = postsListSlice;
 export default reducer;
+
+export const { stateReseted } = actions;
 
 // TODO: ADD AND REMOVE POSTS
 // export const {

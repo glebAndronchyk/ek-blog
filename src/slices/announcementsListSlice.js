@@ -37,6 +37,13 @@ const announcementsListSlice = createSlice({
     announcementDeleted: (state, action) => {
       state.data = state.data.filter(item => item === action.payload);
     },
+    stateReseted: state => {
+      state.data = [];
+      state.initialLoading = LOADING;
+      state.additionalLoading = IDLE;
+      state.showLoadMoreButton = false;
+      state.page = 2;
+    },
   },
   extraReducers: builder => {
     builder
@@ -63,8 +70,9 @@ const announcementsListSlice = createSlice({
   },
 });
 
-const { reducer } = announcementsListSlice;
+const { reducer, actions } = announcementsListSlice;
 export default reducer;
+export const { stateReseted } = actions;
 
 // TODO: ADD AND REMOVE ANNOUNCEMENTS
 // export const {
