@@ -7,6 +7,7 @@ import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
 import { getAdditionalData, getInitialData } from '../../slices/postsListSlice';
+import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
 
 const PostsList = () => {
   const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
@@ -40,8 +41,8 @@ const PostsList = () => {
     );
   });
 
-  if (initialLoading === 'loading') return <Spinner />;
-  if (initialLoading === 'rejected') return <ErrorPlug />;
+  if (initialLoading === LOADING) return <Spinner />;
+  if (initialLoading === REJECTED) return <ErrorPlug />;
 
   return (
     <>
@@ -49,7 +50,7 @@ const PostsList = () => {
       {showLoadMoreButton ? (
         <LoadMoreButton
           onClick={clickHandler}
-          btnDisabled={additionalLoading !== 'idle'}
+          btnDisabled={additionalLoading !== IDLE}
         />
       ) : (
         <span className="block text-center">Posts Ended</span>
