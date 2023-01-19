@@ -1,9 +1,10 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
+import store from '../../store/store';
 import Layout from '../../pages/Layout';
 import Posts from '../../pages/Posts';
-import store from '../../store/store';
+import Announcements from '../../pages/Announcements';
 
 const App = () => {
   return (
@@ -30,7 +31,7 @@ const App = () => {
 
           <Route
             path="announcements"
-            element={<div>Announcements</div>}
+            element={<Announcements />}
           />
           {/*TODO: ROUTE GUARD*/}
           <Route
