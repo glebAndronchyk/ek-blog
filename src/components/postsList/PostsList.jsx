@@ -18,10 +18,6 @@ const PostsList = () => {
     dispatch(getInitialData());
   }, []);
 
-  const calcVisiblePart = content => {
-    return content.length > 400 ? `${content.slice(0, 400)}...` : content;
-  };
-
   const clickHandler = () => {
     return dispatch(getAdditionalData(page));
   };
@@ -34,7 +30,7 @@ const PostsList = () => {
         feedData={{
           createdAt: item.createdAt,
           title: item.title,
-          body: calcVisiblePart(item.body),
+          body: item.body,
         }}
       />
     );
