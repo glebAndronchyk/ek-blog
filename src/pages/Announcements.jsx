@@ -1,5 +1,5 @@
 import Banner from '../components/banner/Banner';
-import PostsList from '../components/postsList/PostsList';
+import AnnouncementsList from '../components/announcementsList/AnnouncementsList';
 
 const Announcements = () => {
   return (
@@ -7,7 +7,7 @@ const Announcements = () => {
       <Banner label="Announcements">
         <span>Important news</span>
       </Banner>
-      <PostsList />
+      <AnnouncementsList />
     </>
   );
 };
