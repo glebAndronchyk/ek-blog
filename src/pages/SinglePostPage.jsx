@@ -4,25 +4,42 @@ import { useEffect } from 'react';
 import getDateInCorrectFormat from '../helpers/getDateInCorrectFormat';
 import useGetNewsData from '../hooks/useGetNewsData';
 
+import { LOADING, REJECTED } from '../helpers/loadingStatus';
+import Spinner from '../components/spinner/Spinner';
+import ErrorPlug from '../components/errorPlug/ErrorPlug';
+
+import './css/singlePostPage.css';
+
 const SinglePostPage = () => {
   const { postId } = useParams();
-  const { page, getData } = useGetNewsData(postId, 'posts');
-  const { title, createdAt, updatedAt, body, firstname, lastname } = page;
+  const { page, author, getData, loading } = useGetNewsData(postId, 'posts');
+  const { title, createdAt, updatedAt, body } = page;
+  const { firstname, lastname } = author;
 
   useEffect(() => {
     getData();
   }, []);
 
+  if (loading === LOADING) return <Spinner />;
+  if (loading === REJECTED) return <ErrorPlug />;
+
   return (
-    <div className="w-8/12 mx-auto">
-      <h2>{title}</h2>
-      <span>
-        By {`${firstname} ${lastname}. `}
+    // TODO: RETURN BUTTON
+    // TODO: REMOVE EDIT BUTTONS
+    <div className="w-8/12 mx-auto pt-4">
+      <h2 className="font-[600] text-black text-3xl relative mb-2 single-post-deco before:bg-app-red">
+        {title}
+      </h2>
+      <span className="block pl-4 mb-2 font-[400] text-gray-500 text-base">
+        By: {`${firstname} ${lastname}. `}
         {`Created at: ${getDateInCorrectFormat(
           createdAt,
         )}, Updated at: ${getDateInCorrectFormat(updatedAt)}`}
       </span>
-      <p>{body}</p>
+      <p className="relative text-lg single-post-deco before:bg-blue-100">
+        {body}
+      </p>
+      {/*TODO: MAKE COMMENTS SECTION*/}
     </div>
   );
 };
