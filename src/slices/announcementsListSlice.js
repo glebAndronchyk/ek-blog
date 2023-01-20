@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
-import getNewsData from '../services/getNewsData';
+import { getNews } from '../services/newsService';
 
 const initialState = {
   data: [],
@@ -13,12 +13,12 @@ const initialState = {
 
 export const getInitialData = createAsyncThunk(
   'announcements/getInitialData', //
-  () => getNewsData('announcements'),
+  () => getNews('announcements'),
 );
 
 export const getAdditionalData = createAsyncThunk(
   'announcements/getAdditionalData',
-  pageNumber => getNewsData('announcements', pageNumber),
+  pageNumber => getNews('announcements', pageNumber),
 );
 
 const announcementsListSlice = createSlice({
