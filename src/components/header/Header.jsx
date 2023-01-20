@@ -3,7 +3,6 @@ import StyledNavLink from '../styledNavLink/StyledNavLink';
 import LoginButton from '../loginButton/LoginButton';
 
 import Logo from '../../assets/images/logo.png';
-import Login from '../login/Login';
 
 const Header = () => {
   return (
@@ -41,7 +40,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <LoginButton type="header-btn">Login</LoginButton>
+      <LoginButton type="header-btn" />
     </header>
   );
 };
