@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .single-post-deco {
+        @apply before:absolute before:top-0 before:left-[-20px] before:w-2 before:h-full before:rounded-full
+    }
+}
