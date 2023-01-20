@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import getDateInCorrectFormat from '../../helpers/getDateInCorrectFormat';
 
-import FeedItemPlug from '../../assets/images/FeedItemPlug.png';
+import PostsItemPlug from '../../assets/images/PostsItemPlug.png';
 
-const NewsItem = props => {
+const PostsItem = props => {
   const { feedData, to } = props;
   const { createdAt, title, body } = feedData;
 
@@ -33,7 +33,7 @@ const NewsItem = props => {
         </div>
         <img
           className="hidden lg:block lg:pl-1"
-          src={FeedItemPlug}
+          src={PostsItemPlug}
           alt="item"
         />
       </Link>
@@ -41,7 +41,7 @@ const NewsItem = props => {
   );
 };
 
-NewsItem.propTypes = {
+PostsItem.propTypes = {
   feedData: PropTypes.exact({
     createdAt: PropTypes.string,
     title: PropTypes.string,
@@ -50,4 +50,4 @@ NewsItem.propTypes = {
   to: PropTypes.string.isRequired,
 };
 
-export default NewsItem;
+export default PostsItem;
