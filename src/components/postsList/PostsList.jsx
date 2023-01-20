@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import NewsItem from '../newsItem/NewsItem';
+import PostsItem from '../postsItem/PostsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
@@ -32,7 +32,7 @@ const PostsList = () => {
 
   const newsItems = data.map(item => {
     return (
-      <NewsItem
+      <PostsItem
         key={item.id}
         to={`/posts/${item.id}`}
         feedData={{

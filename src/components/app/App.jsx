@@ -50,10 +50,6 @@ const App = () => {
             element={<div>Creator</div>}
           />
           {/*//*/}
-          <Route
-            path="announcements/:announcementsId"
-            element={<div>Single announcement</div>}
-          />
 
           {/*TODO: ROUTE GUARD*/}
           <Route
