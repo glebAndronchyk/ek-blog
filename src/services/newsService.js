@@ -1,6 +1,6 @@
 import axiosInstance from './axiosService';
 
-export const getPostsData = async id => {
+export const getPost = async id => {
   const params = { _expand: 'user' };
   const response = await axiosInstance.get(`/posts/${id}`, { params });
   return response.data;
