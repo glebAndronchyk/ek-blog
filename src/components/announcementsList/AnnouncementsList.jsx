@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import NewsItem from '../newsItem/NewsItem';
 import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
+import AnnouncementsItem from '../announcementsItem/AnnouncementsItem';
 import {
   stateReseted,
   getAdditionalData,
@@ -32,7 +32,7 @@ const AnnouncementsList = () => {
 
   const newsItems = data.map(item => {
     return (
-      <NewsItem
+      <AnnouncementsItem
         key={item.id}
         to={`/announcements/${item.id}`}
         feedData={{
