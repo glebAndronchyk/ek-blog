@@ -8,6 +8,7 @@ import Spinner from '../spinner/Spinner';
 
 const Announcements = lazy(() => import('../../pages/Announcements'));
 const Posts = lazy(() => import('../../pages/Posts'));
+const SinglePostPage = lazy(() => import('../../pages/SinglePostPage'));
 
 const App = () => {
   return (
@@ -33,7 +34,11 @@ const App = () => {
           {/* // */}
           <Route
             path="posts/:postId"
-            element={<SinglePostPage />}
+            element={
+              <Suspense fallback={<Spinner />}>
+                <SinglePostPage />
+              </Suspense>
+            }
           />
 
           <Route
