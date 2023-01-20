@@ -12,23 +12,23 @@ const initialState = {
 };
 
 export const getInitialData = createAsyncThunk(
-  'posts/getInitialData', //
-  () => getNewsData('posts'),
+  'announcements/getInitialData', //
+  () => getNewsData('announcements'),
 );
 
 export const getAdditionalData = createAsyncThunk(
-  'posts/getAdditionalData',
-  pageNumber => getNewsData('posts', pageNumber),
+  'announcements/getAdditionalData',
+  pageNumber => getNewsData('announcements', pageNumber),
 );
 
-const postsListSlice = createSlice({
-  name: 'posts',
+const announcementsListSlice = createSlice({
+  name: 'announcements',
   initialState,
   reducers: {
-    postAdded: (state, action) => {
+    announcementAdded: (state, action) => {
       state.data.push(action.payload);
     },
-    postDeleted: (state, action) => {
+    announcementDeleted: (state, action) => {
       state.data = state.data.filter(item => item === action.payload);
     },
     stateReseted: () => {
@@ -60,12 +60,11 @@ const postsListSlice = createSlice({
   },
 });
 
-const { reducer, actions } = postsListSlice;
+const { reducer, actions } = announcementsListSlice;
 export default reducer;
-
 export const { stateReseted } = actions;
 
-// TODO: ADD AND REMOVE POSTS
+// TODO: ADD AND REMOVE ANNOUNCEMENTS
 // export const {
 //   postAdded,
 //   postDeleted,
