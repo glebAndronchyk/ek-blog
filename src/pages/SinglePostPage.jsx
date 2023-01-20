@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import getDateInCorrectFormat from '../helpers/getDateInCorrectFormat';
-import useGetNewsData from '../hooks/useGetNewsData';
+import useGetPostsData from '../hooks/useGetPostsData';
 
 import { LOADING, REJECTED } from '../helpers/loadingStatus';
 import Spinner from '../components/spinner/Spinner';
@@ -12,7 +12,7 @@ import './css/singlePostPage.css';
 
 const SinglePostPage = () => {
   const { postId } = useParams();
-  const { page, author, getData, loading } = useGetNewsData(postId, 'posts');
+  const { page, author, getData, loading } = useGetPostsData(postId, 'posts');
   const { title, createdAt, updatedAt, body } = page;
   const { firstname, lastname } = author;
 

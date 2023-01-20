@@ -1,11 +1,9 @@
 import { useState } from 'react';
 
-import services from '../services/serverRequests';
+import { getPostsData } from '../services/newsService';
 import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
 
-const { getNewsData } = services;
-
-const useGetNewsData = (id, path) => {
+const useGetPostsData = id => {
   const [page, setPage] = useState([]);
   const [author, setAuthor] = useState([]);
   const [loading, setLoading] = useState(IDLE);
@@ -13,7 +11,7 @@ const useGetNewsData = (id, path) => {
   const getData = async () => {
     try {
       setLoading(LOADING);
-      const response = await getNewsData(id, path);
+      const response = await getPostsData(id);
       const { title, body, createdAt, updatedAt, user } = response;
       const { firstname, lastname } = user;
       setPage({
@@ -40,4 +38,4 @@ const useGetNewsData = (id, path) => {
   };
 };
 
-export default useGetNewsData;
+export default useGetPostsData;
