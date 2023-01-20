@@ -1,42 +1,28 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import getSinglePostData from '../services/getSinglePostData';
 import getDateInCorrectFormat from '../helpers/getDateInCorrectFormat';
+import useGetNewsData from '../hooks/useGetNewsData';
 
 const SinglePostPage = () => {
   const { postId } = useParams();
-  const [page, setPage] = useState({
-    title: '',
-    body: '',
-    createdAt: '',
-    updatedAt: '',
-    userId: null,
-  });
+  const { page, getData } = useGetNewsData(postId, 'posts');
+  const { title, createdAt, updatedAt, body, firstname, lastname } = page;
 
   useEffect(() => {
-    const data = async () => {
-      const response = await getSinglePostData(postId);
-      const { title, body, createdAt, updatedAt, userId } = response[0];
-      setPage({
-        title,
-        body,
-        createdAt,
-        updatedAt,
-        userId,
-      });
-    };
-    data();
+    getData();
   }, []);
 
   return (
     <div className="w-8/12 mx-auto">
-      <h2>{page.title}</h2>
+      <h2>{title}</h2>
       <span>
-        by {page.userId}: {getDateInCorrectFormat(page.createdAt)}/
-        {getDateInCorrectFormat(page.updatedAt)}
+        By {`${firstname} ${lastname}. `}
+        {`Created at: ${getDateInCorrectFormat(
+          createdAt,
+        )}, Updated at: ${getDateInCorrectFormat(updatedAt)}`}
       </span>
-      <p>{page.body}</p>
+      <p>{body}</p>
     </div>
   );
 };
