@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import StyledNavLink from '../styledNavLink/StyledNavLink';
-import Button from '../button/Button';
+import LoginButton from '../loginButton/LoginButton';
 
 import Logo from '../../assets/images/logo.png';
+import Login from '../login/Login';
 
 const Header = () => {
   return (
@@ -40,7 +41,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <Button type="header-btn">Login</Button>
+      <LoginButton type="header-btn">Login</LoginButton>
     </header>
   );
 };
