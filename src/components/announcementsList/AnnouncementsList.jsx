@@ -6,15 +6,15 @@ import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import ErrorPlug from '../errorPlug/ErrorPlug';
 import {
+  stateReseted,
   getAdditionalData,
   getInitialData,
-  stateReseted,
-} from '../../slices/postsListSlice';
+} from '../../slices/announcementsListSlice';
 import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
 
-const PostsList = () => {
+const AnnouncementsList = () => {
   const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
-    useSelector(state => state.posts);
+    useSelector(state => state.announcements);
 
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ const PostsList = () => {
     return (
       <NewsItem
         key={item.id}
-        to={`/posts/${item.id}`}
+        to={`/announcements/${item.id}`}
         feedData={{
           createdAt: item.createdAt,
           title: item.title,
@@ -56,10 +56,10 @@ const PostsList = () => {
           btnDisabled={additionalLoading !== IDLE}
         />
       ) : (
-        <span className="block text-center">Posts Ended</span>
+        <span className="block text-center">Announcements Ended</span>
       )}
     </>
   );
 };
 
-export default PostsList;
+export default AnnouncementsList;
