@@ -26,7 +26,7 @@ const SinglePostPage = () => {
   return (
     // TODO: RETURN BUTTON
     // TODO: REMOVE EDIT BUTTONS
-    <div className="w-8/12 mx-auto pt-4">
+    <article className="w-8/12 mx-auto pt-4">
       <h2 className="font-[600] text-black text-3xl relative mb-2 single-post-deco before:bg-app-red">
         {title}
       </h2>
@@ -40,7 +40,7 @@ const SinglePostPage = () => {
         {body}
       </p>
       {/*TODO: MAKE COMMENTS SECTION*/}
-    </div>
+    </article>
   );
 };
 
