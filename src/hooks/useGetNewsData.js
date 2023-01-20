@@ -1,45 +1,42 @@
 import { useState } from 'react';
 
 import services from '../services/serverRequests';
+import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
 
 const { getNewsData } = services;
 
 const useGetNewsData = (id, path) => {
   const [page, setPage] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [author, setAuthor] = useState([]);
+  const [loading, setLoading] = useState(IDLE);
 
   const getData = async () => {
     try {
-      setLoading(true);
+      setLoading(LOADING);
       const response = await getNewsData(id, path);
-      const {
-        title,
-        body,
-        createdAt,
-        updatedAt,
-        user: { firstname, lastname },
-      } = response;
+      const { title, body, createdAt, updatedAt, user } = response;
+      const { firstname, lastname } = user;
       setPage({
         title,
         body,
         createdAt,
         updatedAt,
+      });
+      setAuthor({
         firstname,
         lastname,
       });
+      setLoading(IDLE);
     } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
+      setLoading(REJECTED);
     }
   };
 
   return {
     getData,
     page,
+    author,
     loading,
-    error,
   };
 };
 
