@@ -10,8 +10,8 @@ const PostsItem = props => {
   const { createdAt, title, body } = feedData;
 
   // eslint-disable-next-line no-shadow
-  const calcBodyVisiblePart = body => {
-    return body.length > 400 ? `${body.slice(0, 400)}...` : body;
+  const processLongBody = text => {
+    return body.length > 400 ? `${text.slice(0, 400)}...` : text;
   };
 
   return (
@@ -27,7 +27,9 @@ const PostsItem = props => {
           <h3 className="font-[600] text-black text-2xl mb-2.5 2xl:text-3xl">
             {title}
           </h3>
-          <p className="text-lg text-gray-600 2xl:text-lg">{calcBodyVisiblePart(body)}</p>
+          <p className="text-lg text-gray-600 2xl:text-lg">
+            {processLongBody(body)}
+          </p>
         </div>
         <img
           className="hidden lg:block lg:pl-1"
