@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
-import getNewsData from '../services/getNewsData';
+import services from '../services/serverRequests';
 
+const { getNews } = services;
 const initialState = {
   data: [],
   initialLoading: LOADING,
@@ -13,12 +14,12 @@ const initialState = {
 
 export const getInitialData = createAsyncThunk(
   'posts/getInitialData', //
-  () => getNewsData('posts'),
+  () => getNews('posts'),
 );
 
 export const getAdditionalData = createAsyncThunk(
   'posts/getAdditionalData',
-  pageNumber => getNewsData('posts', pageNumber),
+  pageNumber => getNews('posts', pageNumber),
 );
 
 const postsListSlice = createSlice({
