@@ -16,9 +16,8 @@ export const getInitialData = createAsyncThunk(
   () => getNews('announcements'),
 );
 
-export const getAdditionalData = createAsyncThunk(
-  'announcements/getAdditionalData',
-  pageNumber => getNews('announcements', pageNumber),
+export const getAdditionalData = createAsyncThunk('announcements/getAdditionalData', pageNumber =>
+  getNews('announcements', pageNumber),
 );
 
 const announcementsListSlice = createSlice({
