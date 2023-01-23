@@ -6,7 +6,7 @@ import AnnouncementsList from '../components/announcementsList/AnnouncementsList
 import ErrorPlug from '../components/errorPlug/ErrorPlug';
 
 // eslint-disable-next-line react/display-name
-const withLoadingStatus = Component => props => {
+const withInitialLoadingStatus = Component => props => {
   // eslint-disable-next-line react/prop-types
   const { initialLoading } = props;
 
@@ -16,5 +16,5 @@ const withLoadingStatus = Component => props => {
   return <Component />;
 };
 
-export const ExtendedWithInitialLoadingPostsList = withLoadingStatus(PostsList);
-export const ExtendedWithInitialLoadingAnnouncementsList = withLoadingStatus(AnnouncementsList);
+export const ExtendedWithInitialLoadingPostsList = withInitialLoadingStatus(PostsList);
+export const ExtendedWithInitialLoadingAnnouncementsList = withInitialLoadingStatus(AnnouncementsList);
