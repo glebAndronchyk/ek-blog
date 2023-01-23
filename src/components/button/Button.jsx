@@ -2,21 +2,21 @@ import { useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import './button.css';
-
 const Button = props => {
-  const { type, onClick, children, disabled } = props;
+  const { type, className, onClick, children, disabled } = props;
 
-  const className = useMemo(() => {
-    return classNames('btn', type, {
+  const btnClassName = useMemo(() => {
+    return classNames('btn', className, {
       disabled,
-      'load-more-disabled': type === 'load-more-button' && disabled,
+      'load-more-disabled': className === 'load-more-button' && disabled,
     });
   }, [disabled]);
 
   return (
+    // eslint-disable-next-line react/button-has-type
     <button
-      className={className}
+      type={type}
+      className={btnClassName}
       disabled={disabled}
       onClick={onClick}
     >
@@ -26,7 +26,8 @@ const Button = props => {
 };
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  className: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   disabled: PropTypes.bool,

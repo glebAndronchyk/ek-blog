@@ -2,8 +2,6 @@ import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
-import './styledNavLink.css';
-
 const StyledNavLink = props => {
   const { to, type, children } = props;
 
