@@ -1,9 +1,19 @@
-import Banner from '../components/banner/Banner';
-import AnnouncementsList from '../components/announcementsList/AnnouncementsList';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
+import Banner from '../components/banner/Banner';
+import { ExtendedWithInitialLoadingAnnouncementsList } from '../hocs/withInitialLoadingStatus';
+import { getInitialData } from '../slices/announcementsListSlice';
 import AnnouncementsBg from '../assets/images/announcements-banner-bg.webp';
 
 const Announcements = () => {
+  const dispatch = useDispatch();
+  const { initialLoading } = useSelector(state => state.announcements);
+
+  useEffect(() => {
+    dispatch(getInitialData());
+  }, []);
+
   return (
     <>
       <Banner
@@ -12,7 +22,7 @@ const Announcements = () => {
       >
         <span>Important news</span>
       </Banner>
-      <AnnouncementsList />
+      <ExtendedWithInitialLoadingAnnouncementsList initialLoading={initialLoading} />
     </>
   );
 };

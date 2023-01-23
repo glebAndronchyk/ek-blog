@@ -2,25 +2,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import PostsItem from '../postsItem/PostsItem';
-import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
-import ErrorPlug from '../errorPlug/ErrorPlug';
-import {
-  getAdditionalData,
-  getInitialData,
-  stateReseted,
-} from '../../slices/postsListSlice';
-import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
+import { getAdditionalData, stateReseted } from '../../slices/postsListSlice';
+import { IDLE } from '../../helpers/loadingStatus';
 
 const PostsList = () => {
-  const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
-    useSelector(state => state.posts);
+  const { data, additionalLoading, page, showLoadMoreButton } = useSelector(
+    state => state.posts,
+  );
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getInitialData());
-  }, []);
 
   useEffect(() => {
     return () => dispatch(stateReseted());
@@ -43,9 +34,6 @@ const PostsList = () => {
       />
     );
   });
-
-  if (initialLoading === LOADING) return <Spinner />;
-  if (initialLoading === REJECTED) return <ErrorPlug />;
 
   return (
     <>

@@ -1,26 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import Spinner from '../spinner/Spinner';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
-import ErrorPlug from '../errorPlug/ErrorPlug';
 import AnnouncementsItem from '../announcementsItem/AnnouncementsItem';
-import {
-  stateReseted,
-  getAdditionalData,
-  getInitialData,
-} from '../../slices/announcementsListSlice';
-import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
+import { stateReseted, getAdditionalData } from '../../slices/announcementsListSlice';
+import { IDLE } from '../../helpers/loadingStatus';
 
 const AnnouncementsList = () => {
-  const { data, initialLoading, additionalLoading, page, showLoadMoreButton } =
-    useSelector(state => state.announcements);
+  const { data, additionalLoading, page, showLoadMoreButton } = useSelector(state => state.announcements);
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getInitialData());
-  }, []);
 
   useEffect(() => {
     return () => dispatch(stateReseted());
@@ -43,9 +32,6 @@ const AnnouncementsList = () => {
       />
     );
   });
-
-  if (initialLoading === LOADING) return <Spinner />;
-  if (initialLoading === REJECTED) return <ErrorPlug />;
 
   return (
     <>
