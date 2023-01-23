@@ -13,7 +13,7 @@ const withInitialLoadingStatus = Component => props => {
   if (initialLoading === LOADING) return <Spinner />;
   if (initialLoading === REJECTED) return <ErrorPlug />;
 
-  return <Component />;
+  return <Component {...props} />;
 };
 
 export const ExtendedWithInitialLoadingPostsList = withInitialLoadingStatus(PostsList);
