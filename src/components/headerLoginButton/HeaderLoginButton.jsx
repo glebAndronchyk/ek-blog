@@ -13,7 +13,7 @@ const LoginButton = () => {
   return (
     <Button
       onClick={changeModalStatus}
-      type="header-btn"
+      className="header-btn"
     >
       Login
     </Button>
