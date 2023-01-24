@@ -4,12 +4,10 @@ import { useEffect } from 'react';
 import PostsItem from '../postsItem/PostsItem';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
 import { getAdditionalData, stateReseted } from '../../slices/postsListSlice';
-import { IDLE } from '../../helpers/loadingStatus';
+import withInitialLoadingStatus from '../../hocs/withInitialLoadingStatus';
 
 const PostsList = () => {
-  const { data, additionalLoading, page, showLoadMoreButton } = useSelector(
-    state => state.posts,
-  );
+  const { data, page, showLoadMoreButton } = useSelector(state => state.posts);
 
   const dispatch = useDispatch();
 
@@ -41,7 +39,7 @@ const PostsList = () => {
       {showLoadMoreButton ? (
         <LoadMoreButton
           onClick={clickHandler}
-          btnDisabled={additionalLoading !== IDLE}
+          entity="posts"
         />
       ) : (
         <span className="block text-center">Posts Ended</span>
@@ -50,4 +48,6 @@ const PostsList = () => {
   );
 };
 
-export default PostsList;
+const ExtendWithInitialLoadingStatusPostsList = withInitialLoadingStatus(PostsList);
+
+export default ExtendWithInitialLoadingStatusPostsList;
