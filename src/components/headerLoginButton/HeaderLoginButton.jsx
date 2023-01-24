@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux';
 
 import Button from '../button/Button';
-import { modalOpenStateChanged } from '../../slices/loginSlice';
+import { modalOpened } from '../../slices/loginSlice';
 
-const LoginButton = () => {
+const HeaderLoginButton = () => {
   const dispatch = useDispatch();
 
   const changeModalStatus = () => {
-    return dispatch(modalOpenStateChanged());
+    return dispatch(modalOpened());
   };
 
   return (
@@ -20,4 +20,4 @@ const LoginButton = () => {
   );
 };
 
-export default LoginButton;
+export default HeaderLoginButton;
