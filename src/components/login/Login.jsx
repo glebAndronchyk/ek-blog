@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import classNames from 'classnames';
 
 import LoginForm from '../loginForm/LoginForm';
-import { modalOpenStateChanged } from '../../slices/loginSlice';
+import { modalClosed } from '../../slices/loginSlice';
 
 const Login = () => {
   const { isShown } = useSelector(state => state.login);
@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleBackgroundClick = event => {
     if (event.target === backgroundRef.current) {
-      return dispatch(modalOpenStateChanged());
+      return dispatch(modalClosed());
     }
     return null;
   };
@@ -21,7 +21,7 @@ const Login = () => {
   const handleEscPress = event => {
     const { key } = event;
     if (key === 'Escape') {
-      return dispatch(modalOpenStateChanged());
+      return dispatch(modalClosed());
     }
     return null;
   };
