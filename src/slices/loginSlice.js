@@ -8,12 +8,15 @@ const loginSLice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    modalOpenStateChanged: state => {
-      state.isShown = !state.isShown;
+    modalClosed: state => {
+      state.isShown = false;
+    },
+    modalOpened: state => {
+      state.isShown = true;
     },
   },
 });
 
 const { reducer, actions } = loginSLice;
-export const { modalOpenStateChanged } = actions;
+export const { modalOpened, modalClosed } = actions;
 export default reducer;
