@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import StyledNavLink from '../styledNavLink/StyledNavLink';
 import HeaderLoginButton from '../headerLoginButton/HeaderLoginButton';
+import HeaderUserBlock from '../headerUserBlock/HeaderUserBlock';
 
 import Logo from '../../assets/images/logo.png';
 
 const Header = () => {
+  const { isAuth } = useSelector(state => state.user);
+
   return (
     <header className="relative z-10 px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100">
       <div className="flex justify-between">
@@ -40,7 +45,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <HeaderLoginButton type="header-btn" />
+      {!isAuth ? <HeaderLoginButton type="header-btn" /> : <HeaderUserBlock />}
     </header>
   );
 };

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getItemFromStorage, setItemToStorage } from '../helpers/localStorage';
+import { getItemFromStorage, setItemToStorage, removeItemFromStorage } from '../helpers/localStorage';
 import { login } from '../services/authService';
 import { IDLE, LOADING, REJECTED } from '../helpers/loadingStatus';
 
@@ -18,7 +18,12 @@ export const tryToLogin = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    userLoggedOut: state => {
+      state.isAuth = false;
+      removeItemFromStorage('token');
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(tryToLogin.pending, state => {
@@ -38,4 +43,5 @@ const userSlice = createSlice({
 });
 
 const { reducer, actions } = userSlice;
+export const { userLoggedOut } = actions;
 export default reducer;

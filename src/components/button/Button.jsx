@@ -12,7 +12,6 @@ const Button = props => {
   }, [disabled]);
 
   return (
-    // eslint-disable-next-line react/button-has-type
     <button
       type={type}
       className={btnClassName}
