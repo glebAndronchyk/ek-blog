@@ -1,21 +1,23 @@
 import PropTypes from 'prop-types';
-import LoadMoreButtonSpinner from '../loadMoreButtonSpinner/LoadMoreButtonSpinner';
+import { useSelector } from 'react-redux';
+
+import ButtonSpinner from '../buttonSpinner/ButtonSpinner';
 
 import Button from '../button/Button';
+import { IDLE } from '../../helpers/loadingStatus';
 
 const LoadMoreButton = props => {
-  const { onClick, btnDisabled } = props;
+  const { onClick, entity } = props;
+  const { additionalLoading } = useSelector(state => state[entity]);
 
-  const insideContent = btnDisabled ? (
-    <LoadMoreButtonSpinner />
-  ) : (
-    <span>Load more</span>
-  );
+  const loadingCondition = additionalLoading !== IDLE;
+
+  const insideContent = loadingCondition ? <ButtonSpinner /> : <span>Load more</span>;
 
   return (
     <Button
-      type="load-more-button"
-      disabled={btnDisabled}
+      className="load-more-button"
+      disabled={loadingCondition}
       onClick={onClick}
     >
       {insideContent}
@@ -25,7 +27,7 @@ const LoadMoreButton = props => {
 
 LoadMoreButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  btnDisabled: PropTypes.bool.isRequired,
+  entity: PropTypes.string.isRequired,
 };
 
 export default LoadMoreButton;
