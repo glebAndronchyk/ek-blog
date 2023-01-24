@@ -4,7 +4,7 @@ const initialState = {
   isShown: false,
 };
 
-const loginSLice = createSlice({
+const modalSLice = createSlice({
   name: 'login',
   initialState,
   reducers: {
@@ -17,6 +17,6 @@ const loginSLice = createSlice({
   },
 });
 
-const { reducer, actions } = loginSLice;
+const { reducer, actions } = modalSLice;
 export const { modalOpened, modalClosed } = actions;
 export default reducer;

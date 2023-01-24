@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import Modal from '../components/modal/Modal';
-import Login from '../components/login/Login';
+import LoginForm from '../components/loginForm/LoginForm';
 
 const Layout = () => {
   return (
@@ -16,7 +16,7 @@ const Layout = () => {
         <Footer />
       </div>
       <Modal>
-        <Login />
+        <LoginForm />
       </Modal>
     </>
   );

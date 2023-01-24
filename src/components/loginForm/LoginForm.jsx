@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import { tryToLogin } from '../../slices/userSlice';
-import { modalClosed } from '../../slices/loginSlice';
+import { modalClosed } from '../../slices/modalSlice';
 import FormInput from '../formInput/FormInput';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
 import InputError from '../inputError/InputError';

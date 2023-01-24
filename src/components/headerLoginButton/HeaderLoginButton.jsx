@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import Button from '../button/Button';
-import { modalOpened } from '../../slices/loginSlice';
+import { modalOpened } from '../../slices/modalSlice';
 
 const HeaderLoginButton = () => {
   const dispatch = useDispatch();

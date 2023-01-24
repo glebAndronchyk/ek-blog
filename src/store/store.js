@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import posts from '../slices/postsListSlice';
 import announcements from '../slices/announcementsListSlice';
-import login from '../slices/loginSlice';
+import login from '../slices/modalSlice';
 import user from '../slices/userSlice';
 
 const store = configureStore({
