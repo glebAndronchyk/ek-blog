@@ -10,7 +10,7 @@ const modalRoot = document.getElementById('modal-root');
 const Modal = props => {
   const { children } = props;
 
-  const { isShown } = useSelector(state => state.login);
+  const { isShown } = useSelector(state => state.modal);
   const className = classNames({ hidden: !isShown });
   const backgroundRef = useRef(null);
   const dispatch = useDispatch();

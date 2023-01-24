@@ -5,7 +5,7 @@ const initialState = {
 };
 
 const modalSLice = createSlice({
-  name: 'login',
+  name: 'modal',
   initialState,
   reducers: {
     modalClosed: state => {
