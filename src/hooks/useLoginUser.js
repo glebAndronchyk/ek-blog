@@ -1,24 +1,24 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-import { userRejected, userLogged, userLogging } from '../slices/userSlice';
+import { IDLE, LOADING, REJECTED } from '../helpers/loadingStatus';
 import { login } from '../services/authService';
 import { setItemToStorage } from '../helpers/localStorage';
 
 const useLoginUser = () => {
-  const dispatch = useDispatch();
+  const [loggingStatus, setLoggingStatus] = useState(IDLE);
 
   const tryToLogin = async data => {
     try {
-      dispatch(userLogging());
+      setLoggingStatus(LOADING);
       const response = await login(data);
       setItemToStorage('token', response.accessToken);
-      dispatch(userLogged());
+      setLoggingStatus(IDLE);
     } catch (e) {
-      dispatch(userRejected());
+      setLoggingStatus(REJECTED);
     }
   };
 
-  return { tryToLogin };
+  return { tryToLogin, loggingStatus };
 };
 
 export default useLoginUser;
