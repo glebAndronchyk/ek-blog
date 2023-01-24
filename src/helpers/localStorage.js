@@ -9,3 +9,7 @@ export const setItemToStorage = (name, item) => {
 export const removeItemFromStorage = name => {
   localStorage.removeItem(name);
 };
+
+export const clearStorage = () => {
+  localStorage.clear();
+};

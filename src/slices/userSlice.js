@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getItemFromStorage, setItemToStorage, removeItemFromStorage } from '../helpers/localStorage';
+import { getItemFromStorage, setItemToStorage, clearStorage } from '../helpers/localStorage';
 import { login } from '../services/authService';
 import { IDLE, LOADING, REJECTED } from '../helpers/loadingStatus';
 
@@ -21,7 +21,7 @@ const userSlice = createSlice({
   reducers: {
     userLoggedOut: state => {
       state.isAuth = false;
-      removeItemFromStorage('token');
+      clearStorage();
     },
   },
   extraReducers: builder => {
@@ -34,6 +34,7 @@ const userSlice = createSlice({
         state.isAuth = true;
         state.error = false;
         setItemToStorage('token', action.payload.accessToken);
+        setItemToStorage('userData', JSON.stringify(action.payload.user));
       })
       .addCase(tryToLogin.rejected, (state, action) => {
         state.loading = REJECTED;
