@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import Banner from '../components/banner/Banner';
-import { ExtendedWithInitialLoadingPostsList } from '../hocs/withInitialLoadingStatus';
+import ExtendWithInitialLoadingStatusPostsList from '../components/postsList/PostsList';
 import { getInitialData } from '../slices/postsListSlice';
 import PostsBg from '../assets/images/posts-banner-bg.jpg';
 
@@ -22,7 +22,7 @@ const Posts = () => {
       >
         <span>Read them, or add them</span>
       </Banner>
-      <ExtendedWithInitialLoadingPostsList initialLoading={initialLoading} />
+      <ExtendWithInitialLoadingStatusPostsList initialLoading={initialLoading} />
     </>
   );
 };

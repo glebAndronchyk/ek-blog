@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import Banner from '../components/banner/Banner';
-import { ExtendedWithInitialLoadingAnnouncementsList } from '../hocs/withInitialLoadingStatus';
+import ExtendedWithInitialLoadingAnnouncementsList from '../components/announcementsList/AnnouncementsList';
 import { getInitialData } from '../slices/announcementsListSlice';
 import AnnouncementsBg from '../assets/images/announcements-banner-bg.webp';
 

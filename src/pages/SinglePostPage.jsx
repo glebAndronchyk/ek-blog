@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import getDateInCorrectFormat from '../helpers/getDateInCorrectFormat';
-import useGetPostsData from '../hooks/useGetPostsData';
+import useGetPostsData from '../hooks/useGetPost';
 
 import { LOADING, REJECTED } from '../helpers/loadingStatus';
 import Spinner from '../components/spinner/Spinner';
