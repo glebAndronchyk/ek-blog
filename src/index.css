@@ -38,10 +38,7 @@
         @apply w-80 py-2 bg-blue-100 border-2 border-blue-100 text-app-red font-[600] block mx-auto tracking-wide hover:bg-app-red hover:text-blue-100 hover:border-blue-100
     }
     .disabled {
-        @apply bg-blue-100 border-2 border-blue-100 text-white
-    }
-    .load-more-disabled {
-        @apply bg-blue-55 hover:bg-inactive-app-red
+        @apply border-2 border-blue-100 bg-blue-55 hover:bg-inactive-app-red
     }
 }
 
