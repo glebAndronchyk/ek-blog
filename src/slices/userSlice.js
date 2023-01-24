@@ -11,7 +11,7 @@ const initialState = {
 };
 
 export const tryToLogin = createAsyncThunk(
-  'login/tryTologin', //
+  'user/tryTologin', //
   data => login(data),
 );
 
