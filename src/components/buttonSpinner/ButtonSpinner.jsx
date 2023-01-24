@@ -1,6 +1,6 @@
 import Spinner from '../../assets/images/LoadMoreButtonSpinner.svg';
 
-const LoadMoreButtonSpinner = () => {
+const ButtonSpinner = () => {
   return (
     <img
       className="block mx-auto"
@@ -10,4 +10,4 @@ const LoadMoreButtonSpinner = () => {
   );
 };
 
-export default LoadMoreButtonSpinner;
+export default ButtonSpinner;
