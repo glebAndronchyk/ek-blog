@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import StyledNavLink from '../styledNavLink/StyledNavLink';
-import LoginButton from '../loginButton/LoginButton';
+import HeaderLoginButton from '../headerLoginButton/HeaderLoginButton';
 
 import Logo from '../../assets/images/logo.png';
 
@@ -40,7 +40,7 @@ const Header = () => {
           </li>
         </ul>
       </div>
-      <LoginButton type="header-btn" />
+      <HeaderLoginButton type="header-btn" />
     </header>
   );
 };
