@@ -8,7 +8,6 @@ const Button = props => {
   const btnClassName = useMemo(() => {
     return classNames('btn', className, {
       disabled,
-      'load-more-disabled': className === 'load-more-button' && disabled,
     });
   }, [disabled]);
 
@@ -28,7 +27,7 @@ const Button = props => {
 Button.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
   disabled: PropTypes.bool,
 };
