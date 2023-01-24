@@ -10,7 +10,14 @@ const LogoutButton = () => {
     dispatch(userLoggedOut());
   };
 
-  return <Button onClick={clickHandler}>Logout</Button>;
+  return (
+    <Button
+      className="log-out-btn h-full"
+      onClick={clickHandler}
+    >
+      Logout
+    </Button>
+  );
 };
 
 export default LogoutButton;
