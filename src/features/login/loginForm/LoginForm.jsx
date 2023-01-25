@@ -8,7 +8,7 @@ import FormInput from 'features/ui/formInput/FormInput';
 import InputError from 'features/inputError/InputError';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import Form from 'features/ui/form/Form';
-import LoginFormButton from '../loginFormButton/LoginFormButton';
+import AuthButton from 'features/ui/authButton/AuthButton';
 
 const LoginForm = () => {
   const {
@@ -74,7 +74,7 @@ const LoginForm = () => {
         errors={errors}
         name="password"
       />
-      <LoginFormButton />
+      <AuthButton entity="user" />
     </Form>
   );
 };
