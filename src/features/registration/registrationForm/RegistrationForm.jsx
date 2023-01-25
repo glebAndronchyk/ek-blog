@@ -2,8 +2,9 @@ import { useForm } from 'react-hook-form';
 
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
+import AuthButton from 'features/ui/authButton/AuthButton';
 
-const RegisterForm = () => {
+const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
@@ -85,8 +86,9 @@ const RegisterForm = () => {
         }}
       />
       {/*TODO: MAKE AVATAR SELECTION*/}
+      <AuthButton entity="registration" />
     </Form>
   );
 };
 
-export default RegisterForm;
+export default RegistrationForm;
