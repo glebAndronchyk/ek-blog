@@ -56,7 +56,7 @@ const RegistrationForm = () => {
       <InputError
         errors={errors}
         axiosError={error}
-        name="email"
+        name="password"
       />
       <FormInput
         className="my-2"
@@ -74,7 +74,7 @@ const RegistrationForm = () => {
       <InputError
         errors={errors}
         axiosError={error}
-        name="email"
+        name="passConfirm"
       />
       <FormInput
         className="my-2"
@@ -92,7 +92,7 @@ const RegistrationForm = () => {
       <InputError
         errors={errors}
         axiosError={error}
-        name="email"
+        name="fullName"
       />
       <FormInput
         className="my-2"
@@ -102,15 +102,14 @@ const RegistrationForm = () => {
         label="age"
         options={{
           //TODO: AGE CHECKER < 110
-          minLength: { value: 10, message: 'Minimum 5 symbols' },
-          maxLength: { value: 32, message: 'Maximum 32 symbols' },
+          maxLength: { value: 3, message: 'Maximum 3 symbols' },
           required: 'This is required input',
         }}
       />
       <InputError
         errors={errors}
         axiosError={error}
-        name="email"
+        name="age"
       />
       {/*TODO: MAKE AVATAR SELECTION*/}
       <AuthButton
