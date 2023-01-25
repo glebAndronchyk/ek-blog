@@ -21,7 +21,8 @@ const Form = props => {
 Form.propTypes = {
   className: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  children: PropTypes.array.isRequired,
 };
 
 export default Form;
