@@ -47,54 +47,54 @@
 
 @font-face {
     font-family: 'Code7x5';
-    src: url("assets/fonts/Code_7x5.ttf");
+    src: url("../fonts/Code_7x5.ttf");
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('assets/fonts/Graphik-Regular-Trial.otf');
+    src: url('../fonts/Graphik-Regular-Trial.otf');
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('assets/fonts/Graphik-Medium-Trial.otf');
+    src: url('../fonts/Graphik-Medium-Trial.otf');
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('assets/fonts/Graphik-Semibold-Trial.otf');
+    src: url('../fonts/Graphik-Semibold-Trial.otf');
     font-weight: 600;
 }
 
 @font-face {
     font-family: 'Graphik';
-    src: url('assets/fonts/Graphik-Bold-Trial.otf');
+    src: url('../fonts/Graphik-Bold-Trial.otf');
     font-weight: 700;
 }
 
 @font-face {
     font-family: 'Inter';
-    src: url('assets/fonts/Inter-Regular.ttf');
+    src: url('../fonts/Inter-Regular.ttf');
     font-weight: 400;
 }
 
 @font-face {
     font-family: 'Inter';
-    src: url('assets/fonts/Inter-Medium.ttf');
+    src: url('../fonts/Inter-Medium.ttf');
     font-weight: 500;
 }
 
 @font-face {
     font-family: 'Inter';
-    src: url('assets/fonts/Inter-SemiBold.ttf');
+    src: url('../fonts/Inter-SemiBold.ttf');
     font-weight: 600;
 }
 
 @font-face {
     font-family: 'Lato';
-    src: url('assets/fonts/Lato-Thin.ttf');
+    src: url('../fonts/Lato-Thin.ttf');
     font-weight: 400;
 }
 
