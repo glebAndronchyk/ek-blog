@@ -1,4 +1,4 @@
-import Spinner from '../../assets/images/LoadMoreButtonSpinner.svg';
+import Spinner from '../../../assets/images/LoadMoreButtonSpinner.svg';
 
 const ButtonSpinner = () => {
   return (

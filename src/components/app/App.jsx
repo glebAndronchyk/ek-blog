@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react';
 
 import store from '../../redux/store';
 import Layout from '../../pages/Layout';
-import Spinner from '../spinner/Spinner';
+import Spinner from '../ui/spinner/Spinner';
 
 const Announcements = lazy(() => import('../../pages/Announcements'));
 const Posts = lazy(() => import('../../pages/Posts'));

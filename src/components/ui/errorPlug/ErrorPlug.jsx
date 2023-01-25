@@ -1,4 +1,4 @@
-import Error from '../../assets/images/error.png';
+import Error from '../../../assets/images/error.png';
 
 const ErrorPlug = () => {
   return (

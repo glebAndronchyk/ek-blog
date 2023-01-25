@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-import { modalClosed } from '../../redux/slices/modalSlice';
+import { modalClosed } from '../../../redux/slices/modalSlice';
 
 const modalRoot = document.getElementById('modal-root');
 

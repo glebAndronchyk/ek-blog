@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
-import Header from '../components/header/Header';
-import Footer from '../components/footer/Footer';
-import Modal from '../components/modal/Modal';
+import Header from '../components/ui/header/Header';
+import Footer from '../components/ui/footer/Footer';
+import Modal from '../components/ui/modal/Modal';
 import LoginForm from '../components/loginForm/LoginForm';
 
 const Layout = () => {

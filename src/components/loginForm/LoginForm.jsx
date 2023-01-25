@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 
 import { tryToLogin } from '../../redux/slices/userSlice';
 import { modalClosed } from '../../redux/slices/modalSlice';
-import FormInput from '../formInput/FormInput';
+import FormInput from '../ui/formInput/FormInput';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
 import InputError from '../inputError/InputError';
-import ErrorPlug from '../errorPlug/ErrorPlug';
+import ErrorPlug from '../ui/errorPlug/ErrorPlug';
 
 const LoginForm = () => {
   const {
