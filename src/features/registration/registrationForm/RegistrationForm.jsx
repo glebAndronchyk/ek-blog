@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
 import AuthButton from 'features/ui/authButton/AuthButton';
+import InputError from 'features/inputError/InputError';
 
 const RegistrationForm = () => {
   const {
@@ -14,11 +15,12 @@ const RegistrationForm = () => {
   const onSubmit = data => {
     console.log(data);
   };
+  const error = null;
 
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="z-50 top-[20%] left-[45%] max-w-[937px] w-full border-2"
+      className="z-50 top-[10%] left-[45%] max-w-[937px] w-full border-2"
     >
       <h3 className="font-code text-3xl text-black mb-4">Create Account</h3>
       <FormInput
@@ -34,6 +36,11 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
+      <InputError
+        errors={errors}
+        axiosError={error}
+        name="email"
+      />
       <FormInput
         className="my-2"
         placeholder="Enter your future password"
@@ -45,6 +52,11 @@ const RegistrationForm = () => {
           maxLength: { value: 32, message: 'Maximum 32 symbols' },
           required: 'This is required input',
         }}
+      />
+      <InputError
+        errors={errors}
+        axiosError={error}
+        name="email"
       />
       <FormInput
         className="my-2"
@@ -59,6 +71,11 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
+      <InputError
+        errors={errors}
+        axiosError={error}
+        name="email"
+      />
       <FormInput
         className="my-2"
         placeholder="Enter your full name"
@@ -72,6 +89,11 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
+      <InputError
+        errors={errors}
+        axiosError={error}
+        name="email"
+      />
       <FormInput
         className="my-2"
         placeholder="Enter your age"
@@ -84,6 +106,11 @@ const RegistrationForm = () => {
           maxLength: { value: 32, message: 'Maximum 32 symbols' },
           required: 'This is required input',
         }}
+      />
+      <InputError
+        errors={errors}
+        axiosError={error}
+        name="email"
       />
       {/*TODO: MAKE AVATAR SELECTION*/}
       <AuthButton
