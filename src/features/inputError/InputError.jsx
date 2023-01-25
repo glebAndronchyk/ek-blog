@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { ErrorMessage } from '@hookform/error-message';
-import InputErrorMessage from '../inputErrorMessage/InputErrorMessage';
+import InputErrorMessage from './inputErrorMessage/InputErrorMessage';
 
 const InputError = props => {
   const { errors, name, axiosError } = props;

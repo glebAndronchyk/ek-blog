@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import Button from '../ui/button/Button';
-import { LOADING } from '../../helpers/loadingStatus';
-import ButtonSpinner from '../ui/buttonSpinner/ButtonSpinner';
+import Button from '../../ui/button/Button';
+import { LOADING } from '../../../helpers/loadingStatus';
+import ButtonSpinner from '../../ui/buttonSpinner/ButtonSpinner';
 
 const LoginFormButton = () => {
   const { loading } = useSelector(state => state.user);
