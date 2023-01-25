@@ -8,6 +8,7 @@ import 'assets/css/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  // eslint-disable-next-line
   <BrowserRouter>
     <AppRoutes />
   </BrowserRouter>,
