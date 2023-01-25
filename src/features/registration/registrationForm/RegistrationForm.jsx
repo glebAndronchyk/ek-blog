@@ -89,6 +89,7 @@ const RegistrationForm = () => {
       <AuthButton
         label="Create account"
         entity="registration"
+        className="mt-2"
       />
     </Form>
   );
