@@ -1,11 +1,16 @@
-import Spinner from 'assets/images/LoadMoreButtonSpinner.svg';
+import { PropagateLoader } from 'react-spinners';
 
 const ButtonSpinner = () => {
   return (
-    <img
-      className="block mx-auto"
-      src={Spinner}
-      alt="spinner"
+    <PropagateLoader
+      size={8}
+      color="#253661"
+      cssOverride={{
+        height: '24px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
     />
   );
 };
