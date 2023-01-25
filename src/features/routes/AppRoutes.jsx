@@ -10,7 +10,7 @@ const Announcements = lazy(() => import('../../pages/Announcements'));
 const Posts = lazy(() => import('../../pages/Posts'));
 const SinglePostPage = lazy(() => import('../../pages/SinglePostPage'));
 
-const App = () => {
+const AppRoutes = () => {
   return (
     <Provider store={store}>
       <Routes>
@@ -126,4 +126,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppRoutes;
