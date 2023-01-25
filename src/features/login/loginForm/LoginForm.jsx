@@ -74,7 +74,10 @@ const LoginForm = () => {
         errors={errors}
         name="password"
       />
-      <AuthButton entity="user" />
+      <AuthButton
+        label="Login"
+        entity="user"
+      />
     </Form>
   );
 };

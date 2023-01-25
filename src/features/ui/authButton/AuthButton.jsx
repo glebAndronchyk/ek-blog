@@ -6,11 +6,11 @@ import { LOADING } from 'helpers/loadingStatus';
 import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
 
 const AuthButton = props => {
-  const { entity } = props;
+  const { entity, label } = props;
   const { loading } = useSelector(state => state[entity]);
 
   const loadingCondition = loading === LOADING;
-  const insideContent = loadingCondition ? <ButtonSpinner /> : <span>Login</span>;
+  const insideContent = loadingCondition ? <ButtonSpinner /> : <span>{label}</span>;
 
   return (
     <Button
@@ -25,6 +25,7 @@ const AuthButton = props => {
 
 AuthButton.propTypes = {
   entity: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 export default AuthButton;

@@ -86,7 +86,10 @@ const RegistrationForm = () => {
         }}
       />
       {/*TODO: MAKE AVATAR SELECTION*/}
-      <AuthButton entity="registration" />
+      <AuthButton
+        label="Create account"
+        entity="registration"
+      />
     </Form>
   );
 };
