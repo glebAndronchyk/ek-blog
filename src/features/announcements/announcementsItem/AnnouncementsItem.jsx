@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 
-import AnnouncementsItemPlug from '../../../assets/images/AnnouncementsItemPlug.png';
+import AnnouncementsItemPlug from 'assets/images/AnnouncementsItemPlug.png';
 
 const AnnouncementsItem = props => {
   const { feedData } = props;
