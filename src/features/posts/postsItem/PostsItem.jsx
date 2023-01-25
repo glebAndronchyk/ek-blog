@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import getDateInCorrectFormat from '../../helpers/getDateInCorrectFormat';
+import getDateInCorrectFormat from '../../../helpers/getDateInCorrectFormat';
 
-import PostsItemPlug from '../../assets/images/PostsItemPlug.png';
+import PostsItemPlug from '../../../assets/images/PostsItemPlug.png';
 
 const PostsItem = props => {
   const { feedData, to } = props;
