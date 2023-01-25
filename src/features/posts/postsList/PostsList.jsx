@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import PostsItem from '../postsItem/PostsItem';
-import LoadMoreButton from '../../loadMoreButton/LoadMoreButton';
+import LoadMoreButton from '../../loadMore/loadMoreButton/LoadMoreButton';
 import { getAdditionalData, stateReseted } from '../../../redux/slices/postsListSlice';
 import withInitialLoadingStatus from '../../../hocs/withInitialLoadingStatus';
 

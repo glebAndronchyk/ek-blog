@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import LoadMoreButton from '../../loadMoreButton/LoadMoreButton';
+import LoadMoreButton from '../../loadMore/loadMoreButton/LoadMoreButton';
 import AnnouncementsItem from '../announcementsItem/AnnouncementsItem';
 import { stateReseted, getAdditionalData } from '../../../redux/slices/announcementsListSlice';
 import withInitialLoadingStatus from '../../../hocs/withInitialLoadingStatus';
