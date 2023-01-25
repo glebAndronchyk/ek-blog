@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import LogoutButton from '../logoutButton/LogoutButton';
+import LogoutButton from '../../logoutButton/LogoutButton';
 
-import Test from '../../assets/images/AnnouncementsItemPlug.png';
+import Test from '../../../assets/images/AnnouncementsItemPlug.png';
 
 const HeaderUserBlock = () => {
   return (

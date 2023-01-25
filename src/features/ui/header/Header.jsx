@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import StyledNavLink from '../styledNavLink/StyledNavLink';
-import HeaderLoginButton from '../../headerLoginButton/HeaderLoginButton';
-import HeaderUserBlock from '../../headerUserBlock/HeaderUserBlock';
+import HeaderLoginButton from '../../headerLogic/headerLoginButton/HeaderLoginButton';
+import HeaderUserBlock from '../../headerLogic/headerUserBlock/HeaderUserBlock';
 
 import Logo from '../../../assets/images/logo.png';
 
