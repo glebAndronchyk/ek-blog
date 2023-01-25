@@ -4,13 +4,21 @@
     "es2021": true
   },
   "extends": [
+    "airbnb",
     "prettier",
     "eslint:recommended",
-    "airbnb",
     "airbnb/hooks",
     "plugin:react/recommended",
     "plugin:prettier/recommended"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -43,6 +51,7 @@
     "react/jsx-wrap-multilines": 0,
     "react/require-default-props": 0,
     "react/jsx-filename-extension": 1,
-    "react/jsx-props-no-spreading": 0
+    "react/jsx-props-no-spreading": 0,
+    "import/no-unresolved": 0
   }
 }
