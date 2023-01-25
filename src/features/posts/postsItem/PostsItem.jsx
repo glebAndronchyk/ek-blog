@@ -24,12 +24,8 @@ const PostsItem = props => {
           <span className="font-[400] text-gray-500 uppercase text-xs mb-7 2xl:text-base">
             {getDateInCorrectFormat(createdAt)}
           </span>
-          <h3 className="font-[600] text-black text-2xl mb-2.5 2xl:text-3xl">
-            {title}
-          </h3>
-          <p className="text-lg text-gray-600 2xl:text-lg">
-            {processLongBody(body)}
-          </p>
+          <h3 className="font-[600] text-black text-2xl mb-2.5 2xl:text-3xl">{title}</h3>
+          <p className="text-lg text-gray-600 2xl:text-lg">{processLongBody(body)}</p>
         </div>
         <img
           className="hidden lg:block lg:pl-1"

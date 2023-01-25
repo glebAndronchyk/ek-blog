@@ -3,99 +3,97 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-        @apply font-graphik bg-gray-50;
-    }
+  body {
+    @apply font-graphik bg-gray-50;
+  }
 
-    input {
-        @apply font-lato
-    }
+  input {
+    @apply font-lato;
+  }
 }
 
 @layer components {
-    .form-input {
-        @apply rounded-full border-0 placeholder:text-xl placeholder:text-gray-100 font-semibold w-3/4 py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300
-    }
-    .single-post-deco {
-        @apply before:absolute before:top-0 before:left-[-20px] before:w-2 before:h-full before:rounded-full
-    }
-    .nav-link-header {
-        @apply relative text-app-red font-inter font-[500] text-lg after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 hover:after:w-full after:w-0
-    }
-    .nav-link-header__active {
-        @apply relative text-app-red font-inter font-[500] text-lg after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 after:w-full
-    }
-    .btn {
-        @apply rounded-full duration-300 text-center border-2
-    }
-    .log-out-btn {
-        @apply relative inline bg-transparent outline-none border-none text-app-red after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 hover:after:w-full after:w-0
-    }
-    .auth-btn {
-        @apply w-3/4 py-4 bg-blue-100 border-2 border-blue-100 text-app-red hover:bg-app-red hover:text-blue-100 hover:border-blue-100
-    }
-    .header-btn {
-        @apply w-24 rounded-lg py-3 border-0 bg-app-red border-2 border-app-red text-black hover:bg-blue-100 hover:text-app-red
-    }
-    .load-more-button {
-        @apply w-80 py-2 bg-blue-100 border-2 border-blue-100 text-app-red font-[600] block mx-auto tracking-wide hover:bg-app-red hover:text-blue-100 hover:border-blue-100
-    }
-    .disabled {
-        @apply border-2 border-blue-100 bg-blue-55 hover:bg-inactive-app-red
-    }
+  .form-input {
+    @apply rounded-full border-0 placeholder:text-xl placeholder:text-gray-100 font-semibold w-3/4 py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300;
+  }
+  .single-post-deco {
+    @apply before:absolute before:top-0 before:left-[-20px] before:w-2 before:h-full before:rounded-full;
+  }
+  .nav-link-header {
+    @apply relative text-app-red font-inter font-[500] text-lg after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 hover:after:w-full after:w-0;
+  }
+  .nav-link-header__active {
+    @apply relative text-app-red font-inter font-[500] text-lg after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 after:w-full;
+  }
+  .btn {
+    @apply rounded-full duration-300 text-center border-2;
+  }
+  .log-out-btn {
+    @apply relative inline bg-transparent outline-none border-none text-app-red after:content-[''] after:duration-300 after:absolute after:bg-app-red after:left-0 after:bottom-0 after:h-0.5 hover:after:w-full after:w-0;
+  }
+  .auth-btn {
+    @apply w-3/4 py-4 bg-blue-100 border-2 border-blue-100 text-app-red hover:bg-app-red hover:text-blue-100 hover:border-blue-100;
+  }
+  .header-btn {
+    @apply w-24 rounded-lg py-3 border-0 bg-app-red border-2 border-app-red text-black hover:bg-blue-100 hover:text-app-red;
+  }
+  .load-more-button {
+    @apply w-80 py-2 bg-blue-100 border-2 border-blue-100 text-app-red font-[600] block mx-auto tracking-wide hover:bg-app-red hover:text-blue-100 hover:border-blue-100;
+  }
+  .disabled {
+    @apply border-2 border-blue-100 bg-blue-55 hover:bg-inactive-app-red;
+  }
 }
 
 @font-face {
-    font-family: 'Code7x5';
-    src: url("../fonts/Code_7x5.ttf");
+  font-family: 'Code7x5';
+  src: url('../fonts/Code_7x5.ttf');
 }
 
 @font-face {
-    font-family: 'Graphik';
-    src: url('../fonts/Graphik-Regular-Trial.otf');
-    font-weight: 400;
+  font-family: 'Graphik';
+  src: url('../fonts/Graphik-Regular-Trial.otf');
+  font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Graphik';
-    src: url('../fonts/Graphik-Medium-Trial.otf');
-    font-weight: 500;
+  font-family: 'Graphik';
+  src: url('../fonts/Graphik-Medium-Trial.otf');
+  font-weight: 500;
 }
 
 @font-face {
-    font-family: 'Graphik';
-    src: url('../fonts/Graphik-Semibold-Trial.otf');
-    font-weight: 600;
+  font-family: 'Graphik';
+  src: url('../fonts/Graphik-Semibold-Trial.otf');
+  font-weight: 600;
 }
 
 @font-face {
-    font-family: 'Graphik';
-    src: url('../fonts/Graphik-Bold-Trial.otf');
-    font-weight: 700;
+  font-family: 'Graphik';
+  src: url('../fonts/Graphik-Bold-Trial.otf');
+  font-weight: 700;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: url('../fonts/Inter-Regular.ttf');
-    font-weight: 400;
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Regular.ttf');
+  font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: url('../fonts/Inter-Medium.ttf');
-    font-weight: 500;
+  font-family: 'Inter';
+  src: url('../fonts/Inter-Medium.ttf');
+  font-weight: 500;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: url('../fonts/Inter-SemiBold.ttf');
-    font-weight: 600;
+  font-family: 'Inter';
+  src: url('../fonts/Inter-SemiBold.ttf');
+  font-weight: 600;
 }
 
 @font-face {
-    font-family: 'Lato';
-    src: url('../fonts/Lato-Thin.ttf');
-    font-weight: 400;
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Thin.ttf');
+  font-weight: 400;
 }
-
-
