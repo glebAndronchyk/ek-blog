@@ -1,3 +1,5 @@
+import RegisterForm from 'features/register/registerForm/RegisterForm';
+
 import './registration.css';
 import Logo from 'assets/images/logo.png';
 
@@ -20,7 +22,7 @@ const Registration = () => {
         <div />
       </div>
       <div className="relative w-[40%] bg-app-red" />
-      <form className="absolute z-50 top-1/2 left-[45%] max-w-[937px] w-full border-2">dd</form>
+      <RegisterForm />
     </div>
   );
 };
