@@ -2,8 +2,8 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import { tryToLogin } from '../../slices/userSlice';
-import { modalClosed } from '../../slices/modalSlice';
+import { tryToLogin } from '../../redux/slices/userSlice';
+import { modalClosed } from '../../redux/slices/modalSlice';
 import FormInput from '../formInput/FormInput';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
 import InputError from '../inputError/InputError';

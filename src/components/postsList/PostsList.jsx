@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import PostsItem from '../postsItem/PostsItem';
 import LoadMoreButton from '../loadMoreButton/LoadMoreButton';
-import { getAdditionalData, stateReseted } from '../../slices/postsListSlice';
+import { getAdditionalData, stateReseted } from '../../redux/slices/postsListSlice';
 import withInitialLoadingStatus from '../../hocs/withInitialLoadingStatus';
 
 const PostsList = () => {

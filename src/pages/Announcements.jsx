@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import Banner from '../components/banner/Banner';
 import ExtendedWithInitialLoadingAnnouncementsList from '../components/announcementsList/AnnouncementsList';
-import { getInitialData } from '../slices/announcementsListSlice';
+import { getInitialData } from '../redux/slices/announcementsListSlice';
 import AnnouncementsBg from '../assets/images/announcements-banner-bg.webp';
 
 const Announcements = () => {

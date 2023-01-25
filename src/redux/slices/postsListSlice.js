@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
-import { getNews } from '../services/newsService';
+import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
+import { getNews } from '../../services/newsService';
 
 const initialState = {
   data: [],
@@ -12,22 +12,22 @@ const initialState = {
 };
 
 export const getInitialData = createAsyncThunk(
-  'announcements/getInitialData', //
-  () => getNews('announcements'),
+  'posts/getInitialData', //
+  () => getNews('posts'),
 );
 
-export const getAdditionalData = createAsyncThunk('announcements/getAdditionalData', pageNumber =>
-  getNews('announcements', pageNumber),
+export const getAdditionalData = createAsyncThunk('posts/getAdditionalData', pageNumber =>
+  getNews('posts', pageNumber),
 );
 
-const announcementsListSlice = createSlice({
-  name: 'announcements',
+const postsListSlice = createSlice({
+  name: 'posts',
   initialState,
   reducers: {
-    announcementAdded: (state, action) => {
+    postAdded: (state, action) => {
       state.data.push(action.payload);
     },
-    announcementDeleted: (state, action) => {
+    postDeleted: (state, action) => {
       state.data = state.data.filter(item => item === action.payload);
     },
     stateReseted: () => {
@@ -59,11 +59,12 @@ const announcementsListSlice = createSlice({
   },
 });
 
-const { reducer, actions } = announcementsListSlice;
+const { reducer, actions } = postsListSlice;
 export default reducer;
+
 export const { stateReseted } = actions;
 
-// TODO: ADD AND REMOVE ANNOUNCEMENTS
+// TODO: ADD AND REMOVE POSTS
 // export const {
 //   postAdded,
 //   postDeleted,

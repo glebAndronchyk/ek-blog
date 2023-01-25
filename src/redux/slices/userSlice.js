@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getItemFromStorage, setItemToStorage, clearStorage } from '../helpers/localStorage';
-import { login } from '../services/authService';
-import { IDLE, LOADING, REJECTED } from '../helpers/loadingStatus';
+import { getItemFromStorage, setItemToStorage, clearStorage } from '../../helpers/localStorage';
+import { login } from '../../services/authService';
+import { IDLE, LOADING, REJECTED } from '../../helpers/loadingStatus';
 
 const initialState = {
   isAuth: !!getItemFromStorage(),

@@ -2,7 +2,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { lazy, Suspense } from 'react';
 
-import store from '../../store/store';
+import store from '../../redux/store';
 import Layout from '../../pages/Layout';
 import Spinner from '../spinner/Spinner';
 
