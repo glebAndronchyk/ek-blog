@@ -5,8 +5,8 @@ import getDateInCorrectFormat from '../helpers/getDateInCorrectFormat';
 import useGetPostsData from '../hooks/useGetPost';
 
 import { LOADING, REJECTED } from '../helpers/loadingStatus';
-import Spinner from '../components/ui/spinner/Spinner';
-import ErrorPlug from '../components/ui/errorPlug/ErrorPlug';
+import Spinner from '../features/ui/spinner/Spinner';
+import ErrorPlug from '../features/ui/errorPlug/ErrorPlug';
 
 const SinglePostPage = () => {
   const { postId } = useParams();

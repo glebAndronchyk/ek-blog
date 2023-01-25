@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import Banner from '../components/ui/banner/Banner';
-import ExtendWithInitialLoadingStatusPostsList from '../components/postsList/PostsList';
+import Banner from '../features/ui/banner/Banner';
+import ExtendWithInitialLoadingStatusPostsList from '../features/postsList/PostsList';
 import { getInitialData } from '../redux/slices/postsListSlice';
 import PostsBg from '../assets/images/posts-banner-bg.jpg';
 

@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import Banner from '../components/ui/banner/Banner';
-import ExtendedWithInitialLoadingAnnouncementsList from '../components/announcementsList/AnnouncementsList';
+import Banner from '../features/ui/banner/Banner';
+import ExtendedWithInitialLoadingAnnouncementsList from '../features/announcementsList/AnnouncementsList';
 import { getInitialData } from '../redux/slices/announcementsListSlice';
 import AnnouncementsBg from '../assets/images/announcements-banner-bg.webp';
 
