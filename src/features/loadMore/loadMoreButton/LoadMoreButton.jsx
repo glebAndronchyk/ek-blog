@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
-import ButtonSpinner from '../../ui/buttonSpinner/ButtonSpinner';
+import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
 
-import Button from '../../ui/button/Button';
-import { IDLE } from '../../../helpers/loadingStatus';
+import Button from 'features/ui/button/Button';
+import { IDLE } from 'helpers/loadingStatus';
 
 const LoadMoreButton = props => {
   const { onClick, entity } = props;

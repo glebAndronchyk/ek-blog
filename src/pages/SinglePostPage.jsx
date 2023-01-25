@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import getDateInCorrectFormat from '../helpers/getDateInCorrectFormat';
-import useGetPostsData from '../hooks/useGetPost';
+import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
+import useGetPostsData from 'hooks/useGetPost';
 
-import { LOADING, REJECTED } from '../helpers/loadingStatus';
-import Spinner from '../features/ui/spinner/Spinner';
-import ErrorPlug from '../features/ui/errorPlug/ErrorPlug';
+import { LOADING, REJECTED } from 'helpers/loadingStatus';
+import Spinner from 'features/ui/spinner/Spinner';
+import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 
 const SinglePostPage = () => {
   const { postId } = useParams();

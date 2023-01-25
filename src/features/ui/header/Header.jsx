@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import HeaderLoginButton from 'features/headerLogic/headerLoginButton/HeaderLoginButton';
+import HeaderUserBlock from 'features/headerLogic/headerUserBlock/HeaderUserBlock';
+import Logo from 'assets/images/logo.png';
 import StyledNavLink from '../styledNavLink/StyledNavLink';
-import HeaderLoginButton from '../../headerLogic/headerLoginButton/HeaderLoginButton';
-import HeaderUserBlock from '../../headerLogic/headerUserBlock/HeaderUserBlock';
-
-import Logo from '../../../assets/images/logo.png';
 
 const Header = () => {
   const { isAuth } = useSelector(state => state.user);

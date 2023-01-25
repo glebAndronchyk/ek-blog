@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import { getPost } from '../services/newsService';
-import { LOADING, IDLE, REJECTED } from '../helpers/loadingStatus';
+import { getPost } from 'services/newsService';
+import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
 
 const useGetPost = id => {
   const [page, setPage] = useState([]);

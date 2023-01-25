@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+import LoadMoreButton from 'features/loadMore/loadMoreButton/LoadMoreButton';
+import { getAdditionalData, stateReseted } from 'redux/slices/postsListSlice';
+import withInitialLoadingStatus from 'hocs/withInitialLoadingStatus';
 import PostsItem from '../postsItem/PostsItem';
-import LoadMoreButton from '../../loadMore/loadMoreButton/LoadMoreButton';
-import { getAdditionalData, stateReseted } from '../../../redux/slices/postsListSlice';
-import withInitialLoadingStatus from '../../../hocs/withInitialLoadingStatus';
 
 const PostsList = () => {
   const { data, page, showLoadMoreButton } = useSelector(state => state.posts);

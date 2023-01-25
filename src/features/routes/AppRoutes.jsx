@@ -2,13 +2,13 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { lazy, Suspense } from 'react';
 
-import store from '../../redux/store';
-import Layout from '../../pages/Layout';
-import Spinner from '../ui/spinner/Spinner';
+import store from 'redux/store';
+import Layout from 'pages/Layout';
+import Spinner from 'features/ui/spinner/Spinner';
 
-const Announcements = lazy(() => import('../../pages/Announcements'));
-const Posts = lazy(() => import('../../pages/Posts'));
-const SinglePostPage = lazy(() => import('../../pages/SinglePostPage'));
+const Announcements = lazy(() => import('pages/Announcements'));
+const Posts = lazy(() => import('pages/Posts'));
+const SinglePostPage = lazy(() => import('pages/SinglePostPage'));
 
 const AppRoutes = () => {
   return (

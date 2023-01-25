@@ -1,7 +1,7 @@
-import { LOADING, REJECTED } from '../helpers/loadingStatus';
+import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
-import Spinner from '../features/ui/spinner/Spinner';
-import ErrorPlug from '../features/ui/errorPlug/ErrorPlug';
+import Spinner from 'features/ui/spinner/Spinner';
+import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 
 // eslint-disable-next-line react/display-name
 const withInitialLoadingStatus = Component => props => {

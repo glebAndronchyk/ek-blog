@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { LOADING, IDLE, REJECTED } from '../../helpers/loadingStatus';
-import { getNews } from '../../services/newsService';
+import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
+import { getNews } from 'services/newsService';
 
 const initialState = {
   data: [],
