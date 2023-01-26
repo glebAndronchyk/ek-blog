@@ -48,6 +48,4 @@ const AnnouncementsList = () => {
   );
 };
 
-const ExtendedWithInitialLoadingAnnouncementsList = withInitialLoadingStatus(AnnouncementsList);
-
-export default ExtendedWithInitialLoadingAnnouncementsList;
+export default withInitialLoadingStatus(AnnouncementsList);

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import Banner from 'features/ui/banner/Banner';
-import ExtendedWithInitialLoadingAnnouncementsList from 'features/announcements/announcementsList/AnnouncementsList';
+import AnnouncementsList from 'features/announcements/announcementsList/AnnouncementsList';
 import { getInitialData } from 'redux/slices/announcementsListSlice';
 import AnnouncementsBg from 'assets/images/announcements-banner-bg.webp';
 
@@ -22,7 +22,7 @@ const Announcements = () => {
       >
         <span>Important news</span>
       </Banner>
-      <ExtendedWithInitialLoadingAnnouncementsList initialLoading={initialLoading} />
+      <AnnouncementsList initialLoading={initialLoading} />
     </>
   );
 };
