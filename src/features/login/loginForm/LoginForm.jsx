@@ -6,7 +6,7 @@ import { tryToLogin } from 'redux/slices/userSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import FormInput from 'features/ui/formInput/FormInput';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
-import textPatterns from 'helpers/textPatterns';
+import patterns from 'helpers/patterns';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
 
 const LoginForm = () => {
@@ -31,7 +31,7 @@ const LoginForm = () => {
 
   if (error && error !== 400) return ErrorPlug;
 
-  const { emailPattern } = textPatterns;
+  const { emailPattern } = patterns;
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
