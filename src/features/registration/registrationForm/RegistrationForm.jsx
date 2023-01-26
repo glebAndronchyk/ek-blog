@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
 import AuthButton from 'features/ui/authButton/AuthButton';
-import InputError from 'features/ui/inputError/InputError';
 
 const RegistrationForm = () => {
   const {
@@ -15,7 +14,6 @@ const RegistrationForm = () => {
   const onSubmit = data => {
     console.log(data);
   };
-  const error = false;
 
   return (
     <Form
@@ -28,6 +26,7 @@ const RegistrationForm = () => {
         placeholder="Enter valid email"
         type="email"
         register={register}
+        errors={errors}
         label="email"
         options={{
           pattern: { value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: 'Invalid email' },
@@ -36,16 +35,12 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
-      <InputError
-        errors={errors}
-        axiosError={error}
-        name="email"
-      />
       <FormInput
         className="my-2"
         placeholder="Enter your future password"
         type="password"
         register={register}
+        errors={errors}
         label="password"
         options={{
           minLength: { value: 10, message: 'Minimum 10 symbols' },
@@ -53,16 +48,12 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
-      <InputError
-        errors={errors}
-        axiosError={error}
-        name="password"
-      />
       <FormInput
         className="my-2"
         placeholder="Repeat password"
         type="password"
         register={register}
+        errors={errors}
         label="passConfirm"
         options={{
           //TODO: PASS CHECKER
@@ -71,16 +62,12 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
-      <InputError
-        errors={errors}
-        axiosError={error}
-        name="passConfirm"
-      />
       <FormInput
         className="my-2"
         placeholder="Enter your full name"
         type="text"
         register={register}
+        errors={errors}
         label="fullName"
         options={{
           //TODO: PATTERN
@@ -89,27 +76,18 @@ const RegistrationForm = () => {
           required: 'This is required input',
         }}
       />
-      <InputError
-        errors={errors}
-        axiosError={error}
-        name="fullName"
-      />
       <FormInput
         className="my-2"
         placeholder="Enter your age"
         type="number"
         register={register}
+        errors={errors}
         label="age"
         options={{
           //TODO: AGE CHECKER < 110
           maxLength: { value: 3, message: 'Maximum 3 symbols' },
           required: 'This is required input',
         }}
-      />
-      <InputError
-        errors={errors}
-        axiosError={error}
-        name="age"
       />
       {/*TODO: MAKE AVATAR SELECTION*/}
       <AuthButton
