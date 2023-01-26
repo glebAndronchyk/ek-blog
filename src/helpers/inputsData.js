@@ -102,7 +102,7 @@ export const registrationInputs = {
     options: {
       //TODO: PATTERN
       minLength: {
-        value: 10,
+        value: 5,
         message: 'Minimum 5 symbols',
       },
       maxLength: {
