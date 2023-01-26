@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import InputError from 'features/inputError/InputError';
+import InputError from 'features/ui/inputError/InputError';
 
 const FormInput = props => {
   const { className, placeholder, type, register, label, options, errors } = props;
