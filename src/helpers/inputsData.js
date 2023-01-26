@@ -43,4 +43,97 @@ export const loginInputs = {
   },
 };
 
-export const registrationInputs = {};
+export const registrationInputs = {
+  email: {
+    className: 'my-2',
+    placeholder: 'Enter valid email',
+    type: 'email',
+    label: 'email',
+    options: {
+      pattern: {
+        value: emailPattern,
+        message: 'Invalid email',
+      },
+      minLength: {
+        value: 10,
+        message: 'Minimum 10 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+      required: 'This is required input',
+    },
+  },
+
+  password: {
+    className: 'my-2',
+    placeholder: 'Enter your future password',
+    type: 'password',
+    label: 'password',
+    options: {
+      minLength: {
+        value: 10,
+        message: 'Minimum 10 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+      required: 'This is required input',
+    },
+  },
+
+  confirmPassword: {
+    className: 'my-2',
+    placeholder: 'Confirm password',
+    type: 'password',
+    label: 'passConfirm',
+    options: {
+      //TODO: PASS CHECKER
+      minLength: {
+        value: 10,
+        message: 'Minimum 10 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+      required: 'This is required input',
+    },
+  },
+
+  fullName: {
+    className: 'my-2',
+    placeholder: 'Enter your full name',
+    type: 'text',
+    label: 'fullName',
+    options: {
+      //TODO: PATTERN
+      minLength: {
+        value: 10,
+        message: 'Minimum 5 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+      required: 'This is required input',
+    },
+  },
+
+  age: {
+    className: 'my-2',
+    placeholder: 'Enter your age',
+    type: 'number',
+    label: 'age',
+    options: {
+      //TODO: AGE CHECKER < 110
+      maxLength: {
+        value: 3,
+        message: 'Maximum 3 symbols',
+      },
+      required: 'This is required input',
+    },
+  },
+};
