@@ -1,12 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { tryToLogin } from 'redux/slices/userSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
-import FormInput from 'features/ui/formInput/FormInput';
+import { loginInputs } from 'helpers/inputsData';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
-import patterns from 'helpers/patterns';
+import FormInput from 'features/ui/formInput/FormInput';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
 
 const LoginForm = () => {
@@ -31,7 +32,21 @@ const LoginForm = () => {
 
   if (error && error !== 400) return ErrorPlug;
 
-  const { emailPattern } = patterns;
+  const inputs = Object.keys(loginInputs).map(item => {
+    const { className, placeholder, type, label, options } = loginInputs[item];
+    return (
+      <FormInput
+        key={uuidv4()}
+        register={register}
+        errors={errors}
+        className={className}
+        placeholder={placeholder}
+        type={type}
+        label={label}
+        options={options}
+      />
+    );
+  });
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -39,33 +54,7 @@ const LoginForm = () => {
     >
       <h3 className="font-code text-3xl text-black mb-3">Hello World!</h3>
       <span className="font-lato font-[600] text-gray-300 text-base mb-6">Login with your details</span>
-      <FormInput
-        className="mb-2"
-        placeholder="Your email"
-        type="email"
-        register={register}
-        label="email"
-        errors={errors}
-        options={{
-          pattern: { value: emailPattern, message: 'Invalid email' },
-          minLength: { value: 10, message: 'Minimum 10 symbols' },
-          maxLength: { value: 32, message: 'Maximum 32 symbols' },
-          required: 'This is required input',
-        }}
-      />
-      <FormInput
-        className="mb-2"
-        placeholder="Your password"
-        type="password"
-        register={register}
-        label="password"
-        errors={errors}
-        options={{
-          minLength: { value: 10, message: 'Minimum 10 symbols' },
-          maxLength: { value: 64, message: 'Maximum 64 symbols' },
-          required: 'This is required input',
-        }}
-      />
+      {inputs}
       <LoginFormButton />
     </form>
   );
