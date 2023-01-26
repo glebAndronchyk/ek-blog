@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import InputError from "features/inputError/InputError";
+import InputError from 'features/inputError/InputError';
 
 const FormInput = props => {
   const { className, placeholder, type, register, label, options, errors, axiosError } = props;
@@ -26,7 +26,7 @@ FormInput.propTypes = {
   type: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  axiosError: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]).isRequired,
+  axiosError: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   // eslint-disable-next-line react/forbid-prop-types
   errors: PropTypes.object.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
