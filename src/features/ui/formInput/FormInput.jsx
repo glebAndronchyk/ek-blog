@@ -7,6 +7,7 @@ const FormInput = props => {
     <>
       <input
         type={type}
+        min={1}
         placeholder={placeholder}
         className={`form-input ${className}`}
         {...register(

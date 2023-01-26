@@ -122,7 +122,14 @@ export const registrationInputs = {
     type: 'number',
     label: 'age',
     options: {
-      //TODO: AGE CHECKER < 110
+      max: {
+        value: 110,
+        message: 'You art too old',
+      },
+      min: {
+        value: 10,
+        message: 'You are too young',
+      },
       maxLength: {
         value: 3,
         message: 'Maximum 3 symbols',
