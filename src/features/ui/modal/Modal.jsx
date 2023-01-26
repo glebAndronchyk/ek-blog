@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import { modalClosed } from 'redux/slices/modalSlice';
