@@ -7,8 +7,8 @@ import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
 import classNames from 'classnames';
 
 const AuthButton = props => {
-  const { entity, label, className } = props;
-  const { loading } = useSelector(state => state[entity]);
+  const { label, className } = props;
+  const { loading } = useSelector(state => state.user);
 
   const authButtonClassName = classNames('auth-btn', className);
 
@@ -27,7 +27,6 @@ const AuthButton = props => {
 };
 
 AuthButton.propTypes = {
-  entity: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
 };

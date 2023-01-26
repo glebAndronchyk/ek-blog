@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
 import AuthButton from 'features/ui/authButton/AuthButton';
-import InputError from 'features/inputError/InputError';
+import InputError from 'features/ui/inputError/InputError';
 
 const RegistrationForm = () => {
   const {
@@ -15,7 +15,7 @@ const RegistrationForm = () => {
   const onSubmit = data => {
     console.log(data);
   };
-  const error = null;
+  const error = false;
 
   return (
     <Form
@@ -114,7 +114,6 @@ const RegistrationForm = () => {
       {/*TODO: MAKE AVATAR SELECTION*/}
       <AuthButton
         label="Create account"
-        entity="registration"
         className="mt-2"
       />
     </Form>
