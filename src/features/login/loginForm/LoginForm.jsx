@@ -59,7 +59,6 @@ const LoginForm = () => {
         type="password"
         register={register}
         label="password"
-        axiosError={error}
         errors={errors}
         options={{
           minLength: { value: 10, message: 'Minimum 10 symbols' },
