@@ -90,15 +90,6 @@ export const registrationInputs = {
     type: 'password',
     label: 'passConfirm',
     options: {
-      //TODO: PASS CHECKER
-      minLength: {
-        value: 10,
-        message: 'Minimum 10 symbols',
-      },
-      maxLength: {
-        value: 32,
-        message: 'Maximum 32 symbols',
-      },
       required: 'This is required input',
     },
   },

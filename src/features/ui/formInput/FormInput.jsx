@@ -1,15 +1,29 @@
 import PropTypes from 'prop-types';
 import InputError from 'features/ui/inputError/InputError';
+import { validate } from 'uuid';
 
 const FormInput = props => {
-  const { className, placeholder, type, register, label, options, errors } = props;
+  const { className, placeholder, type, register, label, options, errors, watch } = props;
   return (
     <>
       <input
         type={type}
         placeholder={placeholder}
         className={`form-input ${className}`}
-        {...register(label, options)}
+        {...register(
+          label,
+          label === 'passConfirm'
+            ? {
+                ...options,
+                validate: value => {
+                  if (watch('password') !== value) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
+              }
+            : options,
+        )}
       />
       <InputError
         errors={errors}
@@ -24,6 +38,7 @@ FormInput.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
+  watch: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   errors: PropTypes.object.isRequired,

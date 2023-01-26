@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { v4 as uuidv4 } from 'uuid';
 
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
@@ -11,18 +10,23 @@ const RegistrationForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ reValidateMode: 'onSubmit', defaultValues: { email: '', password: '' } });
+    watch,
+  } = useForm({
+    reValidateMode: 'onChange',
+    defaultValues: { email: '', password: '', passConfirm: '', fullName: '', age: '' },
+  });
 
   const onSubmit = data => {
     console.log(data);
   };
 
-  const inputs = Object.keys(registrationInputs).map(item => {
+  const inputs = Object.keys(registrationInputs).map((item, index) => {
     const { className, placeholder, type, label, options } = registrationInputs[item];
     return (
       <FormInput
-        key={uuidv4()}
+        key={index}
         register={register}
+        watch={watch}
         errors={errors}
         className={className}
         placeholder={placeholder}
