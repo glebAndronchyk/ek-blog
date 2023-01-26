@@ -46,7 +46,6 @@ const LoginForm = () => {
         register={register}
         label="email"
         errors={errors}
-        axiosError={error}
         options={{
           pattern: { value: emailPattern, message: 'Invalid email' },
           minLength: { value: 10, message: 'Minimum 10 symbols' },

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import InputError from 'features/inputError/InputError';
 
 const FormInput = props => {
-  const { className, placeholder, type, register, label, options, errors, axiosError } = props;
+  const { className, placeholder, type, register, label, options, errors } = props;
   return (
     <>
       <input
@@ -13,7 +13,6 @@ const FormInput = props => {
       />
       <InputError
         errors={errors}
-        axiosError={axiosError}
         name={label}
       />
     </>
@@ -26,7 +25,6 @@ FormInput.propTypes = {
   type: PropTypes.string.isRequired,
   register: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
-  axiosError: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   // eslint-disable-next-line react/forbid-prop-types
   errors: PropTypes.object.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
