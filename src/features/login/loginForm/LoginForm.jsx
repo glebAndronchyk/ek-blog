@@ -7,6 +7,7 @@ import { modalClosed } from 'redux/slices/modalSlice';
 import FormInput from 'features/ui/formInput/FormInput';
 import InputError from 'features/inputError/InputError';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
+import textPatterns from 'helpers/textPatterns';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
 
 const LoginForm = () => {
@@ -31,6 +32,7 @@ const LoginForm = () => {
 
   if (error && error !== 400) return ErrorPlug;
 
+  const { emailPattern } = textPatterns;
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -45,7 +47,7 @@ const LoginForm = () => {
         register={register}
         label="email"
         options={{
-          pattern: { value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: 'Invalid email' },
+          pattern: { value: emailPattern, message: 'Invalid email' },
           minLength: { value: 10, message: 'Minimum 10 symbols' },
           maxLength: { value: 32, message: 'Maximum 32 symbols' },
           required: 'This is required input',
