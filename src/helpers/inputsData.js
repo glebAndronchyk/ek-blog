@@ -1,6 +1,6 @@
 import patterns from 'helpers/patterns';
 
-const { emailPattern } = patterns;
+const { emailPattern, fullNamePattern } = patterns;
 export const loginInputs = {
   email: {
     className: 'mb-2',
@@ -100,7 +100,10 @@ export const registrationInputs = {
     type: 'text',
     label: 'fullName',
     options: {
-      //TODO: PATTERN
+      pattern: {
+        value: fullNamePattern,
+        message: 'Please, enter correct name',
+      },
       minLength: {
         value: 5,
         message: 'Minimum 5 symbols',
