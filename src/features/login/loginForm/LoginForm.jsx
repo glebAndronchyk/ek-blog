@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 import { tryToLogin } from 'redux/slices/userSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import FormInput from 'features/ui/formInput/FormInput';
-import InputError from 'features/inputError/InputError';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import textPatterns from 'helpers/textPatterns';
 import LoginFormButton from '../loginFormButton/LoginFormButton';
@@ -46,6 +45,8 @@ const LoginForm = () => {
         type="email"
         register={register}
         label="email"
+        errors={errors}
+        axiosError={error}
         options={{
           pattern: { value: emailPattern, message: 'Invalid email' },
           minLength: { value: 10, message: 'Minimum 10 symbols' },
@@ -53,27 +54,19 @@ const LoginForm = () => {
           required: 'This is required input',
         }}
       />
-      <InputError
-        errors={errors}
-        axiosError={error}
-        name="email"
-      />
       <FormInput
         className="mb-2"
         placeholder="Your password"
         type="password"
         register={register}
         label="password"
+        axiosError={error}
+        errors={errors}
         options={{
           minLength: { value: 10, message: 'Minimum 10 symbols' },
           maxLength: { value: 64, message: 'Maximum 64 symbols' },
           required: 'This is required input',
         }}
-      />
-      <InputError
-        axiosError={error}
-        errors={errors}
-        name="password"
       />
       <LoginFormButton />
     </form>
