@@ -48,6 +48,4 @@ const PostsList = () => {
   );
 };
 
-const ExtendWithInitialLoadingStatusPostsList = withInitialLoadingStatus(PostsList);
-
-export default ExtendWithInitialLoadingStatusPostsList;
+export default withInitialLoadingStatus(PostsList);
