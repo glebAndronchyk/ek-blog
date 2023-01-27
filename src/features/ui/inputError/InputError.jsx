@@ -9,6 +9,8 @@ const InputError = props => {
   const { error } = useSelector(state => state.user);
   const errorCondition = error && error === 400 && Object.keys(errors).length === 0;
 
+  if (!errors) return null;
+
   const renderErrorWithMessage = info => {
     const { message } = info;
     return <InputErrorMessage>{message}</InputErrorMessage>;
@@ -27,7 +29,7 @@ const InputError = props => {
 
 InputError.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  errors: PropTypes.object.isRequired,
+  errors: PropTypes.object,
   name: PropTypes.string.isRequired,
 };
 
