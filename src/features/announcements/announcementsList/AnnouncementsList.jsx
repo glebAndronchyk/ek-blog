@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import LoadMoreButton from 'features/loadMore/loadMoreButton/LoadMoreButton';
 import { stateReseted, getAdditionalData } from 'redux/slices/announcementsListSlice';
-import withInitialLoadingStatus from 'hocs/withInitialLoadingStatus';
+import ComponentInitialStatus from 'features/componentInitialStatus/ComponentInitialStatus';
 import AnnouncementsItem from '../announcementsItem/AnnouncementsItem';
 
 const AnnouncementsList = () => {
@@ -34,7 +34,7 @@ const AnnouncementsList = () => {
   });
 
   return (
-    <>
+    <ComponentInitialStatus entity="announcements">
       <ul className="px-40 pt-20">{newsItems}</ul>
       {showLoadMoreButton ? (
         <LoadMoreButton
@@ -44,8 +44,8 @@ const AnnouncementsList = () => {
       ) : (
         <span className="block text-center">Announcements Ended</span>
       )}
-    </>
+    </ComponentInitialStatus>
   );
 };
 
-export default withInitialLoadingStatus(AnnouncementsList);
+export default AnnouncementsList;
