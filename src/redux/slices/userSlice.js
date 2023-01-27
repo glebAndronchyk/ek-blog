@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getItemFromStorage, clearStorage, setItemsToStorage } from 'helpers/localStorage';
+import { clearStorage, getItemFromStorage, setItemsToStorage } from 'helpers/localStorage';
 import { login, register } from 'services/authService';
 import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
@@ -51,7 +51,7 @@ const userSlice = createSlice({
       })
       .addCase(tryToLogin.rejected, (state, action) => {
         state.loading = REJECTED;
-        state.error = +action.error.message;
+        state.error = JSON.parse(action.error.message);
       })
       .addCase(tryToRegister.pending, state => {
         state.loading = LOADING;
@@ -73,7 +73,7 @@ const userSlice = createSlice({
       })
       .addCase(tryToRegister.rejected, (state, action) => {
         state.loading = REJECTED;
-        state.error = +action.error.message;
+        state.error = JSON.parse(action.error.message);
       });
   },
 });

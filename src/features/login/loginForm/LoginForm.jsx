@@ -19,6 +19,7 @@ const LoginForm = () => {
   } = useForm({ reValidateMode: 'onSubmit', defaultValues: { email: '', password: '' } });
 
   const { isAuth, error } = useSelector(state => state.user);
+  const { status } = error;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const LoginForm = () => {
     dispatch(tryToLogin(data));
   };
 
-  if (error && error !== 400) return ErrorPlug;
+  if (status && status !== 400) return ErrorPlug;
 
   const inputs = Object.keys(loginInputs).map(item => {
     const { className, placeholder, type, label, options } = loginInputs[item];

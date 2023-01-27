@@ -7,9 +7,11 @@ import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErr
 const InputError = props => {
   const { errors, name } = props;
   const { error } = useSelector(state => state.user);
-  const errorCondition = error && error === 400 && (errors === undefined || Object.keys(errors).length === 0);
+  const { data, status } = error;
+  const errorCondition = error && status === 400 && (errors === undefined || Object.keys(errors).length === 0);
 
-  if (!errors) return null;
+  console.log(error);
+  if (!errors || data === 'Email already exists') return null;
 
   const renderErrorWithMessage = info => {
     const { message } = info;

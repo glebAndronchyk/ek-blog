@@ -26,7 +26,6 @@ const RegistrationForm = () => {
       age: '',
     },
   });
-
   const dispatch = useDispatch();
 
   const onSubmit = data => {
