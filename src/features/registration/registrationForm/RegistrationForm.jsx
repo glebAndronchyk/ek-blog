@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
-import AvatarSelection from 'features/avatarSelection/AvatarSelection';
+import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
 import AvatarSelectionInputs from 'features/ui/avatarSelectionInputs/AvatarSelectionInputs';
 import AuthButton from 'features/ui/authButton/AuthButton';
 import { registrationInputs } from 'helpers/inputsData';
