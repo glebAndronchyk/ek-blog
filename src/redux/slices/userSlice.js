@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { getItemFromStorage, clearStorage, setItemsToStorage } from 'helpers/localStorage';
-import { login } from 'services/authService';
+import { login, register } from 'services/authService';
 import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const initialState = {
@@ -13,6 +13,11 @@ const initialState = {
 export const tryToLogin = createAsyncThunk(
   'user/tryTologin', //
   data => login(data),
+);
+
+export const tryToRegister = createAsyncThunk(
+  'user/tryToRegister', //
+  data => register(data),
 );
 
 const userSlice = createSlice({
@@ -45,6 +50,28 @@ const userSlice = createSlice({
         ]);
       })
       .addCase(tryToLogin.rejected, (state, action) => {
+        state.loading = REJECTED;
+        state.error = +action.error.message;
+      })
+      .addCase(tryToRegister.pending, state => {
+        state.loading = LOADING;
+      })
+      .addCase(tryToRegister.fulfilled, (state, action) => {
+        state.loading = IDLE;
+        state.isAuth = true;
+        state.error = false;
+        setItemsToStorage([
+          {
+            name: 'token',
+            value: action.payload.accessToken,
+          },
+          {
+            name: 'userData',
+            value: JSON.stringify(action.payload.user),
+          },
+        ]);
+      })
+      .addCase(tryToRegister.rejected, (state, action) => {
         state.loading = REJECTED;
         state.error = +action.error.message;
       });

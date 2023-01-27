@@ -1,11 +1,14 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
 import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
 import AvatarSelectionInputs from 'features/ui/avatarSelectionInputs/AvatarSelectionInputs';
 import AuthButton from 'features/ui/authButton/AuthButton';
+import transformRegistrationFormData from 'helpers/dataTransformers';
 import { registrationInputs } from 'helpers/inputsData';
+import { tryToRegister } from 'redux/slices/userSlice';
 
 const RegistrationForm = () => {
   const {
@@ -24,8 +27,10 @@ const RegistrationForm = () => {
     },
   });
 
+  const dispatch = useDispatch();
+
   const onSubmit = data => {
-    console.log(data);
+    dispatch(tryToRegister(transformRegistrationFormData(data)));
   };
 
   const textInputs = Object.keys(registrationInputs).map((item, index) => {

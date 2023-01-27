@@ -10,6 +10,11 @@ export const login = async data => {
   }
 };
 
-export const register = () => {
-  // TODO: REGISTER
+export const register = async data => {
+  try {
+    const response = await axiosInstance.post('/register', { ...data });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.status);
+  }
 };
