@@ -10,7 +10,6 @@ const InputError = props => {
   const { data, status } = error;
   const errorCondition = error && status === 400 && (errors === undefined || Object.keys(errors).length === 0);
 
-  console.log(error);
   if (!errors || data === 'Email already exists') return null;
 
   const renderErrorWithMessage = info => {

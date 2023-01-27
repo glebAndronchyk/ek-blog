@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
@@ -9,6 +9,7 @@ import AuthButton from 'features/ui/authButton/AuthButton';
 import transformRegistrationFormData from 'helpers/dataTransformers';
 import { registrationInputs } from 'helpers/inputsData';
 import { tryToRegister } from 'redux/slices/userSlice';
+import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 
 const RegistrationForm = () => {
   const {
@@ -27,6 +28,7 @@ const RegistrationForm = () => {
     },
   });
   const dispatch = useDispatch();
+  const { error } = useSelector(state => state.user);
 
   const onSubmit = data => {
     dispatch(tryToRegister(transformRegistrationFormData(data)));
@@ -55,6 +57,7 @@ const RegistrationForm = () => {
       className="z-50 top-[1%] left-[45%] max-w-[937px] w-full border-2"
     >
       <h3 className="font-code text-3xl text-black mb-4">Create Account</h3>
+      {error ? <InputErrorMessage>Such person already has an account</InputErrorMessage> : null}
       {textInputs}
       <AvatarSelection errors={errors}>
         <AvatarSelectionInputs register={register} />
