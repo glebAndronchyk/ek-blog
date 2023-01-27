@@ -21,7 +21,6 @@ const RegistrationForm = () => {
       passConfirm: '',
       fullName: '',
       age: '',
-      avatarsGroup: 'test',
     },
   });
 
