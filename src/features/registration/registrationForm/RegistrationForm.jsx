@@ -6,6 +6,7 @@ import SuccessWindow from 'features/ui/successWindow/SuccessWindow';
 import transformRegistrationFormData from 'helpers/dataTransformers';
 import { tryToRegister } from 'redux/slices/userSlice';
 import View from 'features/registration/registrationForm/View';
+import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 
 const RegistrationForm = () => {
   const {
@@ -29,6 +30,8 @@ const RegistrationForm = () => {
   const onSubmit = data => {
     dispatch(tryToRegister(transformRegistrationFormData(data)));
   };
+
+  if (error && error.status !== 400) return <ErrorPlug />;
 
   return (
     <Form
