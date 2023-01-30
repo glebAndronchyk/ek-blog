@@ -11,8 +11,8 @@ const CreateNewsButton = props => {
 
   const buttonContent = isAuth ? `Create new ${label}` : `Login or register in order to create new ${label}`;
 
-  const handleClick = () => {
-    dispatch(modalOpened());
+  const changeModalStatus = () => {
+    return dispatch(modalOpened());
   };
 
   return (
@@ -21,7 +21,7 @@ const CreateNewsButton = props => {
         type="create"
         disabled={!isAuth}
         className="create-news-button"
-        onClick={handleClick}
+        onClick={changeModalStatus}
       >
         {buttonContent}
       </Button>
