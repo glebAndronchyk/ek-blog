@@ -15,20 +15,18 @@ const FormInput = props => {
         value={value}
         placeholder={placeholder}
         className={inputClassName}
-        {...register(
-          label,
-          label === 'passConfirm'
-            ? {
-                ...options,
-                validate: valValue => {
-                  if (watch('password') !== valValue) {
+        {...register(label, {
+          ...options,
+          validate:
+            label !== 'passConfirm'
+              ? null
+              : validationValue => {
+                  if (watch('password') !== validationValue) {
                     return 'Passwords do not match';
                   }
                   return null;
                 },
-              }
-            : options,
-        )}
+        })}
       />
       <InputError
         errors={errors}

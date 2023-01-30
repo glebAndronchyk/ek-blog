@@ -1,11 +1,10 @@
-import { registrationInputs } from 'helpers/inputsData';
 import FormInput from 'features/ui/formInput/FormInput';
 
 const TextInputs = props => {
-  const { register, errors, watch } = props;
+  const { register, errors, watch, castObject } = props;
 
-  return Object.keys(registrationInputs).map((item, index) => {
-    const { className, placeholder, type, label, options } = registrationInputs[item];
+  return Object.keys(castObject).map((item, index) => {
+    const { className, placeholder, type, label, options } = castObject[item];
     return (
       <FormInput
         key={index}

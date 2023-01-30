@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+import { registrationInputs } from 'helpers/inputsData';
 import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
 import AvatarSelectionInputs from 'features/ui/avatarSelectionInputs/AvatarSelectionInputs';
@@ -17,6 +18,7 @@ const View = props => {
         register={register}
         watch={watch}
         errors={errors}
+        castObject={registrationInputs}
       />
       <AvatarSelection errors={errors}>
         <AvatarSelectionInputs register={register} />
