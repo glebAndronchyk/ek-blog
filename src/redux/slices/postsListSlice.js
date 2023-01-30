@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { getNews } from 'services/newsService';
+import { createNews, getNews } from 'services/newsService';
 
 const initialState = {
   data: [],
   initialLoading: LOADING,
   additionalLoading: IDLE,
+  postingLoading: IDLE,
   showLoadMoreButton: false,
   page: 2,
 };
@@ -16,17 +17,20 @@ export const getInitialData = createAsyncThunk(
   () => getNews('posts'),
 );
 
-export const getAdditionalData = createAsyncThunk('posts/getAdditionalData', pageNumber =>
-  getNews('posts', pageNumber),
+export const getAdditionalData = createAsyncThunk(
+  'posts/getAdditionalData', //
+  pageNumber => getNews('posts', pageNumber),
+);
+
+export const tryToPostNews = createAsyncThunk(
+  'posts/tryToPostNews', //
+  data => createNews('posts', data),
 );
 
 const postsListSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    postAdded: (state, action) => {
-      state.data.push(action.payload);
-    },
     postDeleted: (state, action) => {
       state.data = state.data.filter(item => item === action.payload);
     },
@@ -55,6 +59,13 @@ const postsListSlice = createSlice({
       })
       .addCase(getAdditionalData.rejected, state => {
         state.additionalLoading = REJECTED;
+      })
+      .addCase(tryToPostNews.pending, state => {
+        state.postingLoading = LOADING;
+      })
+      .addCase(tryToPostNews.fulfilled, (state, action) => {
+        state.postingLoading = IDLE;
+        state.data = [{ ...action.payload }, ...state.data];
       });
   },
 });

@@ -1,9 +1,12 @@
 import { useForm, useWatch } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
 import InputError from 'features/ui/inputError/InputError';
 import SubmitNewsButton from 'features/ui/submitNewsButton/SubmitNewsButton';
+import { transformDataForPOST } from 'helpers/dataTransformers';
+import { tryToPostNews } from 'redux/slices/postsListSlice';
 
 const CreateNewsForm = () => {
   const {
@@ -20,9 +23,10 @@ const CreateNewsForm = () => {
     control,
     name: 'body',
   });
+  const dispatch = useDispatch();
 
   const onSubmit = data => {
-    console.log(data);
+    dispatch(tryToPostNews(transformDataForPOST(data)));
   };
 
   return (

@@ -11,3 +11,12 @@ export const getNews = async (path, pageNumber = 1) => {
   const response = await axiosInstance.get(`/${path}`, { params });
   return response.data.filter(item => item.body);
 };
+
+export const createNews = async (path, data) => {
+  try {
+    const response = await axiosInstance.post(`/${path}`, { ...data });
+    return response.data;
+  } catch (error) {
+    throw new Error(JSON.stringify(error.response));
+  }
+};
