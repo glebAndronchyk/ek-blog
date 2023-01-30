@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'features/ui/button/Button';
 import { modalOpened } from 'redux/slices/modalSlice';
+import CreatePostsForm from "features/posts/createPostsForm/CreatePostsForm";
 
 const CreateNewsButton = props => {
   const { label } = props;
@@ -12,7 +13,7 @@ const CreateNewsButton = props => {
   const buttonContent = isAuth ? `Create new ${label}` : `Login or register in order to create new ${label}`;
 
   const changeModalStatus = () => {
-    return dispatch(modalOpened());
+    return dispatch(modalOpened('CreatePostsForm'));
   };
 
   return (
