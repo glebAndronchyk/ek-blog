@@ -9,6 +9,7 @@ const StyledNavLink = props => {
     return classNames({
       'nav-link': !isActive,
       'nav-link-header__active': isActive && type === 'header',
+      'absolute top-[2%] left-[1%]': type === 'toPosts',
     });
   };
 
