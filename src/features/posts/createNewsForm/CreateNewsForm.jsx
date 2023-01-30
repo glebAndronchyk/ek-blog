@@ -1,13 +1,12 @@
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
 
-const CreatePostsForm = () => {
+const CreateNewsForm = () => {
   return (
     <Form>
-      <FormInput />
-      <FormInput />
+      <textarea name="createNews" id="" cols="30" rows="10" />
     </Form>
   );
 };
 
-export default CreatePostsForm;
+export default CreateNewsForm;
