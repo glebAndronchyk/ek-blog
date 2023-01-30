@@ -11,7 +11,7 @@ const Registration = () => {
         to="/"
         type="toPosts"
       >
-        &lt;Back to posts
+        &lt; Back to posts
       </StyledNavLink>
       <div className="max-w-[491px] w-full">
         <img
