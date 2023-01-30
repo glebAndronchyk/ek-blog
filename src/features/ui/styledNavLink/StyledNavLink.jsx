@@ -31,7 +31,7 @@ const StyledNavLink = props => {
 StyledNavLink.propTypes = {
   to: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 };
 
 export default StyledNavLink;
