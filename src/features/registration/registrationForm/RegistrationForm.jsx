@@ -24,14 +24,15 @@ const RegistrationForm = () => {
       age: '',
     },
   });
+  const { isAuth, error } = useSelector(state => state.user);
+  const { status } = error;
   const dispatch = useDispatch();
-  const { error, isAuth } = useSelector(state => state.user);
 
   const onSubmit = data => {
     dispatch(tryToRegister(transformRegistrationFormData(data)));
   };
 
-  if (error && error.status !== 400) return <ErrorPlug />;
+  if (error && status !== 400) return <ErrorPlug />;
 
   return (
     <Form
