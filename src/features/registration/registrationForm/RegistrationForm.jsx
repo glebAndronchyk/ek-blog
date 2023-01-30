@@ -33,7 +33,7 @@ const RegistrationForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="z-50 top-[1%] left-[45%] max-w-[937px] w-full border-2"
+      className="max-w-[937px] w-full border-2 relative"
     >
       {isAuth ? (
         <SuccessWindow />
