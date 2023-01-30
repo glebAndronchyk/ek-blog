@@ -35,7 +35,7 @@ const PostsList = () => {
 
   return (
     <ComponentInitialStatus entity="posts">
-      <ul className="px-40 pt-20">{newsItems}</ul>
+      <ul className="px-40 pt-10">{newsItems}</ul>
       {showLoadMoreButton ? (
         <LoadMoreButton
           onClick={clickHandler}
