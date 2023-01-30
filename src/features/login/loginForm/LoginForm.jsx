@@ -10,6 +10,7 @@ import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
 import AuthButton from 'features/ui/authButton/AuthButton';
+import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 
 const LoginForm = () => {
   const {
@@ -57,7 +58,16 @@ const LoginForm = () => {
       <h3 className="font-code text-3xl text-black mb-3">Hello World!</h3>
       <span className="font-lato font-[600] text-gray-300 text-base mb-6">Login with your details</span>
       {inputs}
-      <AuthButton label="Login" />
+      <AuthButton
+        className="mb-2"
+        label="Login"
+      />
+      <StyledNavLink
+        to="/registration"
+        type="toRegister"
+      >
+        Or create an account &gt;
+      </StyledNavLink>
     </Form>
   );
 };
