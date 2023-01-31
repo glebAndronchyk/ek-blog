@@ -7,12 +7,11 @@ import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
 import classNames from 'classnames';
 
 const FormSubmitButton = props => {
-  const { label, className, storeEntity } = props;
-  const { loading } = useSelector(state => state[storeEntity]);
+  const { label, className, loadingStatus } = props;
 
   const formSubmitButtonClassName = classNames('submit-btn', className);
 
-  const loadingCondition = loading === LOADING;
+  const loadingCondition = loadingStatus === LOADING;
   const insideContent = loadingCondition ? <ButtonSpinner /> : <span>{label}</span>;
 
   return (
@@ -29,7 +28,7 @@ const FormSubmitButton = props => {
 FormSubmitButton.propTypes = {
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
-  storeEntity: PropTypes.string.isRequired,
+  loadingStatus: PropTypes.string.isRequired,
 };
 
 export default FormSubmitButton;

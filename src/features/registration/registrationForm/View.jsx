@@ -8,7 +8,7 @@ import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
 import TextInputs from 'features/registration/textInputs/TextInputs';
 
 const View = props => {
-  const { register, errors, watch, axiosError } = props;
+  const { register, errors, watch, axiosError, loading } = props;
 
   return (
     <>
@@ -26,7 +26,7 @@ const View = props => {
       <FormSubmitButton
         label="Create account"
         className="mt-2"
-        storeEntity="user"
+        loadingStatus={loading}
       />
     </>
   );
@@ -39,6 +39,7 @@ View.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   axiosError: PropTypes.any.isRequired,
   watch: PropTypes.func.isRequired,
+  loading: PropTypes.string.isRequired,
 };
 
 export default View;

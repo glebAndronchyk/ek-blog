@@ -18,7 +18,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm({ reValidateMode: 'onSubmit', defaultValues: { email: '', password: '' } });
 
-  const { isAuth, error } = useSelector(state => state.user);
+  const { isAuth, error, loading } = useSelector(state => state.user);
   const { status } = error;
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ const LoginForm = () => {
       <FormSubmitButton
         className="mb-2"
         label="Login"
-        storeEntity="user"
+        loadingStatus={loading}
       />
       <StyledNavLink
         to="/registration"

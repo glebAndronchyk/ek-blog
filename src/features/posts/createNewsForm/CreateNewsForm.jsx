@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
 import InputError from 'features/ui/inputError/InputError';
-import SubmitNewsButton from 'features/ui/submitNewsButton/SubmitNewsButton';
 import { transformDataForPOST } from 'helpers/dataTransformers';
 import { tryToPostNews } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
@@ -34,7 +33,7 @@ const CreateNewsForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[1200px] w-full py-[20px]"
+      className="max-w-[800px] w-full py-2"
     >
       <h3 className="text-2xl font-code text-black mb-2">Create Post</h3>
       <span className="text-black font-inter font-[600] underline text-lg mb-2">Title</span>

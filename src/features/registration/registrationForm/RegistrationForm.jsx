@@ -24,7 +24,7 @@ const RegistrationForm = () => {
       age: '',
     },
   });
-  const { isAuth, error } = useSelector(state => state.user);
+  const { isAuth, error, loading } = useSelector(state => state.user);
   const { status } = error;
   const dispatch = useDispatch();
 
@@ -47,6 +47,7 @@ const RegistrationForm = () => {
           watch={watch}
           errors={errors}
           axiosError={error}
+          loading={loading}
         />
       )}
     </Form>
