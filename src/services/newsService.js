@@ -7,7 +7,7 @@ export const getPost = async id => {
 };
 
 export const getNews = async (path, pageNumber = 1) => {
-  const params = { _page: pageNumber, _limit: 10 };
+  const params = { _page: pageNumber, _sort: 'createdAt', _order: 'desc', _limit: 10 };
   const response = await axiosInstance.get(`/${path}`, { params });
   return response.data.filter(item => item.body);
 };

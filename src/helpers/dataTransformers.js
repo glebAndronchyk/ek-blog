@@ -1,5 +1,4 @@
 import { getItemFromStorage } from 'helpers/localStorage';
-import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 
 export const transformRegistrationFormData = enteredData => {
   const { age, avatar, email, fullName, password } = enteredData;
@@ -20,7 +19,7 @@ export const transformDataForPOST = data => {
     title,
     body,
     userId: JSON.parse(getItemFromStorage('userData')).id,
-    createdAt: getDateInCorrectFormat(new Date()),
-    updatedAt: '----',
+    createdAt: new Date().toISOString(),
+    updatedAt: null,
   };
 };
