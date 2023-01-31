@@ -1,13 +1,25 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
+import NewsController from 'features/ui/newsController/NewsController';
+import { getItemFromStorage } from 'helpers/localStorage';
+import { getPost } from 'services/newsService';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
+import { useSelector } from 'react-redux';
 
 const PostsItem = props => {
-  const { feedData, to } = props;
+  const { feedData, to, postID } = props;
   const { createdAt, title, body } = feedData;
+  const [creatorID, setCreatorID] = useState(null);
+  const { isAuth } = useSelector(state => state.user);
+  const currentUserID = isAuth && JSON.parse(getItemFromStorage('userData')).id;
+
+  useEffect(() => {
+    getPost(postID).then(data => setCreatorID(data.userId));
+  }, []);
 
   // eslint-disable-next-line no-shadow
   const processLongBody = text => {
@@ -33,6 +45,7 @@ const PostsItem = props => {
           alt="item"
         />
       </Link>
+      {isAuth && creatorID === currentUserID ? <NewsController postID={postID} /> : null}
     </li>
   );
 };
@@ -44,6 +57,7 @@ PostsItem.propTypes = {
     body: PropTypes.string,
   }).isRequired,
   to: PropTypes.string.isRequired,
+  postID: PropTypes.number.isRequired,
 };
 
 export default PostsItem;

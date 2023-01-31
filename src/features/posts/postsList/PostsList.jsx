@@ -24,6 +24,7 @@ const PostsList = () => {
       <PostsItem
         key={item.id}
         to={`/posts/${item.id}`}
+        postID={item.id}
         feedData={{
           createdAt: item.createdAt,
           title: item.title,
