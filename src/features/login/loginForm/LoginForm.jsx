@@ -7,7 +7,7 @@ import { modalClosed } from 'redux/slices/modalSlice';
 import { loginInputs } from 'helpers/inputsData';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import Form from 'features/ui/form/Form';
-import AuthButton from 'features/ui/authButton/AuthButton';
+import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 import TextInputs from 'features/registration/textInputs/TextInputs';
 
@@ -46,9 +46,10 @@ const LoginForm = () => {
         errors={errors}
         castObject={loginInputs}
       />
-      <AuthButton
+      <FormSubmitButton
         className="mb-2"
         label="Login"
+        storeEntity="user"
       />
       <StyledNavLink
         to="/registration"

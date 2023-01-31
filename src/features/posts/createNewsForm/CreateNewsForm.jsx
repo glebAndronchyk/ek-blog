@@ -8,7 +8,7 @@ import SubmitNewsButton from 'features/ui/submitNewsButton/SubmitNewsButton';
 import { transformDataForPOST } from 'helpers/dataTransformers';
 import { tryToPostNews } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
-import AuthButton from 'features/ui/authButton/AuthButton';
+import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
 
 const CreateNewsForm = () => {
   const {
@@ -71,7 +71,10 @@ const CreateNewsForm = () => {
         name="body"
       />
       <span className="my-2">{textareaBody.length} / 10000</span>
-      <AuthButton label="test" />
+      <FormSubmitButton
+        label="Create Post"
+        storeEntity="posts"
+      />
     </Form>
   );
 };

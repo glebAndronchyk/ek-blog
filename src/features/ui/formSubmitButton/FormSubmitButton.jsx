@@ -6,11 +6,11 @@ import { LOADING } from 'helpers/loadingStatus';
 import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
 import classNames from 'classnames';
 
-const AuthButton = props => {
-  const { label, className } = props;
-  const { loading } = useSelector(state => state.user);
+const FormSubmitButton = props => {
+  const { label, className, storeEntity } = props;
+  const { loading } = useSelector(state => state[storeEntity]);
 
-  const authButtonClassName = classNames('auth-btn', className);
+  const formSubmitButtonClassName = classNames('submit-btn', className);
 
   const loadingCondition = loading === LOADING;
   const insideContent = loadingCondition ? <ButtonSpinner /> : <span>{label}</span>;
@@ -18,7 +18,7 @@ const AuthButton = props => {
   return (
     <Button
       type="submit"
-      className={authButtonClassName}
+      className={formSubmitButtonClassName}
       disabled={loadingCondition}
     >
       {insideContent}
@@ -26,9 +26,10 @@ const AuthButton = props => {
   );
 };
 
-AuthButton.propTypes = {
+FormSubmitButton.propTypes = {
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
+  storeEntity: PropTypes.string.isRequired,
 };
 
-export default AuthButton;
+export default FormSubmitButton;

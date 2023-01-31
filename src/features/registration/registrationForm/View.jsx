@@ -4,7 +4,7 @@ import { registrationInputs } from 'helpers/inputsData';
 import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
 import AvatarSelectionInputs from 'features/ui/avatarSelectionInputs/AvatarSelectionInputs';
-import AuthButton from 'features/ui/authButton/AuthButton';
+import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
 import TextInputs from 'features/registration/textInputs/TextInputs';
 
 const View = props => {
@@ -23,9 +23,10 @@ const View = props => {
       <AvatarSelection errors={errors}>
         <AvatarSelectionInputs register={register} />
       </AvatarSelection>
-      <AuthButton
+      <FormSubmitButton
         label="Create account"
         className="mt-2"
+        storeEntity="user"
       />
     </>
   );
