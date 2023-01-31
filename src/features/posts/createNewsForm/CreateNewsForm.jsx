@@ -32,9 +32,10 @@ const CreateNewsForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[1200px] w-full py-10"
+      className="max-w-[1200px] w-full py-3"
     >
-      <span>Title</span>
+      <h3 className="text-2xl font-code text-black mb-2">Create Post</h3>
+      <span className="text-black font-inter font-[600] underline text-lg mb-2">Title</span>
       <FormInput
         register={register}
         errors={errors}
@@ -50,9 +51,9 @@ const CreateNewsForm = () => {
           required: 'Title is required',
         }}
       />
-      <span>Body</span>
+      <span className="text-black font-inter font-[600] underline text-lg my-2">Body</span>
       <textarea
-        className="w-3/4 h-[610px] min-h-[610px] max-h-[610px] rounded-3xl"
+        className="text-area"
         placeholder="Write your information here(10 000 symbols available)"
         maxLength={10000}
         {...register('body', {
@@ -67,7 +68,7 @@ const CreateNewsForm = () => {
         errors={errors}
         name="body"
       />
-      <span>{textareaBody.length} / 10000</span>
+      <span className="my-2">{textareaBody.length} / 10000</span>
       <SubmitNewsButton />
     </Form>
   );

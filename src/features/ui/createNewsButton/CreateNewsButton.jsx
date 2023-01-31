@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'features/ui/button/Button';
 import { modalOpened } from 'redux/slices/modalSlice';
-import CreatePostsForm from "features/posts/createNewsForm/CreateNewsForm";
+import CreateNewsForm from 'features/posts/createNewsForm/CreateNewsForm';
 
 const CreateNewsButton = props => {
   const { label } = props;
