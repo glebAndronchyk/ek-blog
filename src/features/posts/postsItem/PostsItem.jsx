@@ -27,7 +27,7 @@ const PostsItem = props => {
   };
 
   return (
-    <li className="list-none duration-300 hover:shadow-lg md:rounded-3xl bg-white mb-4">
+    <li className="relative list-none duration-300 hover:shadow-lg md:rounded-3xl bg-white mb-4">
       <Link
         className="flex flex-row px-6 items-center justify-between md:rounded-3xl lg:p-4"
         to={to}
@@ -45,7 +45,7 @@ const PostsItem = props => {
           alt="item"
         />
       </Link>
-      {isAuth && creatorID === currentUserID ? <NewsController postID={postID} /> : null}
+      {isAuth && creatorID === currentUserID ? <NewsController configuration={{ id: postID, entity: 'post' }} /> : null}
     </li>
   );
 };

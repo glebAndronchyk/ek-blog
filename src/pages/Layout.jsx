@@ -10,6 +10,7 @@ import CreateNewsForm from 'features/posts/createNewsForm/CreateNewsForm';
 const modalContent = {
   LoginForm: <LoginForm />,
   CreateNewsForm: <CreateNewsForm />,
+  Confirmation: <div />,
 };
 
 const Layout = () => {

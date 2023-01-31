@@ -7,7 +7,7 @@ const HeaderLoginButton = () => {
   const dispatch = useDispatch();
 
   const changeModalStatus = () => {
-    return dispatch(modalOpened('LoginForm'));
+    return dispatch(modalOpened({ name: 'LoginForm' }));
   };
 
   return (
