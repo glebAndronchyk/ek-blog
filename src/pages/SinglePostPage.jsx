@@ -30,7 +30,7 @@ const SinglePostPage = () => {
         By: {`${firstname} ${lastname}. `}
         {`Created at: ${getDateInCorrectFormat(createdAt)}, Updated at: ${getDateInCorrectFormat(updatedAt)}`}
       </span>
-      <p className="relative text-lg single-post-deco before:bg-blue-100">{body}</p>
+      <p className="relative text-lg single-post-deco before:bg-blue-100 break-words">{body}</p>
       {/*TODO: MAKE COMMENTS SECTION*/}
     </article>
   );

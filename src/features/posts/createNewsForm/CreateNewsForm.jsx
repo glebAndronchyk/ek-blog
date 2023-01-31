@@ -7,6 +7,8 @@ import InputError from 'features/ui/inputError/InputError';
 import SubmitNewsButton from 'features/ui/submitNewsButton/SubmitNewsButton';
 import { transformDataForPOST } from 'helpers/dataTransformers';
 import { tryToPostNews } from 'redux/slices/postsListSlice';
+import { modalClosed } from 'redux/slices/modalSlice';
+import AuthButton from 'features/ui/authButton/AuthButton';
 
 const CreateNewsForm = () => {
   const {
@@ -32,7 +34,7 @@ const CreateNewsForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[1200px] w-full py-3"
+      className="max-w-[1200px] w-full py-[20px]"
     >
       <h3 className="text-2xl font-code text-black mb-2">Create Post</h3>
       <span className="text-black font-inter font-[600] underline text-lg mb-2">Title</span>
@@ -69,7 +71,7 @@ const CreateNewsForm = () => {
         name="body"
       />
       <span className="my-2">{textareaBody.length} / 10000</span>
-      <SubmitNewsButton />
+      <AuthButton label="test" />
     </Form>
   );
 };
