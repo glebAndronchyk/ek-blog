@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { modalClosed } from 'redux/slices/modalSlice';
 
-import Button from 'features/ui/button/Button';
+import View from 'features/ui/confirmation/View';
+import Spinner from 'features/ui/spinner/Spinner';
 import { tryToDeletePost } from 'redux/slices/postsListSlice';
-import { REJECTED } from 'helpers/loadingStatus';
+import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const deleteFunctions = {
   posts: tryToDeletePost,
@@ -25,21 +26,15 @@ const Confirmation = () => {
 
   return (
     <div className="flex absolute flex-col justify-between bg-gray-200 items-center rounded-[20px] max-w-md w-full py-10">
-      <span className="mb-4 text-xl text-black">Are you sure?</span>
-      <div className="flex justify-evenly w-full">
-        <Button
-          onClick={onConfirm}
-          className="duration-300 bg-emerald-600 p-2 rounded-[10px] max-w-[48px] w-full text-black hover:bg-emerald-400"
-        >
-          YES
-        </Button>
-        <Button
-          onClick={onDecline}
-          className="duration-300 bg-app-red p-2 rounded-[10px] max-w-[48px] w-full text-black hover:bg-[#DE8193]"
-        >
-          NO
-        </Button>
-      </div>
+      {deletingLoading === LOADING ? (
+        <Spinner className="pt-0" />
+      ) : (
+        <View
+          loading={deletingLoading}
+          onConfirm={onConfirm}
+          onDecline={onDecline}
+        />
+      )}
     </div>
   );
 };
