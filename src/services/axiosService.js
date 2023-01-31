@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(config => {
-  const token = getItemFromStorage();
+  const token = getItemFromStorage('token');
 
   const interceptorConfig = { ...config };
 
