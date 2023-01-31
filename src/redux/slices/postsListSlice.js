@@ -66,6 +66,9 @@ const postsListSlice = createSlice({
       .addCase(tryToPostNews.fulfilled, (state, action) => {
         state.postingLoading = IDLE;
         state.data = [{ ...action.payload }, ...state.data];
+      })
+      .addCase(tryToPostNews.rejected, (state) => {
+        state.postingLoading = REJECTED;
       });
   },
 });

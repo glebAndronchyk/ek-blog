@@ -1,13 +1,16 @@
 import { useForm, useWatch } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
 import InputError from 'features/ui/inputError/InputError';
 import { transformDataForPOST } from 'helpers/dataTransformers';
+import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
+import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
 import { tryToPostNews } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
-import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
+import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const CreateNewsForm = () => {
   const {
@@ -25,9 +28,12 @@ const CreateNewsForm = () => {
     name: 'body',
   });
   const dispatch = useDispatch();
+  const { postingLoading } = useSelector(state => state.posts);
 
   const onSubmit = data => {
-    dispatch(tryToPostNews(transformDataForPOST(data)));
+    dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
+      return !resp.error ? dispatch(modalClosed()) : null;
+    });
   };
 
   return (
@@ -42,6 +48,7 @@ const CreateNewsForm = () => {
         errors={errors}
         className="test"
         placeholder="Enter your future post title"
+        disabled={postingLoading === LOADING}
         type="text"
         label="title"
         options={{
@@ -57,6 +64,7 @@ const CreateNewsForm = () => {
         className="text-area"
         placeholder="Write your information here(10 000 symbols available)"
         maxLength={10000}
+        disabled={postingLoading === LOADING}
         {...register('body', {
           minLength: {
             value: 100,
@@ -72,8 +80,9 @@ const CreateNewsForm = () => {
       <span className="my-2">{textareaBody.length} / 10000</span>
       <FormSubmitButton
         label="Create Post"
-        storeEntity="posts"
+        loadingStatus={postingLoading}
       />
+      {postingLoading === REJECTED && <InputErrorMessage>Something went wrong try again later</InputErrorMessage>}
     </Form>
   );
 };

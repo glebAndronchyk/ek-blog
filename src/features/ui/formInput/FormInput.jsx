@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import InputError from 'features/ui/inputError/InputError';
 
 const FormInput = props => {
-  const { className, placeholder, type, register, label, options, errors, watch, value } = props;
+  const { className, placeholder, type, register, label, options, errors, watch, value, disabled } = props;
 
   const inputClassName = classNames(className, { 'form-input': type !== 'radio' });
   return (
@@ -15,6 +15,7 @@ const FormInput = props => {
         value={value}
         placeholder={placeholder}
         className={inputClassName}
+        disabled={disabled}
         {...register(label, {
           ...options,
           validate:
@@ -48,6 +49,7 @@ FormInput.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   options: PropTypes.object.isRequired,
   value: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default FormInput;
