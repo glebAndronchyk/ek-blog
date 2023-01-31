@@ -13,8 +13,9 @@ const DeleteItem = props => {
 
   return (
     <button
-      onClick={clickHandler}
+      type="button"
       className="rounded-full w-[30px] h-[30px] bg-app-red"
+      onClick={clickHandler}
     >
       X
     </button>

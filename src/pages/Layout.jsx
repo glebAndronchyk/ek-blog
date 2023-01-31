@@ -6,11 +6,12 @@ import Footer from 'features/ui/footer/Footer';
 import Modal from 'features/ui/modal/Modal';
 import LoginForm from 'features/login/loginForm/LoginForm';
 import CreateNewsForm from 'features/posts/createNewsForm/CreateNewsForm';
+import Confirmation from 'features/ui/confirmation/Confirmation';
 
 const modalContent = {
   LoginForm: <LoginForm />,
   CreateNewsForm: <CreateNewsForm />,
-  Confirmation: <div />,
+  Confirmation: <Confirmation />,
 };
 
 const Layout = () => {

@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, getNews } from 'services/newsService';
+import { createNews, getNews, deleteNews } from 'services/newsService';
 
 const initialState = {
   data: [],
   initialLoading: LOADING,
   additionalLoading: IDLE,
   postingLoading: IDLE,
+  deletingLoading: IDLE,
   showLoadMoreButton: false,
   page: 2,
 };
@@ -27,13 +28,15 @@ export const tryToPostNews = createAsyncThunk(
   data => createNews('posts', data),
 );
 
+export const tryToDeletePost = createAsyncThunk(
+  '/posts/tryToDeletePost', //
+  id => deleteNews(`posts/${id}`),
+);
+
 const postsListSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    postDeleted: (state, action) => {
-      state.data = state.data.filter(item => item === action.payload);
-    },
     stateReseted: () => {
       return initialState;
     },
@@ -67,8 +70,18 @@ const postsListSlice = createSlice({
         state.postingLoading = IDLE;
         state.data = [{ ...action.payload }, ...state.data];
       })
-      .addCase(tryToPostNews.rejected, (state) => {
+      .addCase(tryToPostNews.rejected, state => {
         state.postingLoading = REJECTED;
+      })
+      .addCase(tryToDeletePost.pending, state => {
+        state.deletingLoading = LOADING;
+      })
+      .addCase(tryToDeletePost.fulfilled, (state, action) => {
+        state.deletingLoading = IDLE;
+        state.data = state.data.filter(item => item.id !== action.meta.arg);
+      })
+      .addCase(tryToDeletePost.rejected, state => {
+        state.deletingLoading = REJECTED;
       });
   },
 });

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 import NewsController from 'features/ui/newsController/NewsController';
@@ -8,7 +9,6 @@ import { getItemFromStorage } from 'helpers/localStorage';
 import { getPost } from 'services/newsService';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
-import { useSelector } from 'react-redux';
 
 const PostsItem = props => {
   const { feedData, to, postID } = props;
@@ -45,7 +45,9 @@ const PostsItem = props => {
           alt="item"
         />
       </Link>
-      {isAuth && creatorID === currentUserID ? <NewsController configuration={{ id: postID, entity: 'post' }} /> : null}
+      {isAuth && creatorID === currentUserID ? (
+        <NewsController configuration={{ id: postID, entity: 'posts' }} />
+      ) : null}
     </li>
   );
 };
