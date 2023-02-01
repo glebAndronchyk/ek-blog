@@ -95,9 +95,3 @@ const { reducer, actions } = postsListSlice;
 export default reducer;
 
 export const { stateReseted } = actions;
-
-// TODO: ADD AND REMOVE POSTS
-// export const {
-//   postAdded,
-//   postDeleted,
-// } = actions

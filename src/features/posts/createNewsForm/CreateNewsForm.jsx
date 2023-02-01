@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
 import InputError from 'features/ui/inputError/InputError';
-import { transformDataForPOST } from 'helpers/dataTransformers';
+import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
 import { tryToEditNews, tryToPostNews } from 'redux/slices/postsListSlice';
@@ -13,7 +13,7 @@ import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const CreateNewsForm = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
-  const { entity, id, title, body } = modalConfiguration;
+  const { entity, id, title, body, createdAt } = modalConfiguration;
   const { postingLoading } = useSelector(state => state[entity]);
   const {
     register,
@@ -36,7 +36,7 @@ const CreateNewsForm = () => {
 
   const onSubmit = data => {
     if (onEditChecking) {
-      return dispatch(tryToEditNews([transformDataForPOST(data), id])).then(resp => {
+      return dispatch(tryToEditNews([transformDataForPATCH(data, createdAt), id])).then(resp => {
         return !resp.error ? dispatch(modalClosed()) : null;
       });
     }

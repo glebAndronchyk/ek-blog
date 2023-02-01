@@ -10,14 +10,14 @@ const EditItem = props => {
   const { configuration } = props;
   const { id } = configuration;
   const { page, getData } = useGetPost(id);
-  const { title, body } = page;
+  const { title, body, createdAt } = page;
 
   useEffect(() => {
     getData();
   }, []);
 
   const handleClick = () => {
-    dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { ...configuration, title, body } }));
+    dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { ...configuration, title, body, createdAt } }));
   };
 
   return (
