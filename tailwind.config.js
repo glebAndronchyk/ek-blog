@@ -2,6 +2,9 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   content: ['./public/index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
