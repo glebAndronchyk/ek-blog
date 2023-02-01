@@ -1,9 +1,12 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-import FormInput from 'features/ui/formInput/FormInput';
 import Form from 'features/ui/form/Form';
-import AuthButton from 'features/ui/authButton/AuthButton';
-import { registrationInputs } from 'helpers/inputsData';
+import SuccessWindow from 'features/ui/successWindow/SuccessWindow';
+import transformRegistrationFormData from 'helpers/dataTransformers';
+import { tryToRegister } from 'redux/slices/userSlice';
+import View from 'features/registration/registrationForm/View';
+import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 
 const RegistrationForm = () => {
   const {
@@ -13,42 +16,39 @@ const RegistrationForm = () => {
     watch,
   } = useForm({
     reValidateMode: 'onChange',
-    defaultValues: { email: '', password: '', passConfirm: '', fullName: '', age: '' },
+    defaultValues: {
+      email: '',
+      password: '',
+      passConfirm: '',
+      fullName: '',
+      age: '',
+    },
   });
+  const { isAuth, error } = useSelector(state => state.user);
+  const { status } = error;
+  const dispatch = useDispatch();
 
   const onSubmit = data => {
-    console.log(data);
+    dispatch(tryToRegister(transformRegistrationFormData(data)));
   };
 
-  const inputs = Object.keys(registrationInputs).map((item, index) => {
-    const { className, placeholder, type, label, options } = registrationInputs[item];
-    return (
-      <FormInput
-        key={index}
-        register={register}
-        watch={watch}
-        errors={errors}
-        className={className}
-        placeholder={placeholder}
-        type={type}
-        label={label}
-        options={options}
-      />
-    );
-  });
+  if (error && status !== 400) return <ErrorPlug />;
 
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="z-50 top-[10%] left-[45%] max-w-[937px] w-full border-2"
+      className="max-w-[937px] w-full border-2 relative"
     >
-      <h3 className="font-code text-3xl text-black mb-4">Create Account</h3>
-      {inputs}
-      {/*TODO: MAKE AVATAR SELECTION*/}
-      <AuthButton
-        label="Create account"
-        className="mt-2"
-      />
+      {isAuth ? (
+        <SuccessWindow />
+      ) : (
+        <View
+          register={register}
+          watch={watch}
+          errors={errors}
+          axiosError={error}
+        />
+      )}
     </Form>
   );
 };
