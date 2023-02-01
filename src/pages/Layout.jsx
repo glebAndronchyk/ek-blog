@@ -7,10 +7,12 @@ import Modal from 'features/ui/modal/Modal';
 import LoginForm from 'features/login/loginForm/LoginForm';
 import CreateNewsForm from 'features/posts/createNewsForm/CreateNewsForm';
 import Confirmation from 'features/ui/confirmation/Confirmation';
+import EditNewsForm from 'features/ui/editNewsForm/EditNewsForm';
 
 const modalContent = {
   LoginForm: <LoginForm />,
   CreateNewsForm: <CreateNewsForm />,
+  EditNewsForm: <EditNewsForm />,
   Confirmation: <Confirmation />,
 };
 

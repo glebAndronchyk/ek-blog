@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Button from 'features/ui/button/Button';
@@ -7,7 +6,7 @@ import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
 import classNames from 'classnames';
 
 const FormSubmitButton = props => {
-  const { label, className, loadingStatus } = props;
+  const { label, className, loadingStatus, disabled } = props;
 
   const formSubmitButtonClassName = classNames('submit-btn', className);
 
@@ -18,7 +17,7 @@ const FormSubmitButton = props => {
     <Button
       type="submit"
       className={formSubmitButtonClassName}
-      disabled={loadingCondition}
+      disabled={loadingCondition || disabled}
     >
       {insideContent}
     </Button>
@@ -29,6 +28,7 @@ FormSubmitButton.propTypes = {
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
   loadingStatus: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default FormSubmitButton;

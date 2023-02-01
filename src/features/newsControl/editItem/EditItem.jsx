@@ -17,7 +17,7 @@ const EditItem = props => {
   }, []);
 
   const handleClick = () => {
-    dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { ...configuration, title, body, createdAt } }));
+    dispatch(modalOpened({ name: 'EditNewsForm', configuration: { ...configuration, title, body, createdAt } }));
   };
 
   return (
