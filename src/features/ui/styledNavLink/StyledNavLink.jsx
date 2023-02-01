@@ -7,9 +7,9 @@ const StyledNavLink = props => {
 
   const currentClassName = isActive => {
     return classNames({
-      'nav-link-header': !isActive && type === 'header',
+      'nav-link': !isActive,
       'nav-link-header__active': isActive && type === 'header',
-      // TODO: add more types
+      'absolute top-[2%] left-[1%]': type === 'toPosts',
     });
   };
 
@@ -31,7 +31,7 @@ const StyledNavLink = props => {
 StyledNavLink.propTypes = {
   to: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
 };
 
 export default StyledNavLink;

@@ -9,6 +9,7 @@ import Spinner from 'features/ui/spinner/Spinner';
 const Announcements = lazy(() => import('pages/Announcements'));
 const Posts = lazy(() => import('pages/Posts'));
 const SinglePostPage = lazy(() => import('pages/SinglePostPage'));
+const Registration = lazy(() => import('pages/Registration'));
 
 const AppRoutes = () => {
   return (
@@ -115,7 +116,11 @@ const AppRoutes = () => {
 
         <Route
           path="registration"
-          element={<div>Registration</div>}
+          element={
+            <Suspense fallback={<Spinner />}>
+              <Registration />
+            </Suspense>
+          }
         />
         <Route
           path="*"
