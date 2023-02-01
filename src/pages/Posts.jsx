@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import Banner from '../components/banner/Banner';
-import ExtendWithInitialLoadingStatusPostsList from '../components/postsList/PostsList';
-import { getInitialData } from '../slices/postsListSlice';
-import PostsBg from '../assets/images/posts-banner-bg.jpg';
+import Banner from 'features/ui/banner/Banner';
+import ExtendWithInitialLoadingStatusPostsList from 'features/posts/postsList/PostsList';
+import { getInitialData } from 'redux/slices/postsListSlice';
+import PostsBg from 'assets/images/posts-banner-bg.jpg';
 
 const Posts = () => {
   const dispatch = useDispatch();

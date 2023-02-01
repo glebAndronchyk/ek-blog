@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getItemFromStorage } from '../helpers/localStorage';
+import { getItemFromStorage } from 'helpers/localStorage';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE,
