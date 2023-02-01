@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-// import EditItem from 'features/newsControl/editItem/EditItem';
+import EditItem from 'features/newsControl/editItem/EditItem';
 import DeleteItem from 'features/newsControl/deleteItem/DeleteItem';
 
 const NewsController = props => {
   const { configuration } = props;
 
   return (
-    <div className="absolute z-50 right-0 top-0">
-      {/*<EditItem postID={postID} />*/}
+    <div className="flex justify-evenly absolute z-50 right-0 top-0 max-w-[100px] w-full pt-2">
+      <EditItem configuration={configuration} />
       <DeleteItem configuration={configuration} />
     </div>
   );

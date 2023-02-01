@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, getNews, deleteNews } from 'services/newsService';
+import { createNews, getNews, deleteNews, editNews } from 'services/newsService';
 
 const initialState = {
   data: [],
@@ -26,6 +26,11 @@ export const getAdditionalData = createAsyncThunk(
 export const tryToPostNews = createAsyncThunk(
   'posts/tryToPostNews', //
   data => createNews('posts', data),
+);
+
+export const tryToEditNews = createAsyncThunk(
+  'posts/tryToEditNews', //
+  ([data, id]) => editNews('posts', data, id),
 );
 
 export const tryToDeletePost = createAsyncThunk(

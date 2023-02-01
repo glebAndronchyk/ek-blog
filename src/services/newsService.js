@@ -21,6 +21,15 @@ export const createNews = async (path, data) => {
   }
 };
 
+export const editNews = async (path, data, id) => {
+  try {
+    const response = await axiosInstance.patch(`/${path}/${id}`, { ...data });
+    return response.data;
+  } catch (error) {
+    throw new Error(JSON.stringify(error.response));
+  }
+};
+
 export const deleteNews = async path => {
   try {
     const response = await axiosInstance.delete(`/${path}`);

@@ -12,7 +12,7 @@ const CreateNewsButton = props => {
   const buttonContent = isAuth ? `Create new ${label}` : `Login or register in order to create new ${label}`;
 
   const changeModalStatus = () => {
-    return dispatch(modalOpened({ name: 'CreateNewsForm' }));
+    return dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { entity: label } }));
   };
 
   return (

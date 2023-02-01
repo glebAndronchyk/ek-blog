@@ -1,6 +1,5 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
 import FormInput from 'features/ui/formInput/FormInput';
@@ -8,11 +7,14 @@ import InputError from 'features/ui/inputError/InputError';
 import { transformDataForPOST } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
-import { tryToPostNews } from 'redux/slices/postsListSlice';
+import { tryToEditNews, tryToPostNews } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
-import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
+import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const CreateNewsForm = () => {
+  const { modalConfiguration } = useSelector(state => state.modal);
+  const { entity, id, title, body } = modalConfiguration;
+  const { postingLoading } = useSelector(state => state[entity]);
   const {
     register,
     handleSubmit,
@@ -20,18 +22,26 @@ const CreateNewsForm = () => {
     control,
   } = useForm({
     reValidateMode: 'onChange',
-    defaultValues: { body: '' },
+    defaultValues: {
+      title: title || '',
+      body: body || '',
+    },
   });
-
   const textareaBody = useWatch({
     control,
     name: 'body',
   });
   const dispatch = useDispatch();
-  const { postingLoading } = useSelector(state => state.posts);
+  const onEditChecking = title || body;
 
   const onSubmit = data => {
-    dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
+    if (onEditChecking) {
+      return dispatch(tryToEditNews([transformDataForPOST(data), id])).then(resp => {
+        return !resp.error ? dispatch(modalClosed()) : null;
+      });
+    }
+
+    return dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
       return !resp.error ? dispatch(modalClosed()) : null;
     });
   };
@@ -79,7 +89,7 @@ const CreateNewsForm = () => {
       />
       <span className="my-2">{textareaBody.length} / 10000</span>
       <FormSubmitButton
-        label="Create Post"
+        label={`${onEditChecking ? 'Edit' : 'Create'} Post`}
         loadingStatus={postingLoading}
       />
       {postingLoading === REJECTED && <InputErrorMessage>Something went wrong try again later</InputErrorMessage>}
