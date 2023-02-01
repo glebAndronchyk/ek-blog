@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { getItemFromStorage, setItemToStorage, clearStorage } from 'helpers/localStorage';
+import { getItemFromStorage, clearStorage, setItemsToStorage } from 'helpers/localStorage';
 import { login } from 'services/authService';
 import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const initialState = {
-  isAuth: !!getItemFromStorage(),
+  isAuth: !!getItemFromStorage('token'),
   error: false,
   loading: IDLE,
 };
@@ -33,8 +33,16 @@ const userSlice = createSlice({
         state.loading = IDLE;
         state.isAuth = true;
         state.error = false;
-        setItemToStorage('token', action.payload.accessToken);
-        setItemToStorage('userData', JSON.stringify(action.payload.user));
+        setItemsToStorage([
+          {
+            name: 'token',
+            value: action.payload.accessToken,
+          },
+          {
+            name: 'userData',
+            value: JSON.stringify(action.payload.user),
+          },
+        ]);
       })
       .addCase(tryToLogin.rejected, (state, action) => {
         state.loading = REJECTED;

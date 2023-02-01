@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
 import { modalClosed } from 'redux/slices/modalSlice';
@@ -12,11 +12,10 @@ const Modal = props => {
 
   const { isShown } = useSelector(state => state.modal);
   const className = classNames({ hidden: !isShown });
-  const backgroundRef = useRef(null);
   const dispatch = useDispatch();
 
   const handleBackgroundClick = event => {
-    if (event.target === backgroundRef.current) {
+    if (event.target === event.currentTarget) {
       return dispatch(modalClosed());
     }
     return null;
@@ -31,18 +30,16 @@ const Modal = props => {
   };
 
   useEffect(() => {
-    const { current } = backgroundRef;
-    current.addEventListener('click', handleBackgroundClick);
     window.addEventListener('keydown', handleEscPress);
     return () => {
-      current.removeEventListener('click', handleBackgroundClick);
       window.removeEventListener('keydown', handleEscPress);
     };
   }, []);
 
   return createPortal(
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
     <div
-      ref={backgroundRef}
+      onClick={handleBackgroundClick}
       className={`${className} fixed z-50 inset-0 flex justify-center items-center bg-black/[.5]`}
     >
       {children}
