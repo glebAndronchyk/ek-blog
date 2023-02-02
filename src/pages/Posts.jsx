@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import Banner from 'features/ui/banner/Banner';
 import PostsList from 'features/posts/postsList/PostsList';
-import CreateNewsButton from 'features/ui/createNewsButton/CreateNewsButton';
+import CreateNewsButton from 'features/ui/buttons/createNewsButton/CreateNewsButton';
 import { getInitialData } from 'redux/slices/postsListSlice';
 
 import PostsBg from 'assets/images/posts-banner-bg.jpg';

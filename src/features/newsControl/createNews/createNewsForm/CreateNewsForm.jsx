@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
-import InputError from 'features/ui/inputError/InputError';
+import InputError from 'features/ui/inputs/inputError/InputError';
 import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
-import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
-import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
+import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
+import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
 import { tryToEditNews, tryToPostNews, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';

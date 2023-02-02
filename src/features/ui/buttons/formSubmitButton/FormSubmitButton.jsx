@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import Button from 'features/ui/button/Button';
+import Button from 'features/ui/buttons/button/Button';
 import { LOADING } from 'helpers/loadingStatus';
-import ButtonSpinner from 'features/ui/buttonSpinner/ButtonSpinner';
+import ButtonSpinner from 'features/ui/buttons/buttonSpinner/ButtonSpinner';
 import classNames from 'classnames';
 
 const FormSubmitButton = props => {

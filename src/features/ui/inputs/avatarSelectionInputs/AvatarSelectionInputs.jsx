@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 import avatars from 'helpers/avatars';
-import FormInput from 'features/ui/formInput/FormInput';
+import FormInput from 'features/ui/inputs/formInput/FormInput';
 
 const AvatarSelectionInputs = props => {
   const { register } = props;
