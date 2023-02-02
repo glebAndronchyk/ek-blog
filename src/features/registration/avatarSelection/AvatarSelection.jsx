@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import InputError from 'features/ui/inputError/InputError';
+import InputError from 'features/ui/inputs/inputError/InputError';
 
 const AvatarSelection = props => {
   const { children, errors } = props;

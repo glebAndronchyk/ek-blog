@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import LoadMoreButton from 'features/loadMore/loadMoreButton/LoadMoreButton';
 import { getAdditionalData, stateReseted } from 'redux/slices/postsListSlice';
-import ComponentInitialStatus from 'features/componentInitialStatus/ComponentInitialStatus';
+import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import PostsItem from '../postsItem/PostsItem';
 
 const PostsList = () => {
@@ -24,6 +24,7 @@ const PostsList = () => {
       <PostsItem
         key={item.id}
         to={`/posts/${item.id}`}
+        postID={item.id}
         feedData={{
           createdAt: item.createdAt,
           title: item.title,
@@ -35,7 +36,7 @@ const PostsList = () => {
 
   return (
     <ComponentInitialStatus entity="posts">
-      <ul className="px-40 pt-20">{newsItems}</ul>
+      <ul className="px-40 pt-10">{newsItems}</ul>
       {showLoadMoreButton ? (
         <LoadMoreButton
           onClick={clickHandler}

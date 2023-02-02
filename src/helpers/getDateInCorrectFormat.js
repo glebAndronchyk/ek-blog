@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 
 const getDateInCorrectFormat = date => {
   if (!date) {
-    return null;
+    return date === null ? '----' : null;
   }
 
   return format(new Date(date), 'yyyy/MM/dd');

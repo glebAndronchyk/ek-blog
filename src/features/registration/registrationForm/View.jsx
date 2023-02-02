@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
 import { registrationInputs } from 'helpers/inputsData';
-import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
+import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
-import AvatarSelectionInputs from 'features/ui/avatarSelectionInputs/AvatarSelectionInputs';
-import AuthButton from 'features/ui/authButton/AuthButton';
-import TextInputs from 'features/registration/textInputs/TextInputs';
+import AvatarSelectionInputs from 'features/ui/inputs/avatarSelectionInputs/AvatarSelectionInputs';
+import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
+import TextInputs from 'features/ui/inputs/textInputs/TextInputs';
 
 const View = props => {
-  const { register, errors, watch, axiosError } = props;
+  const { register, errors, watch, axiosError, loading } = props;
 
   return (
     <>
@@ -23,9 +23,10 @@ const View = props => {
       <AvatarSelection errors={errors}>
         <AvatarSelectionInputs register={register} />
       </AvatarSelection>
-      <AuthButton
+      <FormSubmitButton
         label="Create account"
         className="mt-2"
+        loadingStatus={loading}
       />
     </>
   );
@@ -38,6 +39,7 @@ View.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   axiosError: PropTypes.any.isRequired,
   watch: PropTypes.func.isRequired,
+  loading: PropTypes.string.isRequired,
 };
 
 export default View;

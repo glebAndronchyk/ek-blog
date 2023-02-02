@@ -1,4 +1,6 @@
-const transformRegistrationFormData = enteredData => {
+import { getItemFromStorage } from 'helpers/localStorage';
+
+export const transformRegistrationFormData = enteredData => {
   const { age, avatar, email, fullName, password } = enteredData;
   const splittedFullName = fullName.split(' ');
   return {
@@ -11,4 +13,24 @@ const transformRegistrationFormData = enteredData => {
   };
 };
 
-export default transformRegistrationFormData;
+export const transformDataForPOST = data => {
+  const { title, body } = data;
+  return {
+    title,
+    body,
+    userId: JSON.parse(getItemFromStorage('userData')).id,
+    createdAt: new Date().toISOString(),
+    updatedAt: null,
+  };
+};
+
+export const transformDataForPATCH = (data, createdAt) => {
+  const { title, body } = data;
+  return {
+    title,
+    body,
+    userId: JSON.parse(getItemFromStorage('userData')).id,
+    createdAt,
+    updatedAt: new Date().toISOString(),
+  };
+};

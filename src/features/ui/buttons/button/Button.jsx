@@ -8,6 +8,7 @@ const Button = props => {
   const btnClassName = useMemo(() => {
     return classNames('btn', className, {
       disabled,
+      'text-blue-100': disabled,
     });
   }, [disabled]);
 

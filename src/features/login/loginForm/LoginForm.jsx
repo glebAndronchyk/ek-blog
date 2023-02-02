@@ -7,9 +7,9 @@ import { modalClosed } from 'redux/slices/modalSlice';
 import { loginInputs } from 'helpers/inputsData';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import Form from 'features/ui/form/Form';
-import AuthButton from 'features/ui/authButton/AuthButton';
+import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
-import TextInputs from 'features/registration/textInputs/TextInputs';
+import TextInputs from 'features/ui/inputs/textInputs/TextInputs';
 
 const LoginForm = () => {
   const {
@@ -18,7 +18,7 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm({ reValidateMode: 'onSubmit', defaultValues: { email: '', password: '' } });
 
-  const { isAuth, error } = useSelector(state => state.user);
+  const { isAuth, error, loading } = useSelector(state => state.user);
   const { status } = error;
   const dispatch = useDispatch();
 
@@ -46,9 +46,10 @@ const LoginForm = () => {
         errors={errors}
         castObject={loginInputs}
       />
-      <AuthButton
+      <FormSubmitButton
         className="mb-2"
         label="Login"
+        loadingStatus={loading}
       />
       <StyledNavLink
         to="/registration"
