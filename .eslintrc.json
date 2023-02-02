@@ -53,6 +53,7 @@
     "react/jsx-filename-extension": 1,
     "react/jsx-props-no-spreading": 0,
     "import/no-unresolved": 0,
-    "react/no-array-index-key": 1
+    "react/no-array-index-key": 1,
+    "react/no-this-in-sfc":0
   }
 }

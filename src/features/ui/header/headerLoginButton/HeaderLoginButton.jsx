@@ -1,13 +1,13 @@
 import { useDispatch } from 'react-redux';
 
-import Button from 'features/ui/button/Button';
+import Button from 'features/ui/buttons/button/Button';
 import { modalOpened } from 'redux/slices/modalSlice';
 
 const HeaderLoginButton = () => {
   const dispatch = useDispatch();
 
   const changeModalStatus = () => {
-    return dispatch(modalOpened('LoginForm'));
+    return dispatch(modalOpened({ name: 'LoginForm' }));
   };
 
   return (

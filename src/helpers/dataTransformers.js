@@ -23,3 +23,14 @@ export const transformDataForPOST = data => {
     updatedAt: null,
   };
 };
+
+export const transformDataForPATCH = (data, createdAt) => {
+  const { title, body } = data;
+  return {
+    title,
+    body,
+    userId: JSON.parse(getItemFromStorage('userData')).id,
+    createdAt,
+    updatedAt: new Date().toISOString(),
+  };
+};
