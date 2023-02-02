@@ -1,12 +1,13 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
 import InputError from 'features/ui/inputError/InputError';
 import { transformDataForPATCH } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
-import { tryToEditNews } from 'redux/slices/postsListSlice';
+import { tryToEditNews, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
@@ -22,8 +23,8 @@ const EditNewsForm = () => {
   } = useForm({
     reValidateMode: 'onChange',
     defaultValues: {
-      editTitle: title,
-      editBody: body,
+      editTitle: title || '',
+      editBody: body || '',
     },
   });
   const editBody = useWatch({
@@ -36,6 +37,10 @@ const EditNewsForm = () => {
   });
   const dispatch = useDispatch();
   const disabledCondition = editTitle === title && editBody === body;
+
+  useEffect(() => {
+    dispatch(userActionLoadingReseted());
+  }, []);
 
   const onSubmit = data => {
     return dispatch(tryToEditNews([transformDataForPATCH(data, createdAt), id])).then(resp => {

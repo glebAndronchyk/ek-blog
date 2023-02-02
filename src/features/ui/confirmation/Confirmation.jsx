@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { modalClosed } from 'redux/slices/modalSlice';
+import { useEffect } from 'react';
 
 import View from 'features/ui/confirmation/View';
 import Spinner from 'features/ui/spinner/Spinner';
-import { tryToDeletePost } from 'redux/slices/postsListSlice';
+import { tryToDeletePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const deleteFunctions = {
@@ -15,6 +16,10 @@ const Confirmation = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
   const { id, entity } = modalConfiguration;
   const { userActionLoading } = useSelector(state => state[entity]);
+
+  useEffect(() => {
+    dispatch(userActionLoadingReseted());
+  }, []);
 
   const onConfirm = () => {
     dispatch(deleteFunctions[entity](id)).then(() => (userActionLoading !== REJECTED ? dispatch(modalClosed()) : null));

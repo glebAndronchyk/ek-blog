@@ -44,6 +44,9 @@ const postsListSlice = createSlice({
     stateReseted: () => {
       return initialState;
     },
+    userActionLoadingReseted: state => {
+      state.userActionLoading = IDLE;
+    },
   },
   extraReducers: builder => {
     builder
@@ -106,4 +109,4 @@ const postsListSlice = createSlice({
 const { reducer, actions } = postsListSlice;
 export default reducer;
 
-export const { stateReseted } = actions;
+export const { stateReseted, userActionLoadingReseted } = actions;

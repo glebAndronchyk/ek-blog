@@ -1,12 +1,13 @@
 import { useForm, useWatch } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
 import InputError from 'features/ui/inputError/InputError';
 import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
-import { tryToEditNews, tryToPostNews } from 'redux/slices/postsListSlice';
+import { tryToEditNews, tryToPostNews, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
@@ -31,6 +32,10 @@ const CreateNewsForm = () => {
     name: 'body',
   });
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActionLoadingReseted());
+  }, []);
 
   const onSubmit = data => {
     return dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
