@@ -13,7 +13,7 @@ import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const CreateNewsForm = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
-  const { entity, id, title, body, createdAt } = modalConfiguration;
+  const { entity, name, id, title, body, createdAt } = modalConfiguration;
   const { userActionLoading } = useSelector(state => state[entity]);
   const {
     register,
@@ -37,7 +37,7 @@ const CreateNewsForm = () => {
   });
   const dispatch = useDispatch();
   const disabledCondition = inputTitle === title && textareaBody === body;
-  const label = `${title || body ? 'Edit' : 'Create'} ${entity.slice(0, -1)}`;
+  const label = `${title || body ? 'Edit' : 'Create'} ${name}`;
 
   useEffect(() => {
     dispatch(userActionLoadingReseted());
@@ -70,7 +70,7 @@ const CreateNewsForm = () => {
         {...register('title', {
           maxLength: {
             value: 30,
-            message: 'Max title length is 30',
+            message: `Max title length is 30`,
           },
           required: 'Title is required',
         })}
@@ -88,7 +88,7 @@ const CreateNewsForm = () => {
         {...register('body', {
           minLength: {
             value: 100,
-            message: 'Post must be at least 100 symbols',
+            message: `${name} must be at least 100 symbols`,
           },
           required: 'Body is required',
         })}

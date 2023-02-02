@@ -2,22 +2,13 @@ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 import { modalOpened } from 'redux/slices/modalSlice';
-import useGetPost from 'hooks/useGetPost';
-import { useEffect } from 'react';
 
 const EditItem = props => {
   const dispatch = useDispatch();
   const { configuration } = props;
-  const { id } = configuration;
-  const { page, getData } = useGetPost(id);
-  const { title, body, createdAt } = page;
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   const handleClick = () => {
-    dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { ...configuration, title, body, createdAt } }));
+    dispatch(modalOpened({ name: 'CreateNewsForm', configuration }));
   };
 
   return (
@@ -35,6 +26,10 @@ EditItem.propTypes = {
   configuration: PropTypes.exact({
     id: PropTypes.number.isRequired,
     entity: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
 };
 

@@ -26,6 +26,10 @@ DeleteItem.propTypes = {
   configuration: PropTypes.exact({
     id: PropTypes.number.isRequired,
     entity: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
   }).isRequired,
 };
 
