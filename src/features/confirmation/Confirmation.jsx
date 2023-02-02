@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { useEffect } from 'react';
 
-import View from 'features/ui/confirmation/View';
+import View from 'features/confirmation/View';
 import Spinner from 'features/ui/spinner/Spinner';
 import { tryToDeletePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';

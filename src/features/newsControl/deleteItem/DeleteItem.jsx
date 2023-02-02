@@ -14,7 +14,7 @@ const DeleteItem = props => {
   return (
     <button
       type="button"
-      className="rounded-full w-[30px] h-[30px] bg-app-red"
+      className="duration-300 rounded-full w-[30px] h-[30px] bg-app-red hover:bg-[#DE8193]"
       onClick={clickHandler}
     >
       X

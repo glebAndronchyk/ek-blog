@@ -14,7 +14,7 @@ const EditItem = props => {
   return (
     <button
       type="button"
-      className="rounded-full w-[30px] h-[30px] bg-app-red bg-emerald-600"
+      className="duration-300 rounded-full w-[30px] h-[30px] bg-app-red bg-emerald-600 hover:bg-emerald-400"
       onClick={handleClick}
     >
       Edit
