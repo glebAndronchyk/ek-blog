@@ -26,13 +26,13 @@ const AnnouncementsItem = props => {
   };
 
   return (
-    <li className="flex flex-row px-6 items-center justify-between list-none lg:p-4 md:rounded-3xl bg-white mb-4">
+    <li className="relative flex flex-row px-6 items-center justify-between list-none lg:p-4 md:rounded-3xl bg-white mb-4">
       <div className="flex flex-col pl-1.5 py-4 max-w-[610px] 2xl:max-w-full">
         <span className="font-[400] text-gray-500 uppercase text-xs mb-7 2xl:text-base">
           {getDateInCorrectFormat(createdAt)}
         </span>
         <h3 className="font-[600] text-black text-2xl mb-2.5 2xl:text-3xl">{title}</h3>
-        <p className="text-lg text-gray-600 2xl:text-lg">{calcBodyVisiblePart(body)}</p>
+        <p className="text-lg text-gray-600 2xl:text-lg max-w-[1241px] break-words">{calcBodyVisiblePart(body)}</p>
       </div>
       <img
         className="hidden lg:block lg:pl-1"
@@ -40,7 +40,9 @@ const AnnouncementsItem = props => {
         alt="item"
       />
       {isAuth && creatorID === currentUserID ? (
-        <NewsController configuration={{ id: announcementID, entity: 'posts', name: 'Post', createdAt, title, body }} />
+        <NewsController
+          configuration={{ id: announcementID, entity: 'announcements', name: 'Announcement', createdAt, title, body }}
+        />
       ) : null}
     </li>
   );

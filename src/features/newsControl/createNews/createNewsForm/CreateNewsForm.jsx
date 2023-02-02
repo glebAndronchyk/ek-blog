@@ -7,9 +7,21 @@ import InputError from 'features/ui/inputs/inputError/InputError';
 import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
-import { tryToEditNews, tryToPostNews, userActionLoadingReseted } from 'redux/slices/postsListSlice';
+import { tryToEditPost, tryToCreatePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
+import { tryToEditAnnouncement, tryToCreateAnnouncement } from 'redux/slices/announcementsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
+
+const userActions = {
+  posts: {
+    editItem: tryToEditPost,
+    createItem: tryToCreatePost,
+  },
+  announcements: {
+    editItem: tryToEditAnnouncement,
+    createItem: tryToCreateAnnouncement,
+  },
+};
 
 const CreateNewsForm = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
@@ -45,12 +57,14 @@ const CreateNewsForm = () => {
 
   const onSubmit = data => {
     if (title || body) {
-      return dispatch(tryToEditNews([transformDataForPATCH(data, createdAt), id])).then(resp => {
-        return !resp.error ? dispatch(modalClosed()) : null;
-      });
+      return dispatch(userActions[entity].editItem([transformDataForPATCH(data, createdAt, 'posts'), id])).then(
+        resp => {
+          return !resp.error ? dispatch(modalClosed()) : null;
+        },
+      );
     }
 
-    return dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
+    return dispatch(userActions[entity].createItem(transformDataForPOST(data))).then(resp => {
       return !resp.error ? dispatch(modalClosed()) : null;
     });
   };

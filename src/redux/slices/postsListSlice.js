@@ -22,12 +22,12 @@ export const getAdditionalData = createAsyncThunk(
   pageNumber => getNews('posts', pageNumber),
 );
 
-export const tryToPostNews = createAsyncThunk(
+export const tryToCreatePost = createAsyncThunk(
   'posts/tryToPostNews', //
   data => createNews('posts', data),
 );
 
-export const tryToEditNews = createAsyncThunk(
+export const tryToEditPost = createAsyncThunk(
   'posts/tryToEditNews', //
   ([data, id]) => editNews('posts', data, id),
 );
@@ -70,14 +70,14 @@ const postsListSlice = createSlice({
       .addCase(getAdditionalData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
-      .addCase(tryToPostNews.pending, state => {
+      .addCase(tryToCreatePost.pending, state => {
         state.userActionLoading = LOADING;
       })
-      .addCase(tryToPostNews.fulfilled, (state, action) => {
+      .addCase(tryToCreatePost.fulfilled, (state, action) => {
         state.userActionLoading = IDLE;
         state.data = [{ ...action.payload }, ...state.data];
       })
-      .addCase(tryToPostNews.rejected, state => {
+      .addCase(tryToCreatePost.rejected, state => {
         state.userActionLoading = REJECTED;
       })
       .addCase(tryToDeletePost.pending, state => {
@@ -90,17 +90,17 @@ const postsListSlice = createSlice({
       .addCase(tryToDeletePost.rejected, state => {
         state.userActionLoading = REJECTED;
       })
-      .addCase(tryToEditNews.pending, state => {
+      .addCase(tryToEditPost.pending, state => {
         state.userActionLoading = LOADING;
       })
-      .addCase(tryToEditNews.fulfilled, (state, action) => {
+      .addCase(tryToEditPost.fulfilled, (state, action) => {
         const { data } = state;
         const { payload } = action;
         const changedElementIndex = data.findIndex(element => element.id === payload.id);
         data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
         state.userActionLoading = IDLE;
       })
-      .addCase(tryToEditNews.rejected, state => {
+      .addCase(tryToEditPost.rejected, state => {
         state.userActionLoading = REJECTED;
       });
   },

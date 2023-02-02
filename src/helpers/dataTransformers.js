@@ -24,13 +24,19 @@ export const transformDataForPOST = data => {
   };
 };
 
-export const transformDataForPATCH = (data, createdAt) => {
+export const transformDataForPATCH = (data, createdAt, entity) => {
   const { title, body } = data;
+  const onPostsData =
+    entity === 'posts'
+      ? {
+          userId: JSON.parse(getItemFromStorage('userData')).id,
+          createdAt,
+        }
+      : {};
   return {
     title,
     body,
-    userId: JSON.parse(getItemFromStorage('userData')).id,
-    createdAt,
     updatedAt: new Date().toISOString(),
+    ...onPostsData,
   };
 };

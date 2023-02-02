@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { getPost } from 'services/newsService';
+import { getItem } from 'services/newsService';
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
 
 const useGetPost = id => {
@@ -11,7 +11,7 @@ const useGetPost = id => {
   const getData = async () => {
     try {
       setLoading(LOADING);
-      const response = await getPost(id);
+      const response = await getItem('posts', id);
       const { title, body, createdAt, updatedAt, user } = response;
       const { firstname, lastname } = user;
       setPage({
