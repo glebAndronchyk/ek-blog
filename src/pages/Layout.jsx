@@ -5,14 +5,12 @@ import Header from 'features/ui/header/Header';
 import Footer from 'features/ui/footer/Footer';
 import Modal from 'features/ui/modal/Modal';
 import LoginForm from 'features/login/loginForm/LoginForm';
-import CreateNewsForm from 'features/posts/createNewsForm/CreateNewsForm';
-import Confirmation from 'features/ui/confirmation/Confirmation';
-import EditNewsForm from 'features/ui/editNewsForm/EditNewsForm';
+import CreateNewsForm from 'features/newsControl/createNews/createNewsForm/CreateNewsForm';
+import Confirmation from 'features/confirmation/Confirmation';
 
 const modalContent = {
   LoginForm: <LoginForm />,
   CreateNewsForm: <CreateNewsForm />,
-  EditNewsForm: <EditNewsForm />,
   Confirmation: <Confirmation />,
 };
 

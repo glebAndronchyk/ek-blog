@@ -46,7 +46,7 @@ const PostsItem = props => {
         />
       </Link>
       {isAuth && creatorID === currentUserID ? (
-        <NewsController configuration={{ id: postID, entity: 'posts' }} />
+        <NewsController configuration={{ id: postID, entity: 'posts', name: 'Post', createdAt, title, body }} />
       ) : null}
     </li>
   );

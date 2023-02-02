@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
 import { registrationInputs } from 'helpers/inputsData';
-import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
+import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
-import AvatarSelectionInputs from 'features/ui/avatarSelectionInputs/AvatarSelectionInputs';
-import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
-import TextInputs from 'features/registration/textInputs/TextInputs';
+import AvatarSelectionInputs from 'features/ui/inputs/avatarSelectionInputs/AvatarSelectionInputs';
+import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
+import TextInputs from 'features/ui/inputs/textInputs/TextInputs';
 
 const View = props => {
   const { register, errors, watch, axiosError, loading } = props;

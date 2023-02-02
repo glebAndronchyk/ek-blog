@@ -1,4 +1,4 @@
-import FormInput from 'features/ui/formInput/FormInput';
+import FormInput from 'features/ui/inputs/formInput/FormInput';
 
 const TextInputs = props => {
   const { register, errors, watch, castObject } = props;

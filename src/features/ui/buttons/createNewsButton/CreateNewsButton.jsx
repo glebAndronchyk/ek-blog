@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Button from 'features/ui/button/Button';
+import Button from 'features/ui/buttons/button/Button';
 import { modalOpened } from 'redux/slices/modalSlice';
 
 const CreateNewsButton = props => {

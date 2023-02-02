@@ -7,9 +7,9 @@ import { modalClosed } from 'redux/slices/modalSlice';
 import { loginInputs } from 'helpers/inputsData';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import Form from 'features/ui/form/Form';
-import FormSubmitButton from 'features/ui/formSubmitButton/FormSubmitButton';
+import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
-import TextInputs from 'features/registration/textInputs/TextInputs';
+import TextInputs from 'features/ui/inputs/textInputs/TextInputs';
 
 const LoginForm = () => {
   const {

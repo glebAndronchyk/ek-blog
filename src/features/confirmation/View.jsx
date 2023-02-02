@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import Button from 'features/ui/button/Button';
-import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
+import Button from 'features/ui/buttons/button/Button';
+import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import { REJECTED } from 'helpers/loadingStatus';
 
 const View = props => {

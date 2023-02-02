@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import LoadMoreButton from 'features/loadMore/loadMoreButton/LoadMoreButton';
 import { stateReseted, getAdditionalData } from 'redux/slices/announcementsListSlice';
-import ComponentInitialStatus from 'features/componentInitialStatus/ComponentInitialStatus';
+import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import AnnouncementsItem from '../announcementsItem/AnnouncementsItem';
 
 const AnnouncementsList = () => {

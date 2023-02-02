@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import { ErrorMessage } from '@hookform/error-message';
-import InputErrorMessage from 'features/ui/inputError/inputErrorMessage/InputErrorMessage';
+import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 
 const InputError = props => {
   const { errors, name } = props;
