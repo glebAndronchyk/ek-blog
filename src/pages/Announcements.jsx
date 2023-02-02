@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 
 import Banner from 'features/ui/banner/Banner';
 import AnnouncementsList from 'features/announcements/announcementsList/AnnouncementsList';
+import CreateNewsButton from 'features/ui/buttons/createNewsButton/CreateNewsButton';
 import { getInitialData } from 'redux/slices/announcementsListSlice';
 import AnnouncementsBg from 'assets/images/announcements-banner-bg.webp';
-import CreateNewsButton from "features/ui/buttons/createNewsButton/CreateNewsButton";
 
 const Announcements = () => {
   const dispatch = useDispatch();
