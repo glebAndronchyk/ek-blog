@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 import { modalOpened } from 'redux/slices/modalSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DeleteItem = props => {
   const { configuration } = props;
@@ -17,7 +18,10 @@ const DeleteItem = props => {
       className="duration-300 rounded-full w-[30px] h-[30px] bg-app-red hover:bg-[#DE8193]"
       onClick={clickHandler}
     >
-      X
+      <FontAwesomeIcon
+        icon="fa-solid fa-trash-can"
+        className="text-lg text-black"
+      />
     </button>
   );
 };

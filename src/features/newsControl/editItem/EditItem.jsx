@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 import { modalOpened } from 'redux/slices/modalSlice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const EditItem = props => {
   const dispatch = useDispatch();
@@ -14,10 +15,13 @@ const EditItem = props => {
   return (
     <button
       type="button"
-      className="duration-300 rounded-full w-[30px] h-[30px] bg-app-red bg-emerald-600 hover:bg-emerald-400"
+      className="duration-300 rounded-full w-[30px] h-[30px] bg-emerald-600 hover:bg-emerald-400"
       onClick={handleClick}
     >
-      Edit
+      <FontAwesomeIcon
+        icon="fa-solid fa-pen"
+        className="text-lg text-black"
+      />
     </button>
   );
 };

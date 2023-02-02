@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'features/ui/buttons/button/Button';
+import View from 'features/ui/buttons/createNewsButton/View';
 import { modalOpened } from 'redux/slices/modalSlice';
 
 const CreateNewsButton = props => {
@@ -9,7 +10,7 @@ const CreateNewsButton = props => {
   const { isAuth } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const buttonContent = isAuth ? `Create new ${label}` : `Login or register in order to create new ${label}`;
+  const buttonContent = isAuth ? `Create new ${label}` : <View label={label} />;
 
   const changeModalStatus = () => {
     return dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { entity: label, name } }));
