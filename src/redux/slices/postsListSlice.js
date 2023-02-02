@@ -87,6 +87,12 @@ const postsListSlice = createSlice({
       })
       .addCase(tryToDeletePost.rejected, state => {
         state.deletingLoading = REJECTED;
+      })
+      .addCase(tryToEditNews.fulfilled, (state, action) => {
+        const { data } = state;
+        const { payload } = action;
+        const changedElementIndex = data.findIndex(element => element.id === payload.id);
+        data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
       });
   },
 });
