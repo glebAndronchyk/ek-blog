@@ -5,10 +5,12 @@ import { useEffect } from 'react';
 import View from 'features/confirmation/View';
 import Spinner from 'features/ui/spinner/Spinner';
 import { tryToDeletePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
+import { tryToDeleteAnnouncement } from 'redux/slices/announcementsListSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const deleteFunctions = {
   posts: tryToDeletePost,
+  announcements: tryToDeleteAnnouncement,
 };
 
 const Confirmation = () => {
