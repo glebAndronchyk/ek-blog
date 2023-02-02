@@ -5,14 +5,14 @@ import Button from 'features/ui/buttons/button/Button';
 import { modalOpened } from 'redux/slices/modalSlice';
 
 const CreateNewsButton = props => {
-  const { label } = props;
+  const { label, name } = props;
   const { isAuth } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const buttonContent = isAuth ? `Create new ${label}` : `Login or register in order to create new ${label}`;
 
   const changeModalStatus = () => {
-    return dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { entity: label } }));
+    return dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { entity: label, name } }));
   };
 
   return (
@@ -31,6 +31,7 @@ const CreateNewsButton = props => {
 
 CreateNewsButton.propTypes = {
   label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default CreateNewsButton;

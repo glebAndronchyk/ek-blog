@@ -24,7 +24,10 @@ const Posts = () => {
       >
         <span>Read them, or add them</span>
       </Banner>
-      <CreateNewsButton label="posts" />
+      <CreateNewsButton
+        label="posts"
+        name="post"
+      />
       <PostsList initialLoading={initialLoading} />
     </div>
   );
