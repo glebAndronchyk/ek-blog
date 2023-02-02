@@ -5,6 +5,7 @@ import Banner from 'features/ui/banner/Banner';
 import AnnouncementsList from 'features/announcements/announcementsList/AnnouncementsList';
 import { getInitialData } from 'redux/slices/announcementsListSlice';
 import AnnouncementsBg from 'assets/images/announcements-banner-bg.webp';
+import CreateNewsButton from "features/ui/buttons/createNewsButton/CreateNewsButton";
 
 const Announcements = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const Announcements = () => {
       >
         <span>Important news</span>
       </Banner>
+      <CreateNewsButton
+        label="announcements"
+        name="announcement"
+      />
       <AnnouncementsList initialLoading={initialLoading} />
     </>
   );

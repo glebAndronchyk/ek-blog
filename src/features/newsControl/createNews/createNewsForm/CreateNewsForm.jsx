@@ -65,7 +65,7 @@ const CreateNewsForm = () => {
       <input
         type="text"
         className="form-input"
-        placeholder="Enter your future post title"
+        placeholder={`Enter your future ${name} title`}
         disabled={userActionLoading === LOADING}
         {...register('title', {
           maxLength: {
