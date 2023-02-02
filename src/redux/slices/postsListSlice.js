@@ -7,8 +7,7 @@ const initialState = {
   data: [],
   initialLoading: LOADING,
   additionalLoading: IDLE,
-  postingLoading: IDLE,
-  deletingLoading: IDLE,
+  userActionLoading: IDLE,
   showLoadMoreButton: false,
   page: 2,
 };
@@ -69,30 +68,37 @@ const postsListSlice = createSlice({
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToPostNews.pending, state => {
-        state.postingLoading = LOADING;
+        state.userActionLoading = LOADING;
       })
       .addCase(tryToPostNews.fulfilled, (state, action) => {
-        state.postingLoading = IDLE;
+        state.userActionLoading = IDLE;
         state.data = [{ ...action.payload }, ...state.data];
       })
       .addCase(tryToPostNews.rejected, state => {
-        state.postingLoading = REJECTED;
+        state.userActionLoading = REJECTED;
       })
       .addCase(tryToDeletePost.pending, state => {
-        state.deletingLoading = LOADING;
+        state.userActionLoading = LOADING;
       })
       .addCase(tryToDeletePost.fulfilled, (state, action) => {
-        state.deletingLoading = IDLE;
+        state.userActionLoading = IDLE;
         state.data = state.data.filter(item => item.id !== action.meta.arg);
       })
       .addCase(tryToDeletePost.rejected, state => {
-        state.deletingLoading = REJECTED;
+        state.userActionLoading = REJECTED;
+      })
+      .addCase(tryToEditNews.pending, state => {
+        state.userActionLoading = LOADING;
       })
       .addCase(tryToEditNews.fulfilled, (state, action) => {
         const { data } = state;
         const { payload } = action;
         const changedElementIndex = data.findIndex(element => element.id === payload.id);
         data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
+        state.userActionLoading = IDLE;
+      })
+      .addCase(tryToEditNews.rejected, state => {
+        state.userActionLoading = REJECTED;
       });
   },
 });

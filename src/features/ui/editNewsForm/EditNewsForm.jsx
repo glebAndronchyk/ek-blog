@@ -13,7 +13,7 @@ import { LOADING, REJECTED } from 'helpers/loadingStatus';
 const EditNewsForm = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
   const { entity, id, title, body, createdAt } = modalConfiguration;
-  const { postingLoading } = useSelector(state => state[entity]);
+  const { userActionLoading } = useSelector(state => state[entity]);
   const {
     register,
     handleSubmit,
@@ -54,7 +54,7 @@ const EditNewsForm = () => {
         type="text"
         className="form-input"
         placeholder="Enter your future post title"
-        disabled={postingLoading === LOADING}
+        disabled={userActionLoading === LOADING}
         {...register('editTitle', {
           maxLength: {
             value: 30,
@@ -72,7 +72,7 @@ const EditNewsForm = () => {
         className="text-area"
         placeholder="Write your information here(10 000 symbols available)"
         maxLength={10000}
-        disabled={postingLoading === LOADING}
+        disabled={userActionLoading === LOADING}
         {...register('editBody', {
           minLength: {
             value: 100,
@@ -89,9 +89,9 @@ const EditNewsForm = () => {
       <FormSubmitButton
         disabled={disabledCondition}
         label="Edit Post"
-        loadingStatus={postingLoading}
+        loadingStatus={userActionLoading}
       />
-      {postingLoading === REJECTED && <InputErrorMessage>Something went wrong try again later</InputErrorMessage>}
+      {userActionLoading === REJECTED && <InputErrorMessage>Something went wrong try again later</InputErrorMessage>}
     </Form>
   );
 };
