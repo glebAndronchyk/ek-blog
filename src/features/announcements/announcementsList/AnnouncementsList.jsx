@@ -28,6 +28,7 @@ const AnnouncementsList = () => {
           createdAt: item.createdAt,
           title: item.title,
           body: item.body,
+          announcementID: item.id,
         }}
       />
     );

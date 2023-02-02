@@ -1,16 +1,28 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
+import { getItemFromStorage } from 'helpers/localStorage';
+import { getItem } from 'services/newsService';
+import NewsController from 'features/ui/newsController/NewsController';
 
 import AnnouncementsItemPlug from 'assets/images/AnnouncementsItemPlug.png';
 
 const AnnouncementsItem = props => {
   const { feedData } = props;
-  const { createdAt, title, body } = feedData;
+  const { createdAt, title, body, announcementID } = feedData;
+  const [creatorID, setCreatorID] = useState(null);
+  const { isAuth } = useSelector(state => state.user);
+  const currentUserID = isAuth && JSON.parse(getItemFromStorage('userData')).id;
+
+  useEffect(() => {
+    getItem('announcements', announcementID).then(data => setCreatorID(data.userId));
+  }, []);
 
   // eslint-disable-next-line no-shadow
   const calcBodyVisiblePart = body => {
-    return body.length > 1000 ? `${body.slice(0, 400)}...` : body;
+    return body.length > 1000 ? `${body.slice(0, 1000)}...` : body;
   };
 
   return (
@@ -27,6 +39,9 @@ const AnnouncementsItem = props => {
         src={AnnouncementsItemPlug}
         alt="item"
       />
+      {isAuth && creatorID === currentUserID ? (
+        <NewsController configuration={{ id: announcementID, entity: 'posts', name: 'Post', createdAt, title, body }} />
+      ) : null}
     </li>
   );
 };
@@ -36,6 +51,7 @@ AnnouncementsItem.propTypes = {
     createdAt: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
+    announcementID: PropTypes.number,
   }).isRequired,
 };
 

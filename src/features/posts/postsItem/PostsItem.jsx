@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 import NewsController from 'features/ui/newsController/NewsController';
 import { getItemFromStorage } from 'helpers/localStorage';
-import { getPost } from 'services/newsService';
+import { getItem } from 'services/newsService';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
 
@@ -18,7 +18,7 @@ const PostsItem = props => {
   const currentUserID = isAuth && JSON.parse(getItemFromStorage('userData')).id;
 
   useEffect(() => {
-    getPost(postID).then(data => setCreatorID(data.userId));
+    getItem('posts', postID).then(data => setCreatorID(data.userId));
   }, []);
 
   // eslint-disable-next-line no-shadow
