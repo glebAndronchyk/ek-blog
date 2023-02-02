@@ -13,7 +13,7 @@ import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const CreateNewsForm = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
-  const { entity } = modalConfiguration;
+  const { entity, id, title, body, createdAt } = modalConfiguration;
   const { userActionLoading } = useSelector(state => state[entity]);
   const {
     register,
@@ -23,21 +23,33 @@ const CreateNewsForm = () => {
   } = useForm({
     reValidateMode: 'onChange',
     defaultValues: {
-      title: '',
-      body: '',
+      title: title || '',
+      body: body || '',
     },
   });
   const textareaBody = useWatch({
     control,
     name: 'body',
   });
+  const inputTitle = useWatch({
+    control,
+    name: 'title',
+  });
   const dispatch = useDispatch();
+  const disabledCondition = inputTitle === title && textareaBody === body;
+  const label = `${title || body ? 'Edit' : 'Create'} ${entity.slice(0, -1)}`;
 
   useEffect(() => {
     dispatch(userActionLoadingReseted());
   }, []);
 
   const onSubmit = data => {
+    if (title || body) {
+      return dispatch(tryToEditNews([transformDataForPATCH(data, createdAt), id])).then(resp => {
+        return !resp.error ? dispatch(modalClosed()) : null;
+      });
+    }
+
     return dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
       return !resp.error ? dispatch(modalClosed()) : null;
     });
@@ -48,7 +60,7 @@ const CreateNewsForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="max-w-[800px] w-full py-2"
     >
-      <h3 className="text-2xl font-code text-black mb-2">Create Post</h3>
+      <h3 className="text-2xl font-code text-black mb-2">{label}</h3>
       <span className="text-black font-inter font-[600] underline text-lg mb-2">Title</span>
       <input
         type="text"
@@ -87,7 +99,8 @@ const CreateNewsForm = () => {
       />
       <span className="my-2">{textareaBody.length} / 10000</span>
       <FormSubmitButton
-        label="Create Post"
+        disabled={disabledCondition}
+        label={label}
         loadingStatus={userActionLoading}
       />
       {userActionLoading === REJECTED && <InputErrorMessage>Something went wrong try again later</InputErrorMessage>}

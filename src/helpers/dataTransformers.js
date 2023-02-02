@@ -25,10 +25,10 @@ export const transformDataForPOST = data => {
 };
 
 export const transformDataForPATCH = (data, createdAt) => {
-  const { editTitle, editBody } = data;
+  const { title, body } = data;
   return {
-    title: editTitle,
-    body: editBody,
+    title,
+    body,
     userId: JSON.parse(getItemFromStorage('userData')).id,
     createdAt,
     updatedAt: new Date().toISOString(),
