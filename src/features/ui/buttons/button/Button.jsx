@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const Button = props => {
   const { type, className, onClick, children, disabled } = props;
+  console.log(children);
 
   const btnClassName = useMemo(() => {
     return classNames('btn', className, {
@@ -28,7 +29,7 @@ Button.propTypes = {
   type: PropTypes.string,
   className: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.any, PropTypes.string]).isRequired,
   disabled: PropTypes.bool,
 };
 
