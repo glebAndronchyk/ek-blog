@@ -1,24 +1,14 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
-import { getItemFromStorage } from 'helpers/localStorage';
-import { getItem } from 'services/newsService';
 import NewsController from 'features/ui/newsController/NewsController';
+import useNewsItemData from 'hooks/useNewsItemData';
 
 import AnnouncementsItemPlug from 'assets/images/AnnouncementsItemPlug.png';
 
 const AnnouncementsItem = props => {
-  const { feedData } = props;
-  const { createdAt, title, body, announcementID } = feedData;
-  const [creatorID, setCreatorID] = useState(null);
-  const { isAuth } = useSelector(state => state.user);
-  const currentUserID = isAuth && JSON.parse(getItemFromStorage('userData')).id;
-
-  useEffect(() => {
-    getItem('announcements', announcementID).then(data => setCreatorID(data.userId));
-  }, []);
+  const { feedData, id } = props;
+  const { createdAt, title, body, creatorID, currentUserID, isAuth } = useNewsItemData(feedData, 'announcements', id);
 
   return (
     <li className="relative flex flex-row px-6 items-center justify-between list-none lg:p-4 md:rounded-3xl bg-white mb-4">
@@ -35,9 +25,7 @@ const AnnouncementsItem = props => {
         alt="item"
       />
       {isAuth && creatorID === currentUserID ? (
-        <NewsController
-          configuration={{ id: announcementID, entity: 'announcements', name: 'Announcement', createdAt, title, body }}
-        />
+        <NewsController configuration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }} />
       ) : null}
     </li>
   );
@@ -48,8 +36,8 @@ AnnouncementsItem.propTypes = {
     createdAt: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
-    announcementID: PropTypes.number,
   }).isRequired,
+  id: PropTypes.number,
 };
 
 export default AnnouncementsItem;

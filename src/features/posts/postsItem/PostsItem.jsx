@@ -1,27 +1,16 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 import NewsController from 'features/ui/newsController/NewsController';
-import { getItemFromStorage } from 'helpers/localStorage';
-import { getItem } from 'services/newsService';
+import useNewsItemData from 'hooks/useNewsItemData';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
 
 const PostsItem = props => {
-  const { feedData, to, postID } = props;
-  const { createdAt, title, body } = feedData;
-  const [creatorID, setCreatorID] = useState(null);
-  const { isAuth } = useSelector(state => state.user);
-  const currentUserID = isAuth && JSON.parse(getItemFromStorage('userData')).id;
+  const { feedData, to, id } = props;
+  const { createdAt, title, body, creatorID, currentUserID, isAuth } = useNewsItemData(feedData, 'posts', id);
 
-  useEffect(() => {
-    getItem('posts', postID).then(data => setCreatorID(data.userId));
-  }, []);
-
-  // eslint-disable-next-line no-shadow
   const processLongBody = text => {
     return body.length > 400 ? `${text.slice(0, 400)}...` : text;
   };
@@ -46,7 +35,7 @@ const PostsItem = props => {
         />
       </Link>
       {isAuth && creatorID === currentUserID ? (
-        <NewsController configuration={{ id: postID, entity: 'posts', name: 'Post', createdAt, title, body }} />
+        <NewsController configuration={{ entity: 'posts', name: 'Post', id, createdAt, title, body }} />
       ) : null}
     </li>
   );
@@ -59,7 +48,7 @@ PostsItem.propTypes = {
     body: PropTypes.string,
   }).isRequired,
   to: PropTypes.string.isRequired,
-  postID: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default PostsItem;

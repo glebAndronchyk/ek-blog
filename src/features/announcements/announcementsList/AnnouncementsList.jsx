@@ -23,12 +23,11 @@ const AnnouncementsList = () => {
     return (
       <AnnouncementsItem
         key={item.id}
-        to={`/announcements/${item.id}`}
+        id={item.id}
         feedData={{
           createdAt: item.createdAt,
           title: item.title,
           body: item.body,
-          announcementID: item.id,
         }}
       />
     );
