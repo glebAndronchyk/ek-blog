@@ -10,10 +10,17 @@ const useNewsItemData = (feedData, entity, id) => {
   const { isAuth } = useSelector(state => state.user);
   const currentUserID = isAuth && getUserDataFromStorage().id;
 
+  const getCreatorID = async () => {
+    try {
+      const response = await getItem(entity, id);
+      setCreatorID(response.userId);
+    } catch {
+      console.error();
+    }
+  };
+
   useEffect(() => {
-    getItem(entity, id).then(data => {
-      setCreatorID(data.userId);
-    });
+    getCreatorID();
   }, []);
 
   return {
