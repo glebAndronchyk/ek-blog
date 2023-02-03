@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import { getItemFromStorage } from 'helpers/localStorage';
+import { getTokenFromStorage } from 'helpers/localStorage';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE,
 });
 
 axiosInstance.interceptors.request.use(config => {
-  const token = getItemFromStorage('token');
+  const token = getTokenFromStorage();
 
   const interceptorConfig = { ...config };
 

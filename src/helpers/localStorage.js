@@ -1,5 +1,9 @@
-export const getItemFromStorage = name => {
-  return localStorage.getItem(name);
+export const getTokenFromStorage = () => {
+  return localStorage.getItem('token');
+};
+
+export const getUserDataFromStorage = () => {
+  return JSON.parse(localStorage.getItem('userData'));
 };
 
 export const setItemToStorage = (name, value) => {

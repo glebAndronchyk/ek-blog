@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { clearStorage, getItemFromStorage, setItemsToStorage } from 'helpers/localStorage';
+import { clearStorage, getTokenFromStorage, setItemsToStorage } from 'helpers/localStorage';
 import { login, register } from 'services/authService';
 import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const initialState = {
-  isAuth: !!getItemFromStorage('token'),
+  isAuth: !!getTokenFromStorage(),
   error: false,
   loading: IDLE,
 };

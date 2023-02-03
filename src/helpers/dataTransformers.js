@@ -1,4 +1,4 @@
-import { getItemFromStorage } from 'helpers/localStorage';
+import { getUserDataFromStorage } from 'helpers/localStorage';
 
 export const transformRegistrationFormData = enteredData => {
   const { age, avatar, email, fullName, password } = enteredData;
@@ -18,7 +18,7 @@ export const transformDataForPOST = data => {
   return {
     title,
     body,
-    userId: JSON.parse(getItemFromStorage('userData')).id,
+    userId: getUserDataFromStorage().id,
     createdAt: new Date().toISOString(),
     updatedAt: null,
   };
@@ -29,7 +29,7 @@ export const transformDataForPATCH = (data, createdAt, entity) => {
   const onPostsData =
     entity === 'posts'
       ? {
-          userId: JSON.parse(getItemFromStorage('userData')).id,
+          userId: getUserDataFromStorage().id,
           createdAt,
         }
       : {};
