@@ -12,7 +12,7 @@ const PostsList = () => {
         key={item.id}
         to={`/posts/${item.id}`}
         id={item.id}
-        feedData={{
+        itemData={{
           createdAt: item.createdAt,
           title: item.title,
           body: item.body,
