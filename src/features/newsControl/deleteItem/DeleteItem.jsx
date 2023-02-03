@@ -8,15 +8,15 @@ const DeleteItem = props => {
   const { configuration } = props;
   const dispatch = useDispatch();
 
-  const clickHandler = () => {
-    return dispatch(modalOpened({ name: 'Confirmation', configuration }));
+  const handleClick = () => {
+    dispatch(modalOpened({ name: 'Confirmation', configuration }));
   };
 
   return (
     <button
       type="button"
       className="duration-300 rounded-full w-[30px] h-[30px] bg-app-red hover:bg-[#DE8193]"
-      onClick={clickHandler}
+      onClick={handleClick}
     >
       <FontAwesomeIcon
         icon="fa-solid fa-trash-can"

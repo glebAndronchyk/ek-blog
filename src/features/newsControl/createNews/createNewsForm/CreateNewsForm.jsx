@@ -7,9 +7,21 @@ import InputError from 'features/ui/inputs/inputError/InputError';
 import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
-import { tryToEditNews, tryToPostNews, userActionLoadingReseted } from 'redux/slices/postsListSlice';
+import { tryToEditPost, tryToCreatePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
+import { tryToEditAnnouncement, tryToCreateAnnouncement } from 'redux/slices/announcementsListSlice';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
+
+const userActions = {
+  posts: {
+    editItem: tryToEditPost,
+    createItem: tryToCreatePost,
+  },
+  announcements: {
+    editItem: tryToEditAnnouncement,
+    createItem: tryToCreateAnnouncement,
+  },
+};
 
 const CreateNewsForm = () => {
   const { modalConfiguration } = useSelector(state => state.modal);
@@ -37,6 +49,9 @@ const CreateNewsForm = () => {
   });
   const dispatch = useDispatch();
   const disabledCondition = inputTitle === title && textareaBody === body;
+  const announcementsCondition = entity === 'announcements';
+  const minTextAreaLength = announcementsCondition ? 30 : 100;
+  const maxTextAreaLength = announcementsCondition ? 400 : 10_000;
   const label = `${title || body ? 'Edit' : 'Create'} ${name}`;
 
   useEffect(() => {
@@ -45,12 +60,14 @@ const CreateNewsForm = () => {
 
   const onSubmit = data => {
     if (title || body) {
-      return dispatch(tryToEditNews([transformDataForPATCH(data, createdAt), id])).then(resp => {
-        return !resp.error ? dispatch(modalClosed()) : null;
-      });
+      return dispatch(userActions[entity].editItem([transformDataForPATCH(data, createdAt, 'posts'), id])).then(
+        resp => {
+          return !resp.error ? dispatch(modalClosed()) : null;
+        },
+      );
     }
 
-    return dispatch(tryToPostNews(transformDataForPOST(data))).then(resp => {
+    return dispatch(userActions[entity].createItem(transformDataForPOST(data))).then(resp => {
       return !resp.error ? dispatch(modalClosed()) : null;
     });
   };
@@ -65,7 +82,7 @@ const CreateNewsForm = () => {
       <input
         type="text"
         className="form-input"
-        placeholder="Enter your future post title"
+        placeholder={`Enter your future ${name} title`}
         disabled={userActionLoading === LOADING}
         {...register('title', {
           maxLength: {
@@ -83,12 +100,12 @@ const CreateNewsForm = () => {
       <textarea
         className="text-area"
         placeholder="Write your information here(10 000 symbols available)"
-        maxLength={10000}
+        maxLength={maxTextAreaLength}
         disabled={userActionLoading === LOADING}
         {...register('body', {
           minLength: {
-            value: 100,
-            message: `${name} must be at least 100 symbols`,
+            value: minTextAreaLength,
+            message: `${name} must be at least ${minTextAreaLength} symbols`,
           },
           required: 'Body is required',
         })}
@@ -97,7 +114,7 @@ const CreateNewsForm = () => {
         errors={errors}
         name="body"
       />
-      <span className="my-2">{textareaBody.length} / 10000</span>
+      <span className="my-2">{`${textareaBody.length} / ${maxTextAreaLength}`}</span>
       <FormSubmitButton
         disabled={disabledCondition}
         label={label}

@@ -1,30 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-
+import useNewsListData from 'hooks/useNewstListData';
 import LoadMoreButton from 'features/loadMore/loadMoreButton/LoadMoreButton';
-import { getAdditionalData, stateReseted } from 'redux/slices/postsListSlice';
 import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import PostsItem from '../postsItem/PostsItem';
 
 const PostsList = () => {
-  const { data, page, showLoadMoreButton } = useSelector(state => state.posts);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    return () => dispatch(stateReseted());
-  }, []);
-
-  const clickHandler = () => {
-    return dispatch(getAdditionalData(page));
-  };
+  const { data, showLoadMoreButton, clickHandler } = useNewsListData('posts');
 
   const newsItems = data.map(item => {
     return (
       <PostsItem
         key={item.id}
         to={`/posts/${item.id}`}
-        postID={item.id}
+        id={item.id}
         feedData={{
           createdAt: item.createdAt,
           title: item.title,

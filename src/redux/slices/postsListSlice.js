@@ -17,17 +17,17 @@ export const getInitialData = createAsyncThunk(
   () => getNews('posts'),
 );
 
-export const getAdditionalData = createAsyncThunk(
+export const getAdditionalPostsData = createAsyncThunk(
   'posts/getAdditionalData', //
   pageNumber => getNews('posts', pageNumber),
 );
 
-export const tryToPostNews = createAsyncThunk(
+export const tryToCreatePost = createAsyncThunk(
   'posts/tryToPostNews', //
   data => createNews('posts', data),
 );
 
-export const tryToEditNews = createAsyncThunk(
+export const tryToEditPost = createAsyncThunk(
   'posts/tryToEditNews', //
   ([data, id]) => editNews('posts', data, id),
 );
@@ -41,7 +41,7 @@ const postsListSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    stateReseted: () => {
+    postsStateReseted: () => {
       return initialState;
     },
     userActionLoadingReseted: state => {
@@ -58,26 +58,26 @@ const postsListSlice = createSlice({
       .addCase(getInitialData.rejected, state => {
         state.initialLoading = REJECTED;
       })
-      .addCase(getAdditionalData.pending, state => {
+      .addCase(getAdditionalPostsData.pending, state => {
         state.additionalLoading = LOADING;
       })
-      .addCase(getAdditionalData.fulfilled, (state, action) => {
+      .addCase(getAdditionalPostsData.fulfilled, (state, action) => {
         state.showLoadMoreButton = action.payload.length > 0;
         state.additionalLoading = IDLE;
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
-      .addCase(getAdditionalData.rejected, state => {
+      .addCase(getAdditionalPostsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
-      .addCase(tryToPostNews.pending, state => {
+      .addCase(tryToCreatePost.pending, state => {
         state.userActionLoading = LOADING;
       })
-      .addCase(tryToPostNews.fulfilled, (state, action) => {
+      .addCase(tryToCreatePost.fulfilled, (state, action) => {
         state.userActionLoading = IDLE;
         state.data = [{ ...action.payload }, ...state.data];
       })
-      .addCase(tryToPostNews.rejected, state => {
+      .addCase(tryToCreatePost.rejected, state => {
         state.userActionLoading = REJECTED;
       })
       .addCase(tryToDeletePost.pending, state => {
@@ -90,17 +90,17 @@ const postsListSlice = createSlice({
       .addCase(tryToDeletePost.rejected, state => {
         state.userActionLoading = REJECTED;
       })
-      .addCase(tryToEditNews.pending, state => {
+      .addCase(tryToEditPost.pending, state => {
         state.userActionLoading = LOADING;
       })
-      .addCase(tryToEditNews.fulfilled, (state, action) => {
+      .addCase(tryToEditPost.fulfilled, (state, action) => {
         const { data } = state;
         const { payload } = action;
         const changedElementIndex = data.findIndex(element => element.id === payload.id);
         data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
         state.userActionLoading = IDLE;
       })
-      .addCase(tryToEditNews.rejected, state => {
+      .addCase(tryToEditPost.rejected, state => {
         state.userActionLoading = REJECTED;
       });
   },
@@ -109,4 +109,4 @@ const postsListSlice = createSlice({
 const { reducer, actions } = postsListSlice;
 export default reducer;
 
-export const { stateReseted, userActionLoadingReseted } = actions;
+export const { postsStateReseted, userActionLoadingReseted } = actions;

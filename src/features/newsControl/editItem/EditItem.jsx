@@ -5,8 +5,8 @@ import { modalOpened } from 'redux/slices/modalSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const EditItem = props => {
-  const dispatch = useDispatch();
   const { configuration } = props;
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(modalOpened({ name: 'CreateNewsForm', configuration }));
