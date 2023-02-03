@@ -17,7 +17,7 @@ export const getInitialData = createAsyncThunk(
   () => getNews('posts'),
 );
 
-export const getAdditionalData = createAsyncThunk(
+export const getAdditionalPostsData = createAsyncThunk(
   'posts/getAdditionalData', //
   pageNumber => getNews('posts', pageNumber),
 );
@@ -41,7 +41,7 @@ const postsListSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    stateReseted: () => {
+    postsStateReseted: () => {
       return initialState;
     },
     userActionLoadingReseted: state => {
@@ -58,16 +58,16 @@ const postsListSlice = createSlice({
       .addCase(getInitialData.rejected, state => {
         state.initialLoading = REJECTED;
       })
-      .addCase(getAdditionalData.pending, state => {
+      .addCase(getAdditionalPostsData.pending, state => {
         state.additionalLoading = LOADING;
       })
-      .addCase(getAdditionalData.fulfilled, (state, action) => {
+      .addCase(getAdditionalPostsData.fulfilled, (state, action) => {
         state.showLoadMoreButton = action.payload.length > 0;
         state.additionalLoading = IDLE;
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
-      .addCase(getAdditionalData.rejected, state => {
+      .addCase(getAdditionalPostsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToCreatePost.pending, state => {
@@ -109,4 +109,4 @@ const postsListSlice = createSlice({
 const { reducer, actions } = postsListSlice;
 export default reducer;
 
-export const { stateReseted, userActionLoadingReseted } = actions;
+export const { postsStateReseted, userActionLoadingReseted } = actions;
