@@ -7,6 +7,7 @@ import { faTrashCan, faPen, faLock, faRightFromBracket } from '@fortawesome/free
 import store from 'redux/store';
 import Layout from 'pages/Layout';
 import Spinner from 'features/ui/spinner/Spinner';
+import ProtectedRoute from 'features/protectedRoute/ProtectedRoute';
 
 const Announcements = lazy(() => import('pages/Announcements'));
 const Posts = lazy(() => import('pages/Posts'));
@@ -31,12 +32,6 @@ const AppRoutes = () => {
               </Suspense>
             }
           />
-          {/* TODO: ROUTE GUARD */}
-          <Route
-            path="posts/create"
-            element={<div>Creator</div>}
-          />
-          {/* // */}
           <Route
             path="posts/:postId"
             element={
@@ -54,58 +49,48 @@ const AppRoutes = () => {
               </Suspense>
             }
           />
-          {/*TODO: ROUTE GUARD*/}
-          <Route
-            path="announcements/create"
-            element={<div>Creator</div>}
-          />
-          {/*//*/}
 
           {/*TODO: ROUTE GUARD*/}
           <Route
-            path="user"
             element={
-              <div>
-                Profile Layout
-                <Outlet />
-              </div>
-            }
-          >
-            <Route
-              path=":userId"
-              element={
-                <div>
-                  <Outlet />
-                </div>
-              }
-            >
-              <Route
-                path="settings"
-                element={<div>Settings</div>}
-              />
-
-              <Route
-                path="/user/:userId"
-                element={
-                  <Navigate
-                    to="settings"
-                    replace
+              <ProtectedRoute>
+                <Route
+                  path="user"
+                  element={
+                    <div>
+                      Profile Layout
+                      <Outlet />
+                    </div>
+                  }
+                >
+                  <Route
+                    path="settings"
+                    element={<div>Settings</div>}
                   />
-                }
-              />
-            </Route>
 
-            <Route
-              path="/user"
-              element={
-                <Navigate
-                  to="/posts"
-                  replace
-                />
-              }
-            />
-          </Route>
-          {/*//*/}
+                  <Route
+                    path="/user/:userId"
+                    element={
+                      <Navigate
+                        to="settings"
+                        replace
+                      />
+                    }
+                  />
+
+                  <Route
+                    path="/user"
+                    element={
+                      <Navigate
+                        to="/posts"
+                        replace
+                      />
+                    }
+                  />
+                </Route>
+              </ProtectedRoute>
+            }
+          />
 
           <Route
             path="/"
@@ -121,11 +106,14 @@ const AppRoutes = () => {
         <Route
           path="registration"
           element={
-            <Suspense fallback={<Spinner />}>
-              <Registration />
-            </Suspense>
+            <ProtectedRoute>
+              <Suspense fallback={<Spinner />}>
+                <Registration />
+              </Suspense>
+            </ProtectedRoute>
           }
         />
+
         <Route
           path="*"
           element={<div>Not found</div>}
