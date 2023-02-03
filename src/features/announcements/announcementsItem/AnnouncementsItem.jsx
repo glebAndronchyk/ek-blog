@@ -20,11 +20,6 @@ const AnnouncementsItem = props => {
     getItem('announcements', announcementID).then(data => setCreatorID(data.userId));
   }, []);
 
-  // eslint-disable-next-line no-shadow
-  const calcBodyVisiblePart = body => {
-    return body.length > 1000 ? `${body.slice(0, 1000)}...` : body;
-  };
-
   return (
     <li className="relative flex flex-row px-6 items-center justify-between list-none lg:p-4 md:rounded-3xl bg-white mb-4">
       <div className="flex flex-col pl-1.5 py-4 max-w-[610px] 2xl:max-w-full">
@@ -32,7 +27,7 @@ const AnnouncementsItem = props => {
           {getDateInCorrectFormat(createdAt)}
         </span>
         <h3 className="font-[600] text-black text-2xl mb-2.5 2xl:text-3xl">{title}</h3>
-        <p className="text-lg text-gray-600 2xl:text-lg max-w-[1241px] break-words">{calcBodyVisiblePart(body)}</p>
+        <p className="text-lg text-gray-600 2xl:text-lg max-w-[1241px] break-words">{body}</p>
       </div>
       <img
         className="hidden lg:block lg:pl-1"

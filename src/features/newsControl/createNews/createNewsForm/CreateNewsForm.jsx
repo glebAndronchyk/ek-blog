@@ -49,6 +49,9 @@ const CreateNewsForm = () => {
   });
   const dispatch = useDispatch();
   const disabledCondition = inputTitle === title && textareaBody === body;
+  const announcementsCondition = entity === 'announcements';
+  const minTextAreaLength = announcementsCondition ? 30 : 100;
+  const maxTextAreaLength = announcementsCondition ? 400 : 10_000;
   const label = `${title || body ? 'Edit' : 'Create'} ${name}`;
 
   useEffect(() => {
@@ -97,12 +100,12 @@ const CreateNewsForm = () => {
       <textarea
         className="text-area"
         placeholder="Write your information here(10 000 symbols available)"
-        maxLength={10000}
+        maxLength={maxTextAreaLength}
         disabled={userActionLoading === LOADING}
         {...register('body', {
           minLength: {
-            value: 100,
-            message: `${name} must be at least 100 symbols`,
+            value: minTextAreaLength,
+            message: `${name} must be at least ${minTextAreaLength} symbols`,
           },
           required: 'Body is required',
         })}
@@ -111,7 +114,7 @@ const CreateNewsForm = () => {
         errors={errors}
         name="body"
       />
-      <span className="my-2">{textareaBody.length} / 10000</span>
+      <span className="my-2">{`${textareaBody.length} / ${maxTextAreaLength}`}</span>
       <FormSubmitButton
         disabled={disabledCondition}
         label={label}
