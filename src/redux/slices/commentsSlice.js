@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, deleteNews, editNews } from 'services/newsService';
-import { getPostRelatedComments } from 'services/commentsService';
+import { deleteNews, editNews } from 'services/newsService';
+import { getPostRelatedComments, createComment } from 'services/commentsService';
 
 const initialState = {
   data: [],
@@ -27,7 +27,7 @@ export const getAdditionalCommentsData = createAsyncThunk(
 
 export const tryToCreateComment = createAsyncThunk(
   'comments/tryToCreateComment', //
-  data => createNews('comments', data),
+  data => createComment(data),
 );
 
 export const tryToEditComment = createAsyncThunk(
@@ -70,7 +70,7 @@ const postsListSlice = createSlice({
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
-      .addCase(getAdditionalCommentsData.rejected, (state, action) => {
+      .addCase(getAdditionalCommentsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToCreateComment.pending, state => {
