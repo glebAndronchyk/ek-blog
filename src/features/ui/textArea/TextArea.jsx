@@ -1,17 +1,19 @@
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import InputError from 'features/ui/inputs/inputError/InputError';
 import { LOADING } from 'helpers/loadingStatus';
 
 const TextArea = props => {
-  const { entity, register, errors, maxLength, options, placeholder } = props;
+  const { entity, register, errors, maxLength, options, placeholder, className } = props;
   const { userActionLoading } = useSelector(state => state[entity]);
+  const textAreaClassName = classNames('text-area', className);
 
   return (
     <>
       <textarea
-        className="text-area"
+        className={textAreaClassName}
         placeholder={placeholder}
         maxLength={maxLength}
         disabled={userActionLoading === LOADING}
@@ -28,6 +30,7 @@ const TextArea = props => {
 TextArea.propTypes = {
   entity: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
+  className: PropTypes.string,
   register: PropTypes.func.isRequired,
   maxLength: PropTypes.number.isRequired,
   errors: PropTypes.shape({
