@@ -2,7 +2,7 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrashCan, faPen, faLock, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import store from 'redux/store';
 import Layout from 'pages/Layout';
@@ -14,7 +14,7 @@ const Posts = lazy(() => import('pages/Posts'));
 const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'));
 const Registration = lazy(() => import('pages/Registration'));
 
-library.add(faTrashCan, faPen, faLock, faRightFromBracket);
+library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane);
 
 const AppRoutes = () => {
   return (
