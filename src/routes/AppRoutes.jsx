@@ -11,7 +11,7 @@ import ProtectedRoute from 'features/protectedRoute/ProtectedRoute';
 
 const Announcements = lazy(() => import('pages/Announcements'));
 const Posts = lazy(() => import('pages/Posts'));
-const SinglePostPage = lazy(() => import('pages/SinglePostPage'));
+const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'));
 const Registration = lazy(() => import('pages/Registration'));
 
 library.add(faTrashCan, faPen, faLock, faRightFromBracket);

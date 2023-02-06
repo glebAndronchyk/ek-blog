@@ -11,6 +11,7 @@ const AnnouncementsList = () => {
       <AnnouncementsItem
         key={item.id}
         id={item.id}
+        creatorID={item.userId}
         itemData={{
           createdAt: item.createdAt,
           title: item.title,

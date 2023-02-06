@@ -8,8 +8,8 @@ import useNewsItemData from 'hooks/useNewsItemData';
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
 
 const PostsItem = props => {
-  const { feedData, to, id } = props;
-  const { createdAt, title, body, creatorID, currentUserID, isAuth } = useNewsItemData(feedData, 'posts', id);
+  const { itemData, to, id, creatorID } = props;
+  const { createdAt, title, body, currentUserID, isAuth } = useNewsItemData(itemData);
 
   const processLongBody = text => {
     return body.length > 400 ? `${text.slice(0, 400)}...` : text;
@@ -42,13 +42,14 @@ const PostsItem = props => {
 };
 
 PostsItem.propTypes = {
-  feedData: PropTypes.exact({
+  itemData: PropTypes.exact({
     createdAt: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
   }).isRequired,
   to: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  creatorID: PropTypes.number.isRequired,
 };
 
 export default PostsItem;

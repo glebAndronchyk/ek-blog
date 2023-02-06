@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import ButtonSpinner from 'features/ui/buttons/buttonSpinner/ButtonSpinner';
 
 import Button from 'features/ui/buttons/button/Button';
-import { IDLE } from 'helpers/loadingStatus';
+import { LOADING } from 'helpers/loadingStatus';
 
 const LoadMoreButton = props => {
   const { onClick, entity } = props;
   const { additionalLoading } = useSelector(state => state[entity]);
 
-  const loadingCondition = additionalLoading !== IDLE;
+  const loadingCondition = additionalLoading === LOADING;
 
   const insideContent = loadingCondition ? <ButtonSpinner /> : <span>Load more</span>;
 

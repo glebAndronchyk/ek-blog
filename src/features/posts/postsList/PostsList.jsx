@@ -12,6 +12,7 @@ const PostsList = () => {
         key={item.id}
         to={`/posts/${item.id}`}
         id={item.id}
+        creatorID={item.userId}
         itemData={{
           createdAt: item.createdAt,
           title: item.title,
