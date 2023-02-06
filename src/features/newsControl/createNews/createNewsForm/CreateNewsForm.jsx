@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
 import InputError from 'features/ui/inputs/inputError/InputError';
-import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
+import TextArea from 'features/ui/textArea/TextArea';
 import { tryToEditPost, tryToCreatePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { tryToEditAnnouncement, tryToCreateAnnouncement } from 'redux/slices/announcementsListSlice';
+import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import { modalClosed } from 'redux/slices/modalSlice';
 import { LOADING, REJECTED } from 'helpers/loadingStatus';
 
@@ -97,22 +98,19 @@ const CreateNewsForm = () => {
         name="title"
       />
       <span className="text-black font-inter font-[600] underline text-lg my-2">Body</span>
-      <textarea
-        className="text-area"
-        placeholder="Write your information here(10 000 symbols available)"
-        maxLength={maxTextAreaLength}
-        disabled={userActionLoading === LOADING}
-        {...register('body', {
+      <TextArea
+        entity={entity}
+        register={register}
+        errors={errors}
+        options={{
           minLength: {
             value: minTextAreaLength,
             message: `${name} must be at least ${minTextAreaLength} symbols`,
           },
           required: 'Body is required',
-        })}
-      />
-      <InputError
-        errors={errors}
-        name="body"
+        }}
+        placeholder="Write your information here(10 000 symbols available)"
+        maxLength={maxTextAreaLength}
       />
       <span className="my-2">{`${textareaBody.length} / ${maxTextAreaLength}`}</span>
       <FormSubmitButton
