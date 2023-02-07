@@ -52,3 +52,12 @@ export const transformDataForComments = (data, postId) => {
     postId,
   };
 };
+
+export const transformDataForCommentsPATCH = data => {
+  const { body } = data;
+
+  return {
+    body,
+    updatedAt: new Date().toISOString(),
+  };
+};
