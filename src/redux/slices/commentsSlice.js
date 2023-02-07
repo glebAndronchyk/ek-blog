@@ -87,11 +87,11 @@ const postsListSlice = createSlice({
         state.userActionLoading = LOADING;
       })
       .addCase(tryToDeleteComment.fulfilled, (state, action) => {
-        state.userActionLoading = IDLE;
+        state.userActionLoading = REJECTED;
         state.data = state.data.filter(item => item.id !== action.meta.arg);
       })
       .addCase(tryToDeleteComment.rejected, state => {
-        state.userActionLoading = REJECTED;
+        state.userActionLoading = IDLE;
       })
       .addCase(tryToEditComment.pending, state => {
         state.userActionLoading = LOADING;
