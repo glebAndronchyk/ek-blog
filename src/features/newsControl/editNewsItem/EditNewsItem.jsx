@@ -3,37 +3,19 @@ import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { modalOpened } from 'redux/slices/modalSlice';
 import EditButton from 'features/ui/buttons/editButton/EditButton';
-import SubmitCommentsChangesButton from 'features/ui/buttons/submitCommentsChangesButton/SubmitCommentsChangesButton';
 
-const EditItem = props => {
-  const { modalConfiguration, configuration } = props;
-  const { isEditable, setIsEditable } = configuration;
+const EditNewsItem = props => {
+  const { modalConfiguration } = props;
   const dispatch = useDispatch();
 
-  const handleClickOnNewsItem = () => {
+  const handleClick = () => {
     dispatch(modalOpened({ name: 'CreateNewsForm', modalConfiguration }));
   };
 
-  const handleClickOnCommentsItem = () => {
-    setIsEditable(true);
-  };
-
-  return (
-    <span>
-      {isEditable ? (
-        <SubmitCommentsChangesButton />
-      ) : (
-        <EditButton
-          handleClickOnCommentsItem={handleClickOnCommentsItem}
-          handleClickOnNewsItem={handleClickOnNewsItem}
-          configuration={configuration}
-        />
-      )}
-    </span>
-  );
+  return <EditButton handleClick={handleClick} />;
 };
 
-EditItem.propTypes = {
+EditNewsItem.propTypes = {
   modalConfiguration: PropTypes.exact({
     id: PropTypes.number,
     entity: PropTypes.string.isRequired,
@@ -42,10 +24,6 @@ EditItem.propTypes = {
     body: PropTypes.string,
     name: PropTypes.string,
   }),
-  configuration: PropTypes.exact({
-    isEditable: PropTypes.bool,
-    setIsEditable: PropTypes.func,
-  }),
 };
 
-export default EditItem;
+export default EditNewsItem;

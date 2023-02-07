@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { modalOpened } from 'redux/slices/modalSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const DeleteNewsItem = props => {
+const DeleteItem = props => {
   const { modalConfiguration } = props;
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const DeleteNewsItem = props => {
   );
 };
 
-DeleteNewsItem.propTypes = {
+DeleteItem.propTypes = {
   modalConfiguration: PropTypes.exact({
     id: PropTypes.number,
     entity: PropTypes.string.isRequired,
@@ -37,4 +37,4 @@ DeleteNewsItem.propTypes = {
   }).isRequired,
 };
 
-export default DeleteNewsItem;
+export default DeleteItem;

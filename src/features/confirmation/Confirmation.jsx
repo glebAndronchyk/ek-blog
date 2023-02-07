@@ -6,17 +6,19 @@ import View from 'features/confirmation/View';
 import Spinner from 'features/ui/spinner/Spinner';
 import { tryToDeletePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { tryToDeleteAnnouncement } from 'redux/slices/announcementsListSlice';
-import { LOADING, REJECTED } from 'helpers/loadingStatus';
+import { tryToDeleteComment } from 'redux/slices/commentsSlice';
+import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const deleteFunctions = {
   posts: tryToDeletePost,
   announcements: tryToDeleteAnnouncement,
+  comments: tryToDeleteComment,
 };
 
 const Confirmation = () => {
   const dispatch = useDispatch();
-  const { modalConfiguration } = useSelector(state => state.modal);
-  const { id, entity } = modalConfiguration;
+  const { configuration } = useSelector(state => state.modal);
+  const { id, entity } = configuration;
   const { userActionLoading } = useSelector(state => state[entity]);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ const Confirmation = () => {
   }, []);
 
   const onConfirm = () => {
-    dispatch(deleteFunctions[entity](id)).then(() => (userActionLoading !== REJECTED ? dispatch(modalClosed()) : null));
+    dispatch(deleteFunctions[entity](id)).then(() => (userActionLoading === IDLE ? dispatch(modalClosed()) : null));
   };
 
   const onDecline = () => {

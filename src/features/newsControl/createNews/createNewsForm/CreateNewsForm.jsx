@@ -25,8 +25,8 @@ const userActions = {
 };
 
 const CreateNewsForm = () => {
-  const { modalConfiguration } = useSelector(state => state.modal);
-  const { entity, name, id, title, body, createdAt } = modalConfiguration;
+  const { configuration } = useSelector(state => state.modal);
+  const { entity, name, id, title, body, createdAt } = configuration;
   const { userActionLoading } = useSelector(state => state[entity]);
   const {
     register,
