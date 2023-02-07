@@ -6,18 +6,9 @@ export const getPostRelatedComments = async (postId, pageNumber = 1) => {
   return response.data.filter(item => item.body);
 };
 
-export const createComment = async (data) => {
+export const createComment = async data => {
   try {
     const response = await axiosInstance.post(`/comments`, { ...data });
-    return response.data;
-  } catch (error) {
-    throw new Error(JSON.stringify(error.response));
-  }
-};
-
-export const editNews = async (entity, data, id) => {
-  try {
-    const response = await axiosInstance.patch(`/${entity}/${id}`, { ...data });
     return response.data;
   } catch (error) {
     throw new Error(JSON.stringify(error.response));
