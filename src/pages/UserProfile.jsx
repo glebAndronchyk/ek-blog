@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router-dom';
+
 import Banner from 'features/ui/banner/Banner';
 import UserProfileMenu from 'features/ui/userProfileMenu/UserProfileMenu';
 
@@ -8,6 +10,7 @@ const UserProfile = () => {
     <>
       <Banner image={userProfileBannerImage} />
       <UserProfileMenu />
+      <Outlet />
     </>
   );
 };
