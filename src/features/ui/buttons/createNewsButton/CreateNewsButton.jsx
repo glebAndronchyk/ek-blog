@@ -13,7 +13,7 @@ const CreateNewsButton = props => {
   const buttonContent = isAuth ? `Create new ${label}` : <View label={label} />;
 
   const changeModalStatus = () => {
-    return dispatch(modalOpened({ name: 'CreateNewsForm', configuration: { entity: label, name } }));
+    return dispatch(modalOpened({ name: 'CreateNewsForm', modalConfiguration: { entity: label, name } }));
   };
 
   return (
