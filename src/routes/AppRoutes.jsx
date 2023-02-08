@@ -8,8 +8,8 @@ import {
   faLock,
   faRightFromBracket,
   faPaperPlane,
-  faCheck
-} from "@fortawesome/free-solid-svg-icons";
+  faCheck,
+} from '@fortawesome/free-solid-svg-icons';
 
 import store from 'redux/store';
 import Layout from 'pages/Layout';
@@ -34,7 +34,7 @@ const AppRoutes = () => {
           <Route
             path="posts"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Posts />
               </Suspense>
             }
@@ -42,7 +42,7 @@ const AppRoutes = () => {
           <Route
             path="posts/:postId"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <SinglePostPage />
               </Suspense>
             }
@@ -51,7 +51,7 @@ const AppRoutes = () => {
           <Route
             path="announcements"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Announcements />
               </Suspense>
             }
@@ -114,7 +114,7 @@ const AppRoutes = () => {
           path="registration"
           element={
             <ProtectedRoute>
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Registration />
               </Suspense>
             </ProtectedRoute>

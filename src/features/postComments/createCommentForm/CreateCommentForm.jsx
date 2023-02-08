@@ -41,7 +41,10 @@ const CreateCommentForm = props => {
         />
         <div className="flex justify-center items-center max-w-[10%] w-full flex-col border-l-2">
           {userActionLoading === LOADING ? (
-            <Spinner className="h-[20px] w-[20px] pt-0" />
+            <Spinner
+              wrapperClassName="pt-2"
+              size={15.5}
+            />
           ) : (
             <button
               type="submit"

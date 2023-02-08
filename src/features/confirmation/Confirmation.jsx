@@ -36,7 +36,7 @@ const Confirmation = () => {
   return (
     <div className="flex absolute flex-col justify-between bg-gray-200 items-center rounded-[20px] max-w-md w-full py-10">
       {userActionLoading === LOADING ? (
-        <Spinner className="pt-0" />
+        <Spinner />
       ) : (
         <View
           loading={userActionLoading}
