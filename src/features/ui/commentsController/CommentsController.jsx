@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 
-import EditNewsItem from 'features/newsControl/editNewsItem/EditNewsItem';
 import DeleteItem from 'features/newsControl/deleteItem/DeleteItem';
+import EditCommentsItem from 'features/commentsControl/editCommentsItem/EditCommentsItem';
 
-const NewsController = props => {
-  const { modalConfiguration } = props;
+const CommentsController = props => {
+  const { modalConfiguration, configuration } = props;
 
   return (
     <div className="flex justify-evenly absolute z-50 right-0 top-0 max-w-[100px] w-full pt-2">
-      <EditNewsItem modalConfiguration={modalConfiguration} />
+      <EditCommentsItem configuration={configuration} />
       <DeleteItem modalConfiguration={modalConfiguration} />
     </div>
   );
 };
 
-NewsController.propTypes = {
+CommentsController.propTypes = {
   modalConfiguration: PropTypes.exact({
     id: PropTypes.number,
     entity: PropTypes.string.isRequired,
@@ -23,6 +23,12 @@ NewsController.propTypes = {
     body: PropTypes.string,
     name: PropTypes.string,
   }).isRequired,
+  configuration: PropTypes.exact({
+    isEditable: PropTypes.bool,
+    setIsEditable: PropTypes.func,
+    currentTextAreaContent: PropTypes.string,
+    currentItemUserActionLoading: PropTypes.string,
+  }),
 };
 
-export default NewsController;
+export default CommentsController;

@@ -23,17 +23,17 @@ export const getAdditionalAnnouncementsData = createAsyncThunk(
 );
 
 export const tryToCreateAnnouncement = createAsyncThunk(
-  'posts/tryToPostNews', //
+  'announcements/tryToPostNews', //
   data => createNews('announcements', data),
 );
 
 export const tryToEditAnnouncement = createAsyncThunk(
-  'posts/tryToEditNews', //
+  'announcements/tryToEditNews', //
   ([data, id]) => editNews('announcements', data, id),
 );
 
 export const tryToDeleteAnnouncement = createAsyncThunk(
-  '/posts/tryToDeletePost', //
+  'announcements/tryToDeletePost', //
   id => deleteNews(`announcements/${id}`),
 );
 

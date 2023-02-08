@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isShown: false,
   contentToShow: null,
-  modalConfiguration: {},
+  configuration: {},
 };
 
 const modalSLice = createSlice({
@@ -17,7 +17,7 @@ const modalSLice = createSlice({
     },
     modalOpened: (state, action) => {
       state.contentToShow = action.payload.name;
-      state.modalConfiguration = action.payload.configuration;
+      state.configuration = action.payload.modalConfiguration;
       state.isShown = true;
     },
   },

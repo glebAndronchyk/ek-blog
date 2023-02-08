@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 
 import { getAdditionalPostsData, postsStateReseted } from 'redux/slices/postsListSlice';
 import { getAdditionalAnnouncementsData, announcementsStateReseted } from 'redux/slices/announcementsListSlice';
+import { getAdditionalCommentsData, commentsStateReseted } from 'redux/slices/commentsSlice';
 
 const storeActions = {
   posts: {
@@ -13,9 +14,13 @@ const storeActions = {
     stateReset: announcementsStateReseted,
     getAdditionalData: getAdditionalAnnouncementsData,
   },
+  comments: {
+    stateReset: commentsStateReseted,
+    getAdditionalData: getAdditionalCommentsData,
+  },
 };
 
-const useNewsListData = entity => {
+const useNewsListData = (entity, postId = null) => {
   const { data, page, showLoadMoreButton } = useSelector(state => state[entity]);
   const dispatch = useDispatch();
 
@@ -24,7 +29,7 @@ const useNewsListData = entity => {
   }, []);
 
   const clickHandler = () => {
-    return dispatch(storeActions[entity].getAdditionalData(page));
+    return dispatch(storeActions[entity].getAdditionalData([postId, page]));
   };
 
   return {

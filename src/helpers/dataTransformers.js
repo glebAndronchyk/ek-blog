@@ -40,3 +40,24 @@ export const transformDataForPATCH = (data, createdAt, entity) => {
     ...onPostsData,
   };
 };
+
+export const transformDataForComments = (data, postId) => {
+  const { body } = data;
+
+  return {
+    body,
+    createdAt: new Date().toISOString(),
+    updatedAt: null,
+    userId: getUserDataFromStorage().id,
+    postId,
+  };
+};
+
+export const transformDataForCommentsPATCH = data => {
+  const { body } = data;
+
+  return {
+    body,
+    updatedAt: new Date().toISOString(),
+  };
+};

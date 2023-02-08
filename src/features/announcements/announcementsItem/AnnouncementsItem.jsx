@@ -7,8 +7,8 @@ import useNewsItemData from 'hooks/useNewsItemData';
 import AnnouncementsItemPlug from 'assets/images/AnnouncementsItemPlug.png';
 
 const AnnouncementsItem = props => {
-  const { feedData, id } = props;
-  const { createdAt, title, body, creatorID, currentUserID, isAuth } = useNewsItemData(feedData, 'announcements', id);
+  const { itemData, id, creatorID } = props;
+  const { createdAt, title, body, currentUserID, isAuth } = useNewsItemData(itemData);
 
   return (
     <li className="relative flex flex-row px-6 items-center justify-between list-none lg:p-4 md:rounded-3xl bg-white mb-4">
@@ -25,19 +25,22 @@ const AnnouncementsItem = props => {
         alt="item"
       />
       {isAuth && creatorID === currentUserID ? (
-        <NewsController configuration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }} />
+        <NewsController
+          modalConfiguration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }}
+        />
       ) : null}
     </li>
   );
 };
 
 AnnouncementsItem.propTypes = {
-  feedData: PropTypes.exact({
+  itemData: PropTypes.exact({
     createdAt: PropTypes.string,
     title: PropTypes.string,
     body: PropTypes.string,
   }).isRequired,
   id: PropTypes.number,
+  creatorID: PropTypes.number,
 };
 
 export default AnnouncementsItem;

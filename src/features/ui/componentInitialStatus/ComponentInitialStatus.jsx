@@ -10,7 +10,7 @@ const ComponentInitialStatus = props => {
   const { children, entity } = props;
   const { initialLoading } = useSelector(state => state[entity]);
 
-  if (initialLoading === LOADING) return <Spinner />;
+  if (initialLoading === LOADING) return <Spinner wrapperClassName="pt-20" />;
   if (initialLoading === REJECTED) return <ErrorPlug />;
 
   return <div>{children}</div>;

@@ -2,7 +2,14 @@ import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrashCan, faPen, faLock, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTrashCan,
+  faPen,
+  faLock,
+  faRightFromBracket,
+  faPaperPlane,
+  faCheck,
+} from '@fortawesome/free-solid-svg-icons';
 
 import store from 'redux/store';
 import Layout from 'pages/Layout';
@@ -11,10 +18,10 @@ import ProtectedRoute from 'features/protectedRoute/ProtectedRoute';
 
 const Announcements = lazy(() => import('pages/Announcements'));
 const Posts = lazy(() => import('pages/Posts'));
-const SinglePostPage = lazy(() => import('pages/SinglePostPage'));
+const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'));
 const Registration = lazy(() => import('pages/Registration'));
 
-library.add(faTrashCan, faPen, faLock, faRightFromBracket);
+library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck);
 
 const AppRoutes = () => {
   return (
@@ -27,7 +34,7 @@ const AppRoutes = () => {
           <Route
             path="posts"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Posts />
               </Suspense>
             }
@@ -35,7 +42,7 @@ const AppRoutes = () => {
           <Route
             path="posts/:postId"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <SinglePostPage />
               </Suspense>
             }
@@ -44,7 +51,7 @@ const AppRoutes = () => {
           <Route
             path="announcements"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Announcements />
               </Suspense>
             }
@@ -107,7 +114,7 @@ const AppRoutes = () => {
           path="registration"
           element={
             <ProtectedRoute>
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Registration />
               </Suspense>
             </ProtectedRoute>

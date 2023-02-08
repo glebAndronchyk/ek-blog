@@ -11,7 +11,8 @@ const AnnouncementsList = () => {
       <AnnouncementsItem
         key={item.id}
         id={item.id}
-        feedData={{
+        creatorID={item.userId}
+        itemData={{
           createdAt: item.createdAt,
           title: item.title,
           body: item.body,
