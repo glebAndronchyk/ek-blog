@@ -57,47 +57,17 @@ const AppRoutes = () => {
             }
           />
 
-          {/*TODO: ROUTE GUARD*/}
-          <Route
-            element={
-              <ProtectedRoute>
-                <Route
-                  path="user"
-                  element={
-                    <div>
-                      Profile Layout
-                      <Outlet />
-                    </div>
-                  }
-                >
-                  <Route
-                    path="settings"
-                    element={<div>Settings</div>}
-                  />
-
-                  <Route
-                    path="/user/:userId"
-                    element={
-                      <Navigate
-                        to="settings"
-                        replace
-                      />
-                    }
-                  />
-
-                  <Route
-                    path="/user"
-                    element={
-                      <Navigate
-                        to="/posts"
-                        replace
-                      />
-                    }
-                  />
-                </Route>
-              </ProtectedRoute>
-            }
-          />
+          <Route element={<ProtectedRoute onLoginAccess />}>
+            <Route
+              path="/profile"
+              element={
+                <div>
+                  Profile Layout
+                  <Outlet />
+                </div>
+              }
+            />
+          </Route>
 
           <Route
             path="/"
@@ -110,16 +80,16 @@ const AppRoutes = () => {
           />
         </Route>
 
-        <Route
-          path="registration"
-          element={
-            <ProtectedRoute>
+        <Route element={<ProtectedRoute page="registration" />}>
+          <Route
+            path="registration"
+            element={
               <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Registration />
               </Suspense>
-            </ProtectedRoute>
-          }
-        />
+            }
+          />
+        </Route>
 
         <Route
           path="*"
