@@ -30,17 +30,12 @@ export const tryToCreateComment = createAsyncThunk(
   data => createComment(data),
 );
 
-export const tryToEditComment = createAsyncThunk(
-  'comments/tryToEditComment', //
-  ([data, id]) => editNews('comments', data, id),
-);
-
 export const tryToDeleteComment = createAsyncThunk(
   'comments/tryToDeleteComment', //
   id => deleteNews(`comments/${id}`),
 );
 
-const postsListSlice = createSlice({
+const commentsSlice = createSlice({
   name: 'comments',
   initialState,
   reducers: {
@@ -49,6 +44,12 @@ const postsListSlice = createSlice({
     },
     userActionLoadingReseted: state => {
       state.userActionLoading = IDLE;
+    },
+    commentContentEdited: (state, action) => {
+      const { data } = state;
+      const { payload } = action;
+      const changedElementIndex = data.findIndex(element => element.id === payload.id);
+      data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
     },
   },
   extraReducers: builder => {
@@ -77,7 +78,7 @@ const postsListSlice = createSlice({
         state.userActionLoading = LOADING;
       })
       .addCase(tryToCreateComment.fulfilled, (state, action) => {
-        state.userActionLoading = LOADING;
+        state.userActionLoading = IDLE;
         state.data = [{ ...action.payload }, ...state.data];
       })
       .addCase(tryToCreateComment.rejected, state => {
@@ -92,24 +93,11 @@ const postsListSlice = createSlice({
       })
       .addCase(tryToDeleteComment.rejected, state => {
         state.userActionLoading = IDLE;
-      })
-      .addCase(tryToEditComment.pending, state => {
-        state.userActionLoading = LOADING;
-      })
-      .addCase(tryToEditComment.fulfilled, (state, action) => {
-        const { data } = state;
-        const { payload } = action;
-        const changedElementIndex = data.findIndex(element => element.id === payload.id);
-        data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
-        state.userActionLoading = IDLE;
-      })
-      .addCase(tryToEditComment.rejected, state => {
-        state.userActionLoading = REJECTED;
       });
   },
 });
 
-const { reducer, actions } = postsListSlice;
+const { reducer, actions } = commentsSlice;
 export default reducer;
 
-export const { commentsStateReseted, userActionLoadingReseted } = actions;
+export const { commentsStateReseted, commentContentEdited, userActionLoadingReseted } = actions;
