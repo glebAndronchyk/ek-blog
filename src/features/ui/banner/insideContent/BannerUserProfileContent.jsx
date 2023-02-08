@@ -1,16 +1,16 @@
 import { getUserDataFromStorage } from 'helpers/localStorage';
 
 const BannerUserProfileContent = () => {
-  const currentUserAvatar = getUserDataFromStorage().avatar;
+  const { firstname, lastname, avatar } = getUserDataFromStorage();
 
   return (
     <>
       <img
-        src={currentUserAvatar}
+        src={avatar}
         alt="avatar"
-        className="w-[120px] h-[120px] mb-2"
+        className="w-[120px] h-[120px] mb-2 rounded-full bg-gray-50 p-[2px]"
       />
-      <span className="text-lg text-gray-50">Test Test(You)</span>
+      <span className="text-lg text-gray-50">{`${firstname} ${lastname}(You)`}</span>
     </>
   );
 };
