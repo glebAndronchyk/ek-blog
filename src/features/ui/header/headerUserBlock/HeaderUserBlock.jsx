@@ -9,7 +9,7 @@ const HeaderUserBlock = () => {
   return (
     <div className="flex justify-between items-center max-w-[150px] w-full overflow-hidden">
       <LogoutButton />
-      <Link to="/">
+      <Link to="profile">
         <img
           src={userProfileImage}
           className="rounded-full w-[50px] h-[50px] bg-gray-50 p-[2px]"
