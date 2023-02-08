@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { useState, useRef, useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import classNames from 'classnames';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import useNewsItemData from 'hooks/useNewsItemData';
 import CommentsController from 'features/ui/commentsController/CommentsController';
-import { tryToEditComment } from 'redux/slices/commentsSlice';
-import { transformDataForCommentsPATCH } from 'helpers/dataTransformers';
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 import { getUserDataFromStorage } from 'helpers/localStorage';
+import { REJECTED } from 'helpers/loadingStatus';
 import avatars from 'helpers/avatars';
+import useSingleCommentEditState from 'hooks/useSingleCommentEditState';
 
 const CommentsItem = props => {
   const { itemData, id, creatorID } = props;
@@ -25,8 +25,6 @@ const CommentsItem = props => {
   } = useNewsItemData(itemData);
   const currentUserAvatar = getUserDataFromStorage()?.avatar;
   const [isEditable, setIsEditable] = useState(false);
-  const [localIsUpdated, setLocalIsUpdated] = useState(false);
-  const dispatch = useDispatch();
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       body,
@@ -38,6 +36,13 @@ const CommentsItem = props => {
     name: 'body',
     control,
   });
+  const { currentItemUserActionLoading, localIsUpdated, updateCommentContent } = useSingleCommentEditState(id);
+  const textAreaClassName = classNames(
+    'rounded-[20px] border-2 border-gray-100 p-2 text-lg break-all w-full bg-gray-50 resize-none',
+    {
+      'border-app-red': currentItemUserActionLoading === REJECTED,
+    },
+  );
 
   useEffect(() => {
     if (isEditable) {
@@ -54,9 +59,7 @@ const CommentsItem = props => {
     if (currentUserID === creatorID) {
       return currentUserAvatar;
     }
-
     if (!creatorAvatar) return avatars[0];
-
     return creatorAvatar;
   };
 
@@ -65,8 +68,7 @@ const CommentsItem = props => {
     if (currentTextAreaContent === body) {
       return null;
     }
-    setLocalIsUpdated(true);
-    return dispatch(tryToEditComment([transformDataForCommentsPATCH(data), id]));
+    return updateCommentContent(data);
   };
 
   return (
@@ -90,7 +92,7 @@ const CommentsItem = props => {
               textAreaRef.current = e;
             }}
             name="body"
-            className="rounded-[20px] border-2 border-gray-100 p-2 text-lg break-all w-full bg-gray-50 resize-none"
+            className={textAreaClassName}
             disabled={!isEditable}
             maxRows={40}
             maxLength={600}
@@ -98,7 +100,7 @@ const CommentsItem = props => {
           {isAuth && currentUserID === creatorID && (
             <CommentsController
               modalConfiguration={{ entity: 'comments', id }}
-              configuration={{ isEditable, setIsEditable, currentTextAreaContent }}
+              configuration={{ isEditable, setIsEditable, currentTextAreaContent, currentItemUserActionLoading }}
             />
           )}
         </form>

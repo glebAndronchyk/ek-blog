@@ -2,16 +2,24 @@ import PropTypes from 'prop-types';
 import { useForm, useWatch } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
+import classNames from 'classnames';
 import TextareaAutosize from 'react-textarea-autosize';
 
+import Spinner from 'features/ui/spinner/Spinner';
 import { tryToCreateComment } from 'redux/slices/commentsSlice';
 import { transformDataForComments } from 'helpers/dataTransformers';
-import { LOADING } from 'helpers/loadingStatus';
-import Spinner from 'features/ui/spinner/Spinner';
+import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
+import { useEffect } from 'react';
 
 const CreateCommentForm = props => {
   const { postId } = props;
-  const { register, handleSubmit, control } = useForm({
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    formState: { isSubmitSuccessful },
+  } = useForm({
     defaultValues: {
       body: '',
     },
@@ -22,6 +30,15 @@ const CreateCommentForm = props => {
   });
   const dispatch = useDispatch();
   const { userActionLoading } = useSelector(state => state.comments);
+  const formWrapperClassName = classNames('w-full border-2 flex items-center rounded-[20px] mb-4 pl-4 box-border', {
+    'border-app-red': userActionLoading === REJECTED,
+  });
+
+  useEffect(() => {
+    if (isSubmitSuccessful && userActionLoading === IDLE) {
+      reset({ body: '' });
+    }
+  }, [isSubmitSuccessful, userActionLoading]);
 
   const onSubmit = data => {
     dispatch(tryToCreateComment(transformDataForComments(data, +postId)));
@@ -29,7 +46,7 @@ const CreateCommentForm = props => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-full border-2 flex items-center rounded-[20px] mb-4 pl-4">
+      <div className={formWrapperClassName}>
         <TextareaAutosize
           className="h-full max-h-[200px] max-w-[90%] w-full py-2 text-justify
            overflow-x-hidden overflow-y-auto focus-visible:outline-0

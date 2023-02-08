@@ -27,6 +27,7 @@ CommentsController.propTypes = {
     isEditable: PropTypes.bool,
     setIsEditable: PropTypes.func,
     currentTextAreaContent: PropTypes.string,
+    currentItemUserActionLoading: PropTypes.string,
   }),
 };
 

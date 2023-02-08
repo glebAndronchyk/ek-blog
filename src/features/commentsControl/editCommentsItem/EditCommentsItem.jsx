@@ -5,7 +5,7 @@ import EditButton from 'features/ui/buttons/editButton/EditButton';
 
 const EditCommentsItem = props => {
   const { configuration } = props;
-  const { isEditable, setIsEditable, currentTextAreaContent } = configuration;
+  const { isEditable, setIsEditable, currentTextAreaContent, currentItemUserActionLoading } = configuration;
 
   const handleClick = () => {
     setIsEditable(true);
@@ -16,7 +16,10 @@ const EditCommentsItem = props => {
       {isEditable ? (
         <SubmitCommentsChangesButton currentTextAreaContent={currentTextAreaContent} />
       ) : (
-        <EditButton handleClick={handleClick} />
+        <EditButton
+          handleClick={handleClick}
+          currentItemUserActionLoading={currentItemUserActionLoading}
+        />
       )}
     </span>
   );
@@ -27,6 +30,7 @@ EditCommentsItem.propTypes = {
     isEditable: PropTypes.bool,
     setIsEditable: PropTypes.func,
     currentTextAreaContent: PropTypes.string,
+    currentItemUserActionLoading: PropTypes.string,
   }),
 };
 

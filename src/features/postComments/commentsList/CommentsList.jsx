@@ -9,6 +9,9 @@ import IsAuthPlug from 'features/ui/isAuthPlug/IsAuthPlug';
 import { getInitialData } from 'redux/slices/commentsSlice';
 import { getUserDataFromStorage } from 'helpers/localStorage';
 import { useSelector } from 'react-redux';
+import { LOADING, REJECTED } from 'helpers/loadingStatus';
+import Spinner from 'features/ui/spinner/Spinner';
+import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 
 const CommentsList = () => {
   const { postId } = useParams();
@@ -43,6 +46,9 @@ const CommentsList = () => {
       />
     );
   });
+
+  if (initialLoading === LOADING) return Spinner;
+  if (initialLoading === REJECTED) return ErrorPlug;
 
   return (
     <section className="article-content">
