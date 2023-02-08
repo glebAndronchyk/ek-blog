@@ -60,13 +60,32 @@ const AppRoutes = () => {
 
           <Route element={<ProtectedRoute onLoginAccess />}>
             <Route
-              path="/profile"
+              path="profile"
               element={
                 <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                   <UserProfile />
                 </Suspense>
               }
-            />
+            >
+              <Route
+                path="settings"
+                element={
+                  <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                    <div>test</div>
+                  </Suspense>
+                }
+              />
+
+              <Route
+                path="/profile"
+                element={
+                  <Navigate
+                    to="settings"
+                    replace
+                  />
+                }
+              />
+            </Route>
           </Route>
 
           <Route
