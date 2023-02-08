@@ -1,0 +1,3 @@
+const UserProfileSettingsForm = () => {
+  return null;
+};
