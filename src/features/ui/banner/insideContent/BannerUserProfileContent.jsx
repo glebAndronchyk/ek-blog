@@ -10,7 +10,7 @@ const BannerUserProfileContent = () => {
         alt="avatar"
         className="w-[120px] h-[120px] mb-2"
       />
-      <span>Test Test</span>
+      <span className="text-lg text-gray-50">Test Test(You)</span>
     </>
   );
 };
