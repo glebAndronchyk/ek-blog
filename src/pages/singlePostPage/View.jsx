@@ -17,7 +17,7 @@ const View = () => {
     getData();
   }, []);
 
-  if (loading === LOADING) return <Spinner />;
+  if (loading === LOADING) return <Spinner wrapperClassName="pt-20" />;
   if (loading === REJECTED) return <ErrorPlug />;
 
   return (

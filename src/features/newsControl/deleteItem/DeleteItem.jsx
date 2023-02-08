@@ -5,11 +5,11 @@ import { modalOpened } from 'redux/slices/modalSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const DeleteItem = props => {
-  const { configuration } = props;
+  const { modalConfiguration } = props;
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(modalOpened({ name: 'Confirmation', configuration }));
+    dispatch(modalOpened({ name: 'Confirmation', modalConfiguration }));
   };
 
   return (
@@ -27,13 +27,13 @@ const DeleteItem = props => {
 };
 
 DeleteItem.propTypes = {
-  configuration: PropTypes.exact({
-    id: PropTypes.number.isRequired,
+  modalConfiguration: PropTypes.exact({
+    id: PropTypes.number,
     entity: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    createdAt: PropTypes.string,
+    title: PropTypes.string,
+    body: PropTypes.string,
+    name: PropTypes.string,
   }).isRequired,
 };
 

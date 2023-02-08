@@ -4,20 +4,23 @@ import classNames from 'classnames';
 import { MoonLoader } from 'react-spinners';
 
 const Spinner = props => {
-  const { className } = props;
-  const spinnerClassName = classNames('flex items-center pt-20 justify-center', className);
+  const { wrapperClassName, size, color } = props;
+  const spinnerWrapperClassName = classNames('flex items-center justify-center', wrapperClassName);
   return (
-    <div className={spinnerClassName}>
+    <div className={spinnerWrapperClassName}>
       <MoonLoader
         speedMultiplier={0.7}
-        color="#D03450"
+        color={color || '#D03450'}
+        size={size}
       />
     </div>
   );
 };
 
 Spinner.propTypes = {
-  className: PropTypes.string,
+  wrapperClassName: PropTypes.string,
+  size: PropTypes.number,
+  color: PropTypes.string,
 };
 
 export default Spinner;

@@ -25,7 +25,9 @@ const AnnouncementsItem = props => {
         alt="item"
       />
       {isAuth && creatorID === currentUserID ? (
-        <NewsController configuration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }} />
+        <NewsController
+          modalConfiguration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }}
+        />
       ) : null}
     </li>
   );

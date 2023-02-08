@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, deleteNews, editNews } from 'services/newsService';
-import { getPostRelatedComments } from 'services/commentsService';
+import { deleteNews } from 'services/newsService';
+import { getPostRelatedComments, createComment } from 'services/commentsService';
 
 const initialState = {
   data: [],
@@ -27,12 +27,7 @@ export const getAdditionalCommentsData = createAsyncThunk(
 
 export const tryToCreateComment = createAsyncThunk(
   'comments/tryToCreateComment', //
-  data => createNews('comments', data),
-);
-
-export const tryToEditComment = createAsyncThunk(
-  'comments/tryToEditComment', //
-  ([data, id]) => editNews('comments', data, id),
+  data => createComment(data),
 );
 
 export const tryToDeleteComment = createAsyncThunk(
@@ -40,7 +35,7 @@ export const tryToDeleteComment = createAsyncThunk(
   id => deleteNews(`comments/${id}`),
 );
 
-const postsListSlice = createSlice({
+const commentsSlice = createSlice({
   name: 'comments',
   initialState,
   reducers: {
@@ -49,6 +44,12 @@ const postsListSlice = createSlice({
     },
     userActionLoadingReseted: state => {
       state.userActionLoading = IDLE;
+    },
+    commentContentEdited: (state, action) => {
+      const { data } = state;
+      const { payload } = action;
+      const changedElementIndex = data.findIndex(element => element.id === payload.id);
+      data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
     },
   },
   extraReducers: builder => {
@@ -70,7 +71,7 @@ const postsListSlice = createSlice({
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
       })
-      .addCase(getAdditionalCommentsData.rejected, (state, action) => {
+      .addCase(getAdditionalCommentsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToCreateComment.pending, state => {
@@ -91,25 +92,12 @@ const postsListSlice = createSlice({
         state.data = state.data.filter(item => item.id !== action.meta.arg);
       })
       .addCase(tryToDeleteComment.rejected, state => {
-        state.userActionLoading = REJECTED;
-      })
-      .addCase(tryToEditComment.pending, state => {
-        state.userActionLoading = LOADING;
-      })
-      .addCase(tryToEditComment.fulfilled, (state, action) => {
-        const { data } = state;
-        const { payload } = action;
-        const changedElementIndex = data.findIndex(element => element.id === payload.id);
-        data[changedElementIndex] = { ...data[changedElementIndex], title: payload.title, body: payload.body };
         state.userActionLoading = IDLE;
-      })
-      .addCase(tryToEditComment.rejected, state => {
-        state.userActionLoading = REJECTED;
       });
   },
 });
 
-const { reducer, actions } = postsListSlice;
+const { reducer, actions } = commentsSlice;
 export default reducer;
 
-export const { commentsStateReseted, userActionLoadingReseted } = actions;
+export const { commentsStateReseted, commentContentEdited, userActionLoadingReseted } = actions;
