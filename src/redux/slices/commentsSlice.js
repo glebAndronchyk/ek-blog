@@ -77,7 +77,7 @@ const postsListSlice = createSlice({
         state.userActionLoading = LOADING;
       })
       .addCase(tryToCreateComment.fulfilled, (state, action) => {
-        state.userActionLoading = IDLE;
+        state.userActionLoading = LOADING;
         state.data = [{ ...action.payload }, ...state.data];
       })
       .addCase(tryToCreateComment.rejected, state => {
@@ -87,7 +87,7 @@ const postsListSlice = createSlice({
         state.userActionLoading = LOADING;
       })
       .addCase(tryToDeleteComment.fulfilled, (state, action) => {
-        state.userActionLoading = REJECTED;
+        state.userActionLoading = IDLE;
         state.data = state.data.filter(item => item.id !== action.meta.arg);
       })
       .addCase(tryToDeleteComment.rejected, state => {

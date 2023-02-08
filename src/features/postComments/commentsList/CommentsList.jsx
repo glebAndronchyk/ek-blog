@@ -35,6 +35,7 @@ const CommentsList = () => {
           createdAt: item.createdAt,
           isUpdated: !!item.updatedAt,
           body: item.body,
+          creatorAvatar: item.user?.avatar,
           userFullName: compareUsers(item.userId)
             ? setUserFullNameBasedOnStorageData()
             : `${item.user?.firstname} ${item.user?.lastname}`,
