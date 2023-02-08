@@ -20,6 +20,7 @@ const Announcements = lazy(() => import('pages/Announcements'));
 const Posts = lazy(() => import('pages/Posts'));
 const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'));
 const Registration = lazy(() => import('pages/Registration'));
+const UserProfile = lazy(() => import('pages/UserProfile'));
 
 library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck);
 
@@ -61,10 +62,9 @@ const AppRoutes = () => {
             <Route
               path="/profile"
               element={
-                <div>
-                  Profile Layout
-                  <Outlet />
-                </div>
+                <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                  <UserProfile />
+                </Suspense>
               }
             />
           </Route>
