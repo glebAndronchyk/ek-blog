@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { deleteNews, editNews } from 'services/newsService';
+import { deleteNews } from 'services/newsService';
 import { getPostRelatedComments, createComment } from 'services/commentsService';
 
 const initialState = {
