@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { getUserDataFromStorage } from 'helpers/localStorage';
+import avatars from "helpers/avatars";
 
 const BannerUserProfileContent = () => {
   const [userFirstName, setUserFirstName] = useState('');
@@ -19,7 +20,7 @@ const BannerUserProfileContent = () => {
   return (
     <>
       <img
-        src={userAvatar}
+        src={userAvatar || avatars[0]}
         alt="avatar"
         className="w-[120px] h-[120px] mb-2 rounded-full bg-gray-50 p-[2px]"
       />
