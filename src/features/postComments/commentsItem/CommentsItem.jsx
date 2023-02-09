@@ -25,6 +25,8 @@ const CommentsItem = props => {
   } = useNewsItemData(itemData);
   const currentUserAvatar = getUserDataFromStorage()?.avatar;
   const [isEditable, setIsEditable] = useState(false);
+  const [localFullName] = useState(userFullName);
+  const [localCurrentUserAvatar] = useState(currentUserAvatar);
   const { register, handleSubmit, control } = useForm({
     defaultValues: {
       body,
@@ -59,8 +61,8 @@ const CommentsItem = props => {
     if (currentUserID === creatorID) {
       return currentUserAvatar;
     }
-    if (!creatorAvatar) return avatars[0];
-    return creatorAvatar;
+    if (!creatorAvatar && !localCurrentUserAvatar) return avatars[0];
+    return creatorAvatar || localCurrentUserAvatar;
   };
 
   const onSubmit = data => {
@@ -80,7 +82,7 @@ const CommentsItem = props => {
       />
       <div className="w-full">
         <div className="flex items-center mb-[2px]">
-          <span className="block text-lg mr-4">{userFullName}</span>
+          <span className="block text-lg mr-4">{localFullName}</span>
           <span className="mr-4 text-sm text-gray-100">{getDateInCorrectFormat(createdAt)}</span>
           <span className="mr-4 text-sm text-gray-100">{onEditChecker()}</span>
         </div>
