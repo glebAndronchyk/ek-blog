@@ -138,3 +138,96 @@ export const registrationInputs = {
     },
   },
 };
+
+export const userDataInputs = {
+  email: {
+    className: 'my-2',
+    placeholder: 'Enter email',
+    type: 'email',
+    label: 'email',
+    options: {
+      pattern: {
+        value: emailPattern,
+        message: 'Invalid email',
+      },
+      minLength: {
+        value: 10,
+        message: 'Minimum 10 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+      required: 'This must be not empty',
+    },
+  },
+
+  password: {
+    className: 'my-2',
+    placeholder: 'Enter new password',
+    type: 'password',
+    label: 'password',
+    options: {
+      minLength: {
+        value: 10,
+        message: 'Minimum 10 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+    },
+  },
+
+  confirmPassword: {
+    className: 'my-2',
+    placeholder: 'Confirm password',
+    type: 'password',
+    label: 'passConfirm',
+    options: {},
+  },
+
+  fullName: {
+    className: 'my-2',
+    placeholder: 'Enter your full name',
+    type: 'text',
+    label: 'fullName',
+    options: {
+      pattern: {
+        value: fullNamePattern,
+        message: 'Please, enter correct name',
+      },
+      minLength: {
+        value: 5,
+        message: 'Minimum 5 symbols',
+      },
+      maxLength: {
+        value: 32,
+        message: 'Maximum 32 symbols',
+      },
+      required: 'This must be not empty',
+    },
+  },
+
+  age: {
+    className: 'my-2',
+    placeholder: 'Enter your age',
+    type: 'number',
+    label: 'age',
+    options: {
+      max: {
+        value: 110,
+        message: 'You art too old',
+      },
+      min: {
+        value: 10,
+        message: 'You are too young',
+      },
+      maxLength: {
+        value: 3,
+        message: 'Maximum 3 symbols',
+      },
+      required: 'This must be not empty',
+    },
+  },
+};

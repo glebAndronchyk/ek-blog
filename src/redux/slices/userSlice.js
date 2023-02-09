@@ -1,13 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { clearStorage, getTokenFromStorage, setItemsToStorage } from 'helpers/localStorage';
+import {
+  clearStorage,
+  getTokenFromStorage,
+  removeItemFromStorage,
+  setItemsToStorage,
+  setItemToStorage,
+} from 'helpers/localStorage';
 import { login, register } from 'services/authService';
+import editUserData from 'services/userService';
 import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
 
 const initialState = {
   isAuth: !!getTokenFromStorage(),
   error: false,
   loading: IDLE,
+  dataChanged: false,
 };
 
 export const tryToLogin = createAsyncThunk(
@@ -20,6 +28,11 @@ export const tryToRegister = createAsyncThunk(
   data => register(data),
 );
 
+export const tryToEditUserData = createAsyncThunk(
+  'user/tryToEditUserData', //
+  ([data, id]) => editUserData(data, id),
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -27,6 +40,9 @@ const userSlice = createSlice({
     userLoggedOut: state => {
       state.isAuth = false;
       clearStorage();
+    },
+    userProfileUnmounted: state => {
+      state.dataChanged = false;
     },
   },
   extraReducers: builder => {
@@ -74,10 +90,22 @@ const userSlice = createSlice({
       .addCase(tryToRegister.rejected, (state, action) => {
         state.loading = REJECTED;
         state.error = JSON.parse(action.error.message);
+      })
+      .addCase(tryToEditUserData.pending, state => {
+        state.loading = LOADING;
+      })
+      .addCase(tryToEditUserData.fulfilled, (state, action) => {
+        state.loading = IDLE;
+        removeItemFromStorage('userData');
+        setItemToStorage('userData', action.payload);
+        state.dataChanged = !state.dataChanged;
+      })
+      .addCase(tryToEditUserData.rejected, state => {
+        state.loading = REJECTED;
       });
   },
 });
 
 const { reducer, actions } = userSlice;
-export const { userLoggedOut } = actions;
+export const { userLoggedOut, userProfileUnmounted } = actions;
 export default reducer;
