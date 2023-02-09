@@ -15,7 +15,7 @@ const ProtectedRoute = props => {
 };
 
 ProtectedRoute.propTypes = {
-  onLoginAccess: PropTypes.bool.isRequired,
+  onLoginAccess: PropTypes.bool,
 };
 
 export default ProtectedRoute;

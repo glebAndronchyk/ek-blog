@@ -7,7 +7,7 @@ export const getUserDataFromStorage = () => {
 };
 
 export const setItemToStorage = (name, value) => {
-  localStorage.setItem(name, value);
+  localStorage.setItem(name, JSON.stringify(value));
 };
 
 export const setItemsToStorage = data => {
