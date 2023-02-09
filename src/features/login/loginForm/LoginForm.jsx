@@ -2,20 +2,21 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import { tryToLogin } from 'redux/slices/userSlice';
-import { modalClosed } from 'redux/slices/modalSlice';
-import { loginInputs } from 'helpers/inputsData';
 import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
 import Form from 'features/ui/form/Form';
 import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 import TextInputs from 'features/ui/inputs/textInputs/TextInputs';
+import { tryToLogin } from 'redux/slices/userSlice';
+import { modalClosed } from 'redux/slices/modalSlice';
+import { loginInputs } from 'helpers/inputsData';
 
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({ reValidateMode: 'onSubmit', defaultValues: { email: '', password: '' } });
 
   const { isAuth, error, loading } = useSelector(state => state.user);
@@ -27,6 +28,10 @@ const LoginForm = () => {
       dispatch(modalClosed());
     }
   }, [isAuth]);
+
+  useEffect(() => {
+    return () => reset();
+  }, []);
 
   const onSubmit = data => {
     dispatch(tryToLogin(data));
