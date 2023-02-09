@@ -41,9 +41,6 @@ const userSlice = createSlice({
       state.isAuth = false;
       clearStorage();
     },
-    userProfileUnmounted: state => {
-      state.dataChanged = false;
-    },
   },
   extraReducers: builder => {
     builder
@@ -107,5 +104,5 @@ const userSlice = createSlice({
 });
 
 const { reducer, actions } = userSlice;
-export const { userLoggedOut, userProfileUnmounted } = actions;
+export const { userLoggedOut } = actions;
 export default reducer;

@@ -17,6 +17,7 @@ const ProfileSettingsForm = () => {
   const { loading } = useSelector(state => state.user);
   const userData = getUserDataFromStorage();
   const { email, age, avatar, firstname, lastname, id } = userData;
+
   const fullName = `${firstname} ${lastname}`;
   const {
     register,
