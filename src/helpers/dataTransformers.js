@@ -61,3 +61,15 @@ export const transformDataForCommentsPATCH = data => {
     updatedAt: new Date().toISOString(),
   };
 };
+
+export const transformDirtyFields = dirtyFields => {
+  if (dirtyFields.fullName) {
+    const splittedFullName = dirtyFields.fullName.split(' ');
+    const [updatedFirstName, updatedLastName] = splittedFullName;
+    delete dirtyFields.fullName;
+    dirtyFields.firstname = updatedFirstName;
+    dirtyFields.lastname = updatedLastName;
+  }
+
+  return dirtyFields;
+};

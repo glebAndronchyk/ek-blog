@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -21,6 +21,7 @@ const Posts = lazy(() => import('pages/Posts'));
 const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'));
 const Registration = lazy(() => import('pages/Registration'));
 const UserProfile = lazy(() => import('pages/UserProfile'));
+const ProfileSettingsForm = lazy(() => import('pages/ProfileSettingsForm'));
 
 library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck);
 
@@ -60,13 +61,32 @@ const AppRoutes = () => {
 
           <Route element={<ProtectedRoute onLoginAccess />}>
             <Route
-              path="/profile"
+              path="profile"
               element={
                 <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                   <UserProfile />
                 </Suspense>
               }
-            />
+            >
+              <Route
+                path="settings"
+                element={
+                  <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                    <ProfileSettingsForm />
+                  </Suspense>
+                }
+              />
+
+              <Route
+                path="/profile"
+                element={
+                  <Navigate
+                    to="settings"
+                    replace
+                  />
+                }
+              />
+            </Route>
           </Route>
 
           <Route
