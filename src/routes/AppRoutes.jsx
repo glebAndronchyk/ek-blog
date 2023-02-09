@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -20,6 +20,8 @@ const Announcements = lazy(() => import('pages/Announcements'));
 const Posts = lazy(() => import('pages/Posts'));
 const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'));
 const Registration = lazy(() => import('pages/Registration'));
+const UserProfile = lazy(() => import('pages/UserProfile'));
+const ProfileSettingsForm = lazy(() => import('pages/ProfileSettingsForm'));
 
 library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck);
 
@@ -57,47 +59,35 @@ const AppRoutes = () => {
             }
           />
 
-          {/*TODO: ROUTE GUARD*/}
-          <Route
-            element={
-              <ProtectedRoute>
-                <Route
-                  path="user"
-                  element={
-                    <div>
-                      Profile Layout
-                      <Outlet />
-                    </div>
-                  }
-                >
-                  <Route
-                    path="settings"
-                    element={<div>Settings</div>}
-                  />
+          <Route element={<ProtectedRoute onLoginAccess />}>
+            <Route
+              path="profile"
+              element={
+                <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                  <UserProfile />
+                </Suspense>
+              }
+            >
+              <Route
+                path="settings"
+                element={
+                  <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                    <ProfileSettingsForm />
+                  </Suspense>
+                }
+              />
 
-                  <Route
-                    path="/user/:userId"
-                    element={
-                      <Navigate
-                        to="settings"
-                        replace
-                      />
-                    }
+              <Route
+                path="/profile"
+                element={
+                  <Navigate
+                    to="settings"
+                    replace
                   />
-
-                  <Route
-                    path="/user"
-                    element={
-                      <Navigate
-                        to="/posts"
-                        replace
-                      />
-                    }
-                  />
-                </Route>
-              </ProtectedRoute>
-            }
-          />
+                }
+              />
+            </Route>
+          </Route>
 
           <Route
             path="/"
@@ -110,16 +100,16 @@ const AppRoutes = () => {
           />
         </Route>
 
-        <Route
-          path="registration"
-          element={
-            <ProtectedRoute>
+        <Route element={<ProtectedRoute page="registration" />}>
+          <Route
+            path="registration"
+            element={
               <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
                 <Registration />
               </Suspense>
-            </ProtectedRoute>
-          }
-        />
+            }
+          />
+        </Route>
 
         <Route
           path="*"

@@ -1,24 +1,21 @@
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = props => {
-  const { children } = props;
+  const { onLoginAccess } = props;
+
   const { isAuth } = useSelector(state => state.user);
 
-  return isAuth ? (
-    <Navigate
-      to="/"
-      replace
-    />
-  ) : (
-    children
-  );
+  if (onLoginAccess) {
+    return isAuth ? <Outlet /> : <Navigate to="/" />;
+  }
+
+  return isAuth ? <Navigate to="/" /> : <Outlet />;
 };
 
 ProtectedRoute.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  children: PropTypes.object,
+  onLoginAccess: PropTypes.bool,
 };
 
 export default ProtectedRoute;
