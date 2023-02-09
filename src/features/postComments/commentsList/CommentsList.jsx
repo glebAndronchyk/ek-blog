@@ -47,8 +47,8 @@ const CommentsList = () => {
     );
   });
 
-  if (initialLoading === LOADING) return Spinner;
-  if (initialLoading === REJECTED) return ErrorPlug;
+  if (initialLoading === LOADING) return <Spinner />;
+  if (initialLoading === REJECTED) return <ErrorPlug />;
 
   return (
     <section className="article-content">
