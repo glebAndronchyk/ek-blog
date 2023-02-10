@@ -1,4 +1,4 @@
-import CommentsList from 'features/postComments/commentsList/CommentsList';
+import CommentsList from 'features/news/posts/postComments/commentsList/CommentsList';
 import View from 'pages/singlePostPage/View';
 
 const SinglePostPage = () => {

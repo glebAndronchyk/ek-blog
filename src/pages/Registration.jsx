@@ -1,7 +1,7 @@
 import RegistrationForm from 'features/registration/registrationForm/RegistrationForm';
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 
-import './registration.css';
+import 'pages/css/registration.css';
 import Logo from 'assets/images/logo.png';
 
 const Registration = () => {

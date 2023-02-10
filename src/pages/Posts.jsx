@@ -1,6 +1,6 @@
 import Banner from 'features/ui/banner/Banner';
-import PostsList from 'features/posts/postsList/PostsList';
-import CreateNewsButton from 'features/ui/buttons/createNewsButton/CreateNewsButton';
+import PostsList from 'features/news/posts/postsList/PostsList';
+import CreateNewsButton from 'features/news/newsControl/createNews/createNewsButton/CreateNewsButton';
 import useGetInitialData from 'hooks/useGetInitialData';
 import { getInitialData } from 'redux/slices/postsListSlice';
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import LogoutButton from 'features/logout/logoutButton/LogoutButton';
+import LogoutButton from 'features/ui/buttons/logoutButton/LogoutButton';
 import { getUserDataFromStorage } from 'helpers/localStorage';
 import avatars from 'helpers/avatars';
 
