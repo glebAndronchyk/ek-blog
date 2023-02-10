@@ -18,7 +18,7 @@ const ComponentInitialStatus = props => {
 
 ComponentInitialStatus.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  children: PropTypes.array.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   entity: PropTypes.string.isRequired,
 };
 

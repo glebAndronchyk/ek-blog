@@ -1,32 +1,24 @@
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import CommentsItem from 'features/news/posts/postComments/commentsItem/CommentsItem';
-import LoadMoreButton from 'features/ui/buttons/loadMoreButton/LoadMoreButton';
-import CreateCommentForm from 'features/news/posts/postComments/createCommentForm/CreateCommentForm';
-import useGetInitialData from 'hooks/useGetInitialData';
 import useNewsListData from 'hooks/useNewstListData';
-import IsAuthPlug from 'features/ui/isAuthPlug/IsAuthPlug';
+import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButtonView/LoadMoreButtonView';
+import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
+import CreateCommentFormView from 'features/news/posts/postComments/createCommentForm/createCommentFormView/CreateCommentFormView';
+import compareUsers from 'helpers/compareUsers';
 import { getInitialData } from 'redux/slices/commentsSlice';
-import { getUserDataFromStorage } from 'helpers/localStorage';
-import { useSelector } from 'react-redux';
-import { LOADING, REJECTED } from 'helpers/loadingStatus';
-import Spinner from 'features/ui/spinner/Spinner';
-import ErrorPlug from 'features/ui/errorPlug/ErrorPlug';
+import { setUserFullNameBasedOnStorageData, setUserFullNameBasedOnServerData } from 'helpers/userFullNameSetters';
 
 const CommentsList = () => {
   const { postId } = useParams();
-  const { initialLoading } = useGetInitialData('comments', getInitialData, postId);
-  const { data, showLoadMoreButton, clickHandler } = useNewsListData('comments', postId);
-  const { isAuth } = useSelector(state => state.user);
+  const { data, clickHandler } = useNewsListData('comments', postId);
+  const dispatch = useDispatch();
 
-  const compareUsers = creatorId => {
-    return creatorId === getUserDataFromStorage()?.id;
-  };
-
-  const setUserFullNameBasedOnStorageData = () => {
-    const { firstname, lastname } = getUserDataFromStorage();
-    return `${firstname} ${lastname}`;
-  };
+  useEffect(() => {
+    dispatch(getInitialData(postId));
+  }, []);
 
   const commentsItems = data.map(item => {
     return (
@@ -41,29 +33,25 @@ const CommentsList = () => {
           creatorAvatar: item.user?.avatar,
           userFullName: compareUsers(item.userId)
             ? setUserFullNameBasedOnStorageData()
-            : `${item.user?.firstname} ${item.user?.lastname}`,
+            : setUserFullNameBasedOnServerData(item),
         }}
       />
     );
   });
 
-  if (initialLoading === LOADING) return <Spinner />;
-  if (initialLoading === REJECTED) return <ErrorPlug />;
-
   return (
-    <section className="article-content">
-      <span className="block mb-2 pb-2 border-b-2 text-xl">Comments</span>
-      {isAuth ? <CreateCommentForm postId={postId} /> : <IsAuthPlug />}
-      {commentsItems}
-      {showLoadMoreButton ? (
-        <LoadMoreButton
+    <ComponentInitialStatus entity="comments">
+      <section className="article-content">
+        <span className="block mb-2 pb-2 border-b-2 text-xl">Comments</span>
+        <CreateCommentFormView postId={postId} />
+        <ul>{commentsItems}</ul>
+        <LoadMoreButtonView
           onClick={clickHandler}
           entity="comments"
+          label="Comments"
         />
-      ) : (
-        <span className="block text-center">Comments Ended</span>
-      )}
-    </section>
+      </section>
+    </ComponentInitialStatus>
   );
 };
 
