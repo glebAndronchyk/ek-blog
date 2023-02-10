@@ -1,10 +1,10 @@
 import useNewsListData from 'hooks/useNewstListData';
-import LoadMoreButton from 'features/ui/buttons/loadMoreButton/LoadMoreButton';
 import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import AnnouncementsItem from 'features/news/announcements/announcementsItem/AnnouncementsItem';
+import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButtonView/LoadMoreButtonView';
 
 const AnnouncementsList = () => {
-  const { data, showLoadMoreButton, clickHandler } = useNewsListData('announcements');
+  const { data, clickHandler } = useNewsListData('announcements');
 
   const newsItems = data.map(item => {
     return (
@@ -24,14 +24,11 @@ const AnnouncementsList = () => {
   return (
     <ComponentInitialStatus entity="announcements">
       <ul className="px-40 pt-10">{newsItems}</ul>
-      {showLoadMoreButton ? (
-        <LoadMoreButton
-          onClick={clickHandler}
-          entity="announcements"
-        />
-      ) : (
-        <span className="block text-center">Announcements Ended</span>
-      )}
+      <LoadMoreButtonView
+        onClick={clickHandler}
+        entity="announcements"
+        label="Announcements"
+      />
     </ComponentInitialStatus>
   );
 };
