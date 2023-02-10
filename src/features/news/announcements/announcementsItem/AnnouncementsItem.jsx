@@ -24,11 +24,12 @@ const AnnouncementsItem = props => {
         src={AnnouncementsItemPlug}
         alt="item"
       />
-      {isAuth && creatorID === currentUserID ? (
-        <NewsController
-          modalConfiguration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }}
-        />
-      ) : null}
+      <NewsController
+        modalConfiguration={{ entity: 'announcements', name: 'Announcement', id, createdAt, title, body }}
+        isAuth={isAuth}
+        creatorID={creatorID}
+        currentUserID={currentUserID}
+      />
     </li>
   );
 };
