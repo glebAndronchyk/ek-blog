@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import { registrationInputs } from 'helpers/inputsData';
 import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
-import AvatarSelection from 'features/registration/avatarSelection/AvatarSelection';
+import AvatarSelection from 'features/ui/avatarSelection/AvatarSelection';
 import AvatarSelectionInputs from 'features/ui/inputs/avatarSelectionInputs/AvatarSelectionInputs';
 import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
 import TextInputs from 'features/ui/inputs/textInputs/TextInputs';

@@ -1,6 +1,6 @@
 import Banner from 'features/ui/banner/Banner';
-import AnnouncementsList from 'features/announcements/announcementsList/AnnouncementsList';
-import CreateNewsButton from 'features/ui/buttons/createNewsButton/CreateNewsButton';
+import AnnouncementsList from 'features/news/announcements/announcementsList/AnnouncementsList';
+import CreateNewsButton from 'features/news/newsControl/createNews/createNewsButton/CreateNewsButton';
 import useGetInitialData from 'hooks/useGetInitialData';
 import { getInitialData } from 'redux/slices/announcementsListSlice';
 
