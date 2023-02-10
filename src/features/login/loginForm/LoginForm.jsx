@@ -37,7 +37,7 @@ const LoginForm = () => {
     dispatch(tryToLogin(data));
   };
 
-  if (status && status !== 400) return ErrorPlug;
+  if (status && status !== 400) return <ErrorPlug />;
 
   return (
     <Form
