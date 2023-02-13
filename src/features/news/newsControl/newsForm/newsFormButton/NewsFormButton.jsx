@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'features/ui/buttons/button/Button';
-import View from 'features/news/newsControl/newsForm/newsFormButton/View';
+import Locked from 'features/news/newsControl/newsForm/newsFormButton/Locked';
 import { modalOpened } from 'redux/slices/modalSlice';
 
 const NewsFormButton = props => {
@@ -10,10 +10,10 @@ const NewsFormButton = props => {
   const { isAuth } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
-  const buttonContent = isAuth ? `Create new ${label}` : <View label={label} />;
+  const buttonContent = isAuth ? `Create new ${label}` : <Locked label={label} />;
 
-  const changeModalStatus = () => {
-    return dispatch(modalOpened({ name: 'CreateNewsForm', modalConfiguration: { entity: label, name } }));
+  const openModal = () => {
+    return dispatch(modalOpened({ name: 'NewsForm', modalConfiguration: { entity: label, name } }));
   };
 
   return (
@@ -22,7 +22,7 @@ const NewsFormButton = props => {
         type="create"
         disabled={!isAuth}
         className="create-news-button"
-        onClick={changeModalStatus}
+        onClick={openModal}
       >
         {buttonContent}
       </Button>
