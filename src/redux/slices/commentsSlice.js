@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { deleteNews } from 'services/newsService';
-import { getPostRelatedComments, createComment } from 'services/commentsService';
+import { getPostRelatedComments, createComment, deleteComment } from 'services/commentsService';
 
 const initialState = {
   data: [],
@@ -32,7 +31,7 @@ export const tryToCreateComment = createAsyncThunk(
 
 export const tryToDeleteComment = createAsyncThunk(
   'comments/tryToDeleteComment', //
-  id => deleteNews(`comments/${id}`),
+  id => deleteComment(id),
 );
 
 const commentsSlice = createSlice({
@@ -41,9 +40,6 @@ const commentsSlice = createSlice({
   reducers: {
     commentsStateReseted: () => {
       return initialState;
-    },
-    userActionLoadingReseted: state => {
-      state.userActionLoading = IDLE;
     },
     commentContentEdited: (state, action) => {
       const { data } = state;
@@ -100,4 +96,4 @@ const commentsSlice = createSlice({
 const { reducer, actions } = commentsSlice;
 export default reducer;
 
-export const { commentsStateReseted, commentContentEdited, userActionLoadingReseted } = actions;
+export const { commentsStateReseted, commentContentEdited } = actions;

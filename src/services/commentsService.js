@@ -14,3 +14,21 @@ export const createComment = async data => {
     throw new Error(JSON.stringify(error.response));
   }
 };
+
+export const editComment = async (data, id) => {
+  try {
+    const response = await axiosInstance.patch(`/comments/${id}`, { ...data });
+    return response.data;
+  } catch (error) {
+    throw new Error(JSON.stringify(error.response));
+  }
+};
+
+export const deleteComment = async id => {
+  try {
+    const response = await axiosInstance.delete(`/comments/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(JSON.stringify(error.response));
+  }
+};

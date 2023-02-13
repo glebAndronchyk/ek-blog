@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import Spinner from 'features/ui/spinner/Spinner';
+import TextLength from 'features/ui/textLength/TextLength';
 import { tryToCreateComment } from 'redux/slices/commentsSlice';
 import { transformDataForComments } from 'helpers/dataTransformers';
 import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
@@ -71,7 +72,10 @@ const CreateCommentForm = props => {
               <FontAwesomeIcon icon="fa-solid fa-paper-plane" />
             </button>
           )}
-          <span>{textArea.length} / 600</span>
+          <TextLength
+            currentLength={textArea.length}
+            maxLength={600}
+          />
         </div>
       </div>
     </form>

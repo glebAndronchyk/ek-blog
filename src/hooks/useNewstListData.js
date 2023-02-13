@@ -21,7 +21,7 @@ const storeActions = {
 };
 
 const useNewsListData = (entity, postId = null) => {
-  const { data, page, showLoadMoreButton } = useSelector(state => state[entity]);
+  const { data, page } = useSelector(state => state[entity]);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +34,6 @@ const useNewsListData = (entity, postId = null) => {
 
   return {
     data,
-    showLoadMoreButton,
     clickHandler,
   };
 };

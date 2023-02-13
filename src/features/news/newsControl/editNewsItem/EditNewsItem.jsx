@@ -8,11 +8,11 @@ const EditNewsItem = props => {
   const { modalConfiguration } = props;
   const dispatch = useDispatch();
 
-  const handleClick = () => {
-    dispatch(modalOpened({ name: 'CreateNewsForm', modalConfiguration }));
+  const openModal = () => {
+    dispatch(modalOpened({ name: 'NewsForm', modalConfiguration }));
   };
 
-  return <EditButton handleClick={handleClick} />;
+  return <EditButton handleClick={openModal} />;
 };
 
 EditNewsItem.propTypes = {
