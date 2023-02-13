@@ -4,14 +4,15 @@ import { useEffect } from 'react';
 
 import Form from 'features/ui/form/Form';
 import InputError from 'features/ui/inputs/inputError/InputError';
-import InputErrorMessage from 'features/ui/inputs/inputError/inputErrorMessage/InputErrorMessage';
 import FormSubmitButton from 'features/ui/buttons/formSubmitButton/FormSubmitButton';
 import TextArea from 'features/ui/textArea/TextArea';
+import OnErrorMessage from 'features/news/newsControl/newsForm/onErrorMessgae/OnErrorMessage';
+import TextLength from 'features/ui/textLength/TextLength';
 import { tryToEditPost, tryToCreatePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { tryToEditAnnouncement, tryToCreateAnnouncement } from 'redux/slices/announcementsListSlice';
 import { transformDataForPOST, transformDataForPATCH } from 'helpers/dataTransformers';
 import { modalClosed } from 'redux/slices/modalSlice';
-import { LOADING, REJECTED } from 'helpers/loadingStatus';
+import { LOADING } from 'helpers/loadingStatus';
 
 const userActions = {
   posts: {
@@ -59,18 +60,23 @@ const NewsForm = () => {
     dispatch(userActionLoadingReseted());
   }, []);
 
-  const onSubmit = data => {
-    if (title || body) {
-      return dispatch(userActions[entity].editItem([transformDataForPATCH(data, createdAt, 'posts'), id])).then(
-        resp => {
-          return !resp.error ? dispatch(modalClosed()) : null;
-        },
-      );
-    }
-
-    return dispatch(userActions[entity].createItem(transformDataForPOST(data))).then(resp => {
+  const onCreate = data => {
+    dispatch(userActions[entity].createItem(transformDataForPOST(data))).then(resp => {
       return !resp.error ? dispatch(modalClosed()) : null;
     });
+  };
+
+  const onEdit = data => {
+    dispatch(userActions[entity].editItem([transformDataForPATCH(data, createdAt, 'posts'), id])).then(resp => {
+      return !resp.error ? dispatch(modalClosed()) : null;
+    });
+  };
+
+  const onSubmit = data => {
+    if (title || body) {
+      return onEdit(data);
+    }
+    return onCreate(data);
   };
 
   return (
@@ -113,13 +119,16 @@ const NewsForm = () => {
         placeholder="Write your information here(10 000 symbols available)"
         maxLength={maxTextAreaLength}
       />
-      <span className="my-2">{`${textareaBody.length} / ${maxTextAreaLength}`}</span>
+      <TextLength
+        currentLength={textareaBody.length}
+        maxLength={maxTextAreaLength}
+      />
       <FormSubmitButton
         disabled={disabledCondition}
         label={label}
         loadingStatus={userActionLoading}
       />
-      {userActionLoading === REJECTED && <InputErrorMessage>Something went wrong try again later</InputErrorMessage>}
+      <OnErrorMessage loading={userActionLoading} />
     </Form>
   );
 };
