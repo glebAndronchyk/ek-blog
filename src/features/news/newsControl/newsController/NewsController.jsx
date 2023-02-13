@@ -27,7 +27,7 @@ NewsController.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   isAuth: PropTypes.bool,
-  currentUserID: PropTypes.number,
+  currentUserID: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   creatorID: PropTypes.number,
 };
 

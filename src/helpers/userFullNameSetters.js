@@ -7,6 +7,6 @@ export const setUserFullNameBasedOnStorageData = () => {
 
 export const setUserFullNameBasedOnServerData = item => {
   const { user } = item;
-  const { firstname, lastname } = user;
+  const { firstname, lastname } = user || {};
   return `${firstname} ${lastname}`;
 };

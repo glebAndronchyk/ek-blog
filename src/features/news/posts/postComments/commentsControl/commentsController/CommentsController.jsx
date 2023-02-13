@@ -34,7 +34,7 @@ CommentsController.propTypes = {
     currentTextAreaContent: PropTypes.string,
     currentItemUserActionLoading: PropTypes.string,
   }),
-  currentUserID: PropTypes.number,
+  currentUserID: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
   creatorID: PropTypes.number,
 };
 
