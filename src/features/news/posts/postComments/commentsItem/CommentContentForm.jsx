@@ -73,7 +73,7 @@ CommentContentForm.propTypes = {
   updateCommentContent: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   creatorID: PropTypes.number.isRequired,
-  currentUserID: PropTypes.number.isRequired,
+  currentUserID: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]).isRequired,
 };
 
 export default CommentContentForm;
