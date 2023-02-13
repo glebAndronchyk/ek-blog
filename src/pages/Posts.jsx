@@ -1,6 +1,6 @@
 import Banner from 'features/ui/banner/Banner';
 import PostsList from 'features/news/posts/postsList/PostsList';
-import CreateNewsButton from 'features/news/newsControl/createNews/createNewsButton/CreateNewsButton';
+import NewsFormButton from 'features/news/newsControl/newsForm/newsFormButton/NewsFormButton';
 import useGetInitialData from 'hooks/useGetInitialData';
 import { getInitialData } from 'redux/slices/postsListSlice';
 
@@ -17,7 +17,7 @@ const Posts = () => {
       >
         <span>Read them, or add them</span>
       </Banner>
-      <CreateNewsButton
+      <NewsFormButton
         label="posts"
         name="post"
       />

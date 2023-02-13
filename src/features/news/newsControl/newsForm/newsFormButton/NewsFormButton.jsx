@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from 'features/ui/buttons/button/Button';
-import View from 'features/news/newsControl/createNews/createNewsButton/View';
+import View from 'features/news/newsControl/newsForm/newsFormButton/View';
 import { modalOpened } from 'redux/slices/modalSlice';
 
-const CreateNewsButton = props => {
+const NewsFormButton = props => {
   const { label, name } = props;
   const { isAuth } = useSelector(state => state.user);
   const dispatch = useDispatch();
@@ -30,9 +30,9 @@ const CreateNewsButton = props => {
   );
 };
 
-CreateNewsButton.propTypes = {
+NewsFormButton.propTypes = {
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default CreateNewsButton;
+export default NewsFormButton;

@@ -24,7 +24,7 @@ const userActions = {
   },
 };
 
-const CreateNewsForm = () => {
+const NewsForm = () => {
   const { configuration } = useSelector(state => state.modal);
   const { entity, name, id, title, body, createdAt } = configuration;
   const { userActionLoading } = useSelector(state => state[entity]);
@@ -124,4 +124,4 @@ const CreateNewsForm = () => {
   );
 };
 
-export default CreateNewsForm;
+export default NewsForm;

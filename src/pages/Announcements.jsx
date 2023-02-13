@@ -1,6 +1,6 @@
 import Banner from 'features/ui/banner/Banner';
 import AnnouncementsList from 'features/news/announcements/announcementsList/AnnouncementsList';
-import CreateNewsButton from 'features/news/newsControl/createNews/createNewsButton/CreateNewsButton';
+import NewsFormButton from 'features/news/newsControl/newsForm/newsFormButton/NewsFormButton';
 import useGetInitialData from 'hooks/useGetInitialData';
 import { getInitialData } from 'redux/slices/announcementsListSlice';
 
@@ -17,7 +17,7 @@ const Announcements = () => {
       >
         <span>Important news</span>
       </Banner>
-      <CreateNewsButton
+      <NewsFormButton
         label="announcements"
         name="announcement"
       />
