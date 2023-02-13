@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 const HeaderIsAuthContent = () => {
   const { isAuth } = useSelector(state => state.user);
 
-  return !isAuth ? <HeaderLoginButton type="header-btn" /> : <HeaderUserBlock />;
+  return !isAuth ? <HeaderLoginButton /> : <HeaderUserBlock />;
 };
 
 export default HeaderIsAuthContent;

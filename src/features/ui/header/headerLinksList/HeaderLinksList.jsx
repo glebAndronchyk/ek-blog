@@ -3,7 +3,7 @@ import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 const HeaderLinksList = () => {
   return (
     <ul className="flex justify-between items-center">
-      <li className="mr-7">
+      <li className="">
         <StyledNavLink
           to="/posts"
           type="header"
@@ -11,7 +11,7 @@ const HeaderLinksList = () => {
           <span>Posts</span>
         </StyledNavLink>
       </li>
-      <li className="mr-7">
+      <li className="">
         <StyledNavLink
           to="/announcements"
           type="header"
