@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
 import avatars from 'helpers/avatars';
@@ -7,11 +6,11 @@ import FormInput from 'features/ui/inputs/formInput/FormInput';
 const AvatarSelectionInputs = props => {
   const { register } = props;
 
-  return avatars.map(item => {
+  return avatars.map((item, index) => {
     return (
       <div
         className="flex flex-col items-center"
-        key={uuidv4()}
+        key={index}
         aria-label="avatarsGroup"
       >
         <FormInput
