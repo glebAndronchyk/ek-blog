@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const View = props => {
+const Locked = props => {
   const { label } = props;
 
   return (
@@ -11,8 +11,8 @@ const View = props => {
   );
 };
 
-View.propTypes = {
+Locked.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-export default View;
+export default Locked;

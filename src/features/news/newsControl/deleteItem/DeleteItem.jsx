@@ -8,7 +8,7 @@ const DeleteItem = props => {
   const { modalConfiguration } = props;
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const openModal = () => {
     dispatch(modalOpened({ name: 'Confirmation', modalConfiguration }));
   };
 
@@ -16,7 +16,7 @@ const DeleteItem = props => {
     <button
       type="button"
       className="duration-300 rounded-full w-[30px] h-[30px] bg-app-red hover:bg-[#DE8193]"
-      onClick={handleClick}
+      onClick={openModal}
     >
       <FontAwesomeIcon
         icon="fa-solid fa-trash-can"
