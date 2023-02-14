@@ -7,7 +7,7 @@ import Spinner from 'features/ui/spinner/Spinner';
 import { tryToDeletePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
 import { tryToDeleteAnnouncement } from 'redux/slices/announcementsListSlice';
 import { tryToDeleteComment } from 'redux/slices/commentsSlice';
-import { IDLE, LOADING, REJECTED } from 'helpers/loadingStatus';
+import { IDLE, LOADING } from 'helpers/loadingStatus';
 
 const deleteFunctions = {
   posts: tryToDeletePost,
@@ -34,7 +34,10 @@ const Confirmation = () => {
   };
 
   return (
-    <div className="flex absolute flex-col justify-between bg-gray-200 items-center rounded-[20px] max-w-md w-full py-10">
+    <div
+      className="flex absolute flex-col justify-between bg-gray-200 items-center rounded-[20px] max-w-md w-[90%] py-10
+                    md:w-full"
+    >
       {userActionLoading === LOADING ? (
         <Spinner />
       ) : (
