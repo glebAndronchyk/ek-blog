@@ -13,7 +13,7 @@ const Header = () => {
       className="relative px-4 py-3 z-10 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100
                  sm:px-16"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between max-w-[300px] w-full">
         <HeaderLogo />
         <HeaderLinksList shownCondition={shownCondition} />
       </div>

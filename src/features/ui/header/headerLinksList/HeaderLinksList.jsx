@@ -7,7 +7,7 @@ const HeaderLinksList = props => {
 
   return (
     !shownCondition && (
-      <ul className="sm:flex sm:justify-between sm:items-center">
+      <ul className="sm:flex sm:justify-between sm:items-center sm:max-w-[200px] sm:w-full">
         <li className="">
           <StyledNavLink
             to="/posts"
