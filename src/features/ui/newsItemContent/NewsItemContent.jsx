@@ -8,8 +8,7 @@ const NewsItemContent = props => {
       <div
         className="flex flex-col pl-1.5 py-4 max-w-full text-center
                     md:text-left
-                    lg:max-w-[60%] w-full
-                    2xl:max-w-full"
+                    lg:max-w-[60%] w-full"
       >
         <span
           className="font-[400] text-gray-500 uppercase text-xs mb-7
@@ -25,7 +24,7 @@ const NewsItemContent = props => {
         </h3>
         <p
           className="text-lg text-gray-600 max-w-[1241px] break-words
-                      2xl:text-lg "
+                      2xl:text-lg 2xl:max-w-[90%]"
         >
           {body}
         </p>
