@@ -24,7 +24,7 @@ const PostsList = () => {
 
   return (
     <ComponentInitialStatus entity="posts">
-      <ul className="px-5 lg:px-40 pt-10">{newsItems}</ul>
+      <ul className="px-2 lg:px-40 pt-10">{newsItems}</ul>
       <LoadMoreButtonView
         onClick={clickHandler}
         entity="posts"
