@@ -9,7 +9,7 @@ const NewsController = props => {
 
   return (
     shownCondition && (
-      <div className="flex justify-evenly absolute z-50 right-0 top-0 max-w-[100px] w-full pt-2">
+      <div className="flex justify-evenly absolute right-0 top-0 max-w-[100px] w-full pt-2">
         <EditNewsItem modalConfiguration={modalConfiguration} />
         <DeleteItem modalConfiguration={modalConfiguration} />
       </div>
