@@ -36,7 +36,7 @@ const Confirmation = () => {
   return (
     <div
       className="flex absolute flex-col justify-between bg-gray-200 items-center rounded-[20px] max-w-md w-[90%] py-10
-                    md:w-full"
+                    2xl:max-w-xl"
     >
       {userActionLoading === LOADING ? (
         <Spinner />
