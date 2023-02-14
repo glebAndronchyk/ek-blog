@@ -14,10 +14,12 @@
 
 @layer components {
   .form-input {
-    @apply rounded-full font-[700] border-0 placeholder:text-xl placeholder:text-gray-100 placeholder:font-semibold w-3/4 py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300;
+    @apply rounded-[30px] font-[700] border-0 placeholder:text-xl placeholder:text-gray-100 placeholder:font-semibold max-w-[95%] w-full py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300
+           md:rounded-full md:w-3/4;
   }
   .text-area {
-    @apply text-gray-300 pl-10 pt-4 w-3/4 h-[410px] min-h-[410px] max-h-[410px] rounded-3xl border-0 focus:ring-gray-300 focus:outline-0 focus:ring-2 duration-300 placeholder:text-xl placeholder:text-gray-100 placeholder:font-lato placeholder:text-xl placeholder:font-semibold break-all;
+    @apply resize-none max-w-[95%] w-full text-gray-300 p-2 h-[410px] border-0 rounded-[5px] focus:ring-gray-300 focus:outline-0 focus:ring-2 duration-300 placeholder:text-xl placeholder:text-gray-100 placeholder:font-lato placeholder:text-xl placeholder:font-semibold break-all
+           md:w-3/4 md:rounded-3xl;
   }
   .single-post-deco {
     @apply before:absolute before:top-0 before:left-[-20px] before:w-2 before:h-full before:rounded-full;
