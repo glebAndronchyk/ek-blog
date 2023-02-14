@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { modalClosed } from 'redux/slices/modalSlice';
 
@@ -13,9 +14,10 @@ const CloseButton = () => {
     <button
       onClick={closeModal}
       type="button"
-      className="absolute top-2 right-2 rounded-full h-[40px] w-[40px] bg-app-red"
+      className="absolute top-2 right-2 rounded-full h-[40px] w-[40px] bg-app-red
+                 md:hover:bg-[#DE8193] md:duration-300"
     >
-      X
+      <FontAwesomeIcon icon="fa-solid fa-xmark" />
     </button>
   );
 };
