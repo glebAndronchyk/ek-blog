@@ -17,9 +17,9 @@ const PostsItem = props => {
 
   return (
     <li
-      className="relative list-none bg-white mb-4 md:duration-300 ring-1 ring-gray-100
+      className="relative list-none bg-white mb-4 ring-1 ring-gray-100
                  sm:ring-0
-                 md:hover:shadow-lg md:rounded-3xl
+                 md:hover:shadow-lg md:rounded-3xl md:duration-300
                  2xl:max-w-[80%] 2xl:mx-auto"
     >
       <Link

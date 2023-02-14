@@ -23,7 +23,13 @@ const AnnouncementsList = () => {
 
   return (
     <ComponentInitialStatus entity="announcements">
-      <ul className="px-40 pt-10">{newsItems}</ul>
+      <ul
+        className="px-2 pt-10
+                  lg:px-20
+                  xl:px-40"
+      >
+        {newsItems}
+      </ul>
       <LoadMoreButtonView
         onClick={clickHandler}
         entity="announcements"
