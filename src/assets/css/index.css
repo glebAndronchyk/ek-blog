@@ -17,7 +17,7 @@
     @apply rounded-full font-[700] border-0 placeholder:text-xl placeholder:text-gray-100 placeholder:font-semibold w-3/4 py-4 pl-10 focus:outline-0 focus:ring-2 focus:ring-gray-300 focus-visible:outline-0 text-gray-300 text-xl bg-white duration-300;
   }
   .text-area {
-    @apply text-gray-300 pl-10 pt-4 w-3/4 h-[410px] min-h-[410px] max-h-[410px] rounded-3xl border-0 focus:ring-gray-300 focus:outline-0 focus:ring-2 duration-300 placeholder:text-xl placeholder:text-gray-100 placeholder:font-lato placeholder:text-xl placeholder:font-semibold break-all
+    @apply text-gray-300 pl-10 pt-4 w-3/4 h-[410px] min-h-[410px] max-h-[410px] rounded-3xl border-0 focus:ring-gray-300 focus:outline-0 focus:ring-2 duration-300 placeholder:text-xl placeholder:text-gray-100 placeholder:font-lato placeholder:text-xl placeholder:font-semibold break-all;
   }
   .single-post-deco {
     @apply before:absolute before:top-0 before:left-[-20px] before:w-2 before:h-full before:rounded-full;
@@ -38,16 +38,14 @@
     @apply w-3/4 py-4 bg-blue-100 border-2 border-blue-100 text-app-red hover:bg-app-red hover:text-blue-100 hover:border-blue-100;
   }
   .header-btn {
-    @apply ;
+    @apply;
   }
   .load-more-button {
     @apply w-80 py-2 bg-blue-100 border-2 border-blue-100 text-app-red font-[600] block mx-auto tracking-wide hover:bg-app-red hover:text-blue-100 hover:border-blue-100;
   }
   .create-news-button {
-    @apply w-full py-2 bg-blue-100 border-2 border-blue-100 text-app-red font-[600] hover:bg-app-red hover:text-blue-100 hover:border-blue-100
-  }
-  .create-news-button-disabled {
-    @apply w-full py-2 bg-blue-55 border-2 border-blue-55 text-blue-100 font-[600] cursor-default
+    @apply w-full py-2 bg-blue-100 border-2 border-blue-100 text-app-red font-[600] rounded-[15px]
+            md:hover:bg-app-red md:hover:text-blue-100 md:hover:border-blue-100 md:rounded-full;
   }
   .disabled {
     @apply border-2 border-blue-100 bg-blue-55 hover:bg-inactive-app-red;
