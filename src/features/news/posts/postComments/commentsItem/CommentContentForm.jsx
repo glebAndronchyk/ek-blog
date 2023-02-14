@@ -23,7 +23,7 @@ const CommentContentForm = props => {
   });
   const textAreaRef = useRef(null);
   const textAreaClassName = classNames(
-    'rounded-[20px] border-2 border-gray-100 p-2 text-lg break-all w-full bg-gray-50 resize-none',
+    'rounded-[20px] border-2 border-gray-100 p-2 text-md break-all w-full bg-white resize-none',
     {
       'border-app-red': currentItemUserActionLoading === REJECTED,
     },

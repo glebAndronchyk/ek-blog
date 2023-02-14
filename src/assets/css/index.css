@@ -50,9 +50,6 @@
   .disabled {
     @apply border-2 border-blue-100 bg-blue-55 hover:bg-inactive-app-red;
   }
-  .article-content {
-    @apply bg-white px-4 py-2 mb-2;
-  }
 }
 
 @font-face {
