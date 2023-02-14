@@ -13,7 +13,12 @@ const AnnouncementsItem = props => {
   const dateInCorrectFormat = getDateInCorrectFormat(createdAt);
 
   return (
-    <li className="relative flex flex-row px-6 items-center justify-between list-none lg:p-4 md:rounded-3xl bg-white mb-4">
+    <li
+      className="relative flex flex-row items-center justify-between list-none bg-white mb-4 ring-1 ring-gray-100 px-4
+                 sm:ring-0
+                 md:rounded-3xl md:hover:shadow-lg md:px-6
+                 lg:p-4"
+    >
       <NewsItemContent
         body={body}
         title={title}
