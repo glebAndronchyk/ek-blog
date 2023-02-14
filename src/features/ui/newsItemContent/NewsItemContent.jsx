@@ -5,10 +5,10 @@ const NewsItemContent = props => {
 
   return (
     <>
-      {/*max-w-[610px]*/}
       <div
         className="flex flex-col pl-1.5 py-4 max-w-full text-center
                     md:text-left
+                    lg:max-w-[60%] w-full
                     2xl:max-w-full"
       >
         <span
