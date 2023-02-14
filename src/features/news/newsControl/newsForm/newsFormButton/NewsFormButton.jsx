@@ -17,7 +17,7 @@ const NewsFormButton = props => {
   };
 
   return (
-    <div className="px-40 pt-5">
+    <div className="mx-auto max-w-[70%] w-full pt-5">
       <Button
         type="create"
         disabled={!isAuth}
