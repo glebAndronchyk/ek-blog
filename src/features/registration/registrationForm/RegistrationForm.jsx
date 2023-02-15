@@ -47,7 +47,8 @@ const RegistrationForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[937px] w-full border-2 relative"
+      className="w-full min-h-screen relative rounded-none
+                 lg:max-w-[1024px] lg:h-auto lg:rounded-[20px] lg:py-20 lg:min-h-[70%]"
     >
       {isAuth ? (
         <SuccessWindow />
