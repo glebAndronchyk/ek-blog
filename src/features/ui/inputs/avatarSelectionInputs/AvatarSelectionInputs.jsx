@@ -25,7 +25,8 @@ const AvatarSelectionInputs = props => {
         />
         <img
           src={item}
-          className="w-14 h-14"
+          className="w-10 h-10
+                     md:w-14 md:h-14"
           alt="avatar"
         />
       </div>

@@ -7,7 +7,12 @@ const AvatarSelection = props => {
   return (
     <>
       <span className="font-code mb-1.5">Select avatar</span>
-      <div className="flex justify-between w-3/4 mt-1.5 rounded-[20px] bg-white p-2">{children}</div>
+      <div
+        className="w-[95%] flex justify-between mt-1.5 rounded-[20px] bg-white p-2
+                   md:w-3/4"
+      >
+        {children}
+      </div>
       <InputError
         errors={errors}
         name="avatar"

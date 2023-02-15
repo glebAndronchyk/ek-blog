@@ -5,7 +5,7 @@ import Logo from 'assets/images/logo.png';
 const HeaderLogo = () => {
   return (
     <Link
-      className="mr-24"
+      className=""
       to="/"
     >
       <h1 className="text-center">

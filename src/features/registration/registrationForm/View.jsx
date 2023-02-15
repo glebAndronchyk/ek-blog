@@ -12,7 +12,12 @@ const View = props => {
 
   return (
     <>
-      <h3 className="font-code text-3xl text-black mb-4">Create Account</h3>
+      <h3
+        className="text-center font-code text-3xl text-black mb-4
+                  md:text-left"
+      >
+        Create Account
+      </h3>
       {axiosError ? <InputErrorMessage>Such person already has an account</InputErrorMessage> : null}
       <TextInputs
         register={register}

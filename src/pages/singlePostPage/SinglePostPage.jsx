@@ -5,7 +5,10 @@ const SinglePostPage = () => {
   return (
     // TODO: RETURN BUTTON
     // TODO: REMOVE EDIT BUTTONS
-    <article className="w-8/12 mx-auto pt-4">
+    <article
+      className="w-[95%] mx-auto pt-4
+                 lg:w-8/12"
+    >
       <View />
       <div className="border-t-2 w-full mb-2" />
       <CommentsList />

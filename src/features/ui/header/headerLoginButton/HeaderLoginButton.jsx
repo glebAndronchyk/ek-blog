@@ -13,7 +13,7 @@ const HeaderLoginButton = () => {
   return (
     <Button
       onClick={changeModalStatus}
-      className="header-btn"
+      className="w-24 rounded-lg py-3 border-0 bg-app-red border-2 border-app-red text-black hover:bg-blue-100 hover:text-app-red"
     >
       Login
     </Button>

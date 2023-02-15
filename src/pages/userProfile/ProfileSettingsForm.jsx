@@ -35,7 +35,7 @@ const ProfileSettingsForm = () => {
     },
   });
   const dispatch = useDispatch();
-  const formClassName = classNames('w-[45%]', {
+  const formClassName = classNames('w-[95%] md:w-[80%] lg:w-[55%]', {
     'ring-2 ring-app-red': loading === REJECTED,
   });
 

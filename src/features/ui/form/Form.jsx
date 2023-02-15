@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import CloseButton from 'features/ui/buttons/closeButton/CloseButton';
 
 const Form = props => {
   const { className, onSubmit, children, type } = props;
   const formClassName = classNames(
-    'flex flex-col justify-between bg-gray-200 items-center rounded-[20px] py-20',
+    'relative flex flex-col justify-between bg-gray-200 items-center rounded-[20px] py-20',
     className,
     {
       absolute: type === 'modal',
@@ -17,6 +18,7 @@ const Form = props => {
       onSubmit={onSubmit}
     >
       {children}
+      {type === 'modal' && <CloseButton />}
     </form>
   );
 };

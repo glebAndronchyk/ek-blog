@@ -1,15 +1,24 @@
 import HeaderLinksList from 'features/ui/header/headerLinksList/HeaderLinksList';
 import HeaderLogo from 'features/ui/header/headerLogo/HeaderLogo';
 import HeaderIsAuthContent from 'features/ui/header/headerIsAuthContent/HeaderIsAuthContent';
+import Hamburger from 'features/ui/header/hamburger/Hamburger';
+import useWindowSize from 'hooks/useWindowSize';
 
 const Header = () => {
+  const { width } = useWindowSize();
+  const shownCondition = width < 640;
+
   return (
-    <header className="relative z-10 px-16 py-3 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100">
-      <div className="flex justify-between">
+    <header
+      className="relative px-4 py-3 z-10 flex justify-between items-center bg-blue-100 shadow-lg shadow-blue-100
+                 sm:px-16"
+    >
+      <div className="flex justify-between max-w-[300px] w-full">
         <HeaderLogo />
-        <HeaderLinksList />
+        <HeaderLinksList shownCondition={shownCondition} />
       </div>
-      <HeaderIsAuthContent />
+      <HeaderIsAuthContent shownCondition={shownCondition} />
+      <Hamburger shownCondition={shownCondition} />
     </header>
   );
 };

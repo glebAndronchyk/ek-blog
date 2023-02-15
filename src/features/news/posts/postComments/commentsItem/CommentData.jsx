@@ -11,7 +11,10 @@ const CommentData = props => {
   };
 
   return (
-    <div className="flex items-center mb-[2px]">
+    <div
+      className="flex flex-col mb-[2px]
+                sm:items-center sm:flex-row"
+    >
       <span className="block text-lg mr-4">{localFullName}</span>
       <span className="mr-4 text-sm text-gray-100">{getDateInCorrectFormat(createdAt)}</span>
       <span className="mr-4 text-sm text-gray-100">{commentOnEditedChecker()}</span>

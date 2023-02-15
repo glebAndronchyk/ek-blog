@@ -6,14 +6,18 @@ import Logo from 'assets/images/logo.png';
 
 const Registration = () => {
   return (
-    <div className="flex h-[100vh] bg-[url('assets/images/registrationBg.png')] bg-center bg-cover flex justify-evenly items-center">
+    <div className="flex min-h-screen bg-[url('assets/images/registrationBg.png')] bg-center bg-cover flex justify-evenly items-center">
       <StyledNavLink
         to="/"
         type="toPosts"
       >
         &lt; Back to posts
       </StyledNavLink>
-      <div className="max-w-[491px] w-full">
+      <div
+        className="hidden
+                   lg:block lg:max-w-[300px] lg:w-full
+                   xl:max-w-[491px]"
+      >
         <img
           className="mb-14"
           src={Logo}

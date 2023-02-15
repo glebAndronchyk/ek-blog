@@ -82,7 +82,8 @@ const NewsForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-[800px] w-full py-2"
+      className="w-full py-6 h-full rounded-none
+                  md:max-w-[800px] md:w-full md:py-20 md:h-auto md:rounded-[20px] md:py-4"
       type="modal"
     >
       <h3 className="text-2xl font-code text-black mb-2">{label}</h3>

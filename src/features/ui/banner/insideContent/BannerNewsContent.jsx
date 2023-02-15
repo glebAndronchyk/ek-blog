@@ -5,8 +5,18 @@ const BannerNewsContent = props => {
 
   return (
     <>
-      <h2 className="text-7xl font-[600] mb-5 text-black">{title}</h2>
-      <p className="text-blue-200 text-2xl">{body}</p>
+      <h2
+        className="text-5xl font-[600] mb-5 text-black max-w-full break-words text-center
+                   sm:text-7xl"
+      >
+        {title}
+      </h2>
+      <p
+        className="text-blue-200 text-xl
+                    sm:text-2xl"
+      >
+        {body}
+      </p>
     </>
   );
 };

@@ -42,7 +42,11 @@ const LoginForm = () => {
   return (
     <Form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-2/6"
+      className="w-full h-full rounded-none
+                md:w-[80%] md:rounded-[20px] md:h-auto
+                lg:w-[60%]
+                xl:w-[40%]
+                2xl:w-[30%]"
       type="modal"
     >
       <h3 className="font-code text-3xl text-black mb-3">Hello World!</h3>

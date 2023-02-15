@@ -16,9 +16,16 @@ const PostsItem = props => {
   const dateInCorrectFormat = getDateInCorrectFormat(createdAt);
 
   return (
-    <li className="relative list-none duration-300 hover:shadow-lg md:rounded-3xl bg-white mb-4">
+    <li
+      className="relative list-none bg-white mb-4 ring-1 ring-gray-100
+                 sm:ring-0
+                 md:hover:shadow-lg md:rounded-3xl md:duration-300
+                 2xl:max-w-[80%] 2xl:mx-auto"
+    >
       <Link
-        className="flex flex-row px-6 items-center justify-between md:rounded-3xl lg:p-4"
+        className="flex flex-row px-4 items-center justify-between
+                   md:rounded-3xl md:px-6
+                   lg:p-4"
         to={to}
       >
         <NewsItemContent
