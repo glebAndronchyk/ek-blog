@@ -1,10 +1,13 @@
 import useNewsListData from 'hooks/useNewstListData';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import PostsItem from 'features/news/posts/postsItem/PostsItem';
 import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButtonView/LoadMoreButtonView';
 
 const PostsList = () => {
-  const { data, clickHandler } = useNewsListData('posts');
+  const { data, getAdditionallyLoadedData } = useNewsListData('posts');
+
+  useInfiniteScroll(getAdditionallyLoadedData);
 
   const newsItems = data.map(item => {
     return (
@@ -32,7 +35,7 @@ const PostsList = () => {
         {newsItems}
       </ul>
       <LoadMoreButtonView
-        onClick={clickHandler}
+        onClick={getAdditionallyLoadedData}
         entity="posts"
         label="Posts"
       />
