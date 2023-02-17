@@ -14,7 +14,7 @@ import { transformDirtyFields } from 'helpers/dataTransformers';
 import { REJECTED } from 'helpers/loadingStatus';
 
 const ProfileSettingsForm = () => {
-  const { loading } = useSelector(state => state.user);
+  const { loading, dataChanged } = useSelector(state => state.user);
   const userData = getUserDataFromStorage();
   const { email, age, avatar, firstname, lastname, id } = userData;
 
@@ -37,6 +37,7 @@ const ProfileSettingsForm = () => {
   const dispatch = useDispatch();
   const formClassName = classNames('w-[95%] md:w-[80%] lg:w-[55%]', {
     'ring-2 ring-app-red': loading === REJECTED,
+    'ring-2 ring-emerald-600': dataChanged,
   });
 
   const getUpdatedFields = formData => {
