@@ -28,13 +28,13 @@ const useNewsListData = (entity, postId = null) => {
     return () => dispatch(storeActions[entity].stateReset());
   }, []);
 
-  const clickHandler = () => {
+  const getAdditionallyLoadedData = () => {
     return dispatch(storeActions[entity].getAdditionalData([postId, page]));
   };
 
   return {
     data,
-    clickHandler,
+    getAdditionallyLoadedData,
   };
 };
 

@@ -13,7 +13,7 @@ import { setUserFullNameBasedOnStorageData, setUserFullNameBasedOnServerData } f
 
 const CommentsList = () => {
   const { postId } = useParams();
-  const { data, clickHandler } = useNewsListData('comments', postId);
+  const { data, getAdditionallyLoadedData } = useNewsListData('comments', postId);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const CommentsList = () => {
         <CreateCommentFormView postId={postId} />
         <ul>{commentsItems}</ul>
         <LoadMoreButtonView
-          onClick={clickHandler}
+          onClick={getAdditionallyLoadedData}
           entity="comments"
           label="Comments"
         />
