@@ -1,10 +1,13 @@
 import useNewsListData from 'hooks/useNewstListData';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import AnnouncementsItem from 'features/news/announcements/announcementsItem/AnnouncementsItem';
 import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButtonView/LoadMoreButtonView';
 
 const AnnouncementsList = () => {
   const { data, getAdditionallyLoadedData } = useNewsListData('announcements');
+
+  useInfiniteScroll(getAdditionallyLoadedData);
 
   const newsItems = data.map(item => {
     return (
