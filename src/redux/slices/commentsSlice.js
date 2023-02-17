@@ -51,7 +51,7 @@ const commentsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getInitialData.fulfilled, (state, action) => {
-        state.showLoadMoreButton = action.payload.length > 0;
+        state.showLoadMoreButton = action.payload.length === 10;
         state.initialLoading = IDLE;
         state.data = action.payload;
       })
@@ -62,7 +62,7 @@ const commentsSlice = createSlice({
         state.additionalLoading = LOADING;
       })
       .addCase(getAdditionalCommentsData.fulfilled, (state, action) => {
-        state.showLoadMoreButton = action.payload.length > 0;
+        state.showLoadMoreButton = action.payload.length === 10;
         state.additionalLoading = IDLE;
         state.page = ++state.page;
         state.data = [...state.data, ...action.payload];
