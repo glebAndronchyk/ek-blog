@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types';
 
 import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
+import onEditChecker from 'helpers/onEditChecker';
 
 const CommentData = props => {
   const { isUpdated, localIsUpdated, localFullName, createdAt } = props;
-
-  const commentOnEditedChecker = () => {
-    if (isUpdated || localIsUpdated) return 'Edited';
-    return null;
-  };
 
   return (
     <div
@@ -17,7 +13,9 @@ const CommentData = props => {
     >
       <span className="block text-lg mr-4">{localFullName}</span>
       <span className="mr-4 text-sm text-gray-100">{getDateInCorrectFormat(createdAt)}</span>
-      <span className="mr-4 text-sm text-gray-100">{commentOnEditedChecker()}</span>
+      <span className="mr-4 text-sm text-gray-100">
+        {onEditChecker({ condition: isUpdated || localIsUpdated, output: 'Edited' })}
+      </span>
     </div>
   );
 };
