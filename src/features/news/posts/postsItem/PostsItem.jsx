@@ -5,14 +5,14 @@ import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 import NewsController from 'features/news/newsControl/newsController/NewsController';
 import NewsItemContent from 'features/ui/newsItemContent/NewsItemContent';
 import useNewsItemData from 'hooks/useNewsItemData';
-import processLongText from 'helpers/processLongText';
+import useProcessLongTextWithWindowSize from 'hooks/useProcessLongTextWithWindowSize';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
 
 const PostsItem = props => {
   const { itemData, to, id, creatorID } = props;
   const { createdAt, title, body, currentUserID, isAuth } = useNewsItemData(itemData);
-  const processedBody = processLongText(body);
+  const { processedText } = useProcessLongTextWithWindowSize(body);
   const dateInCorrectFormat = getDateInCorrectFormat(createdAt);
 
   return (
@@ -29,7 +29,7 @@ const PostsItem = props => {
         to={to}
       >
         <NewsItemContent
-          body={processedBody}
+          body={processedText}
           title={title}
           createdAt={dateInCorrectFormat}
           imagePlug={PostsItemPlug}
