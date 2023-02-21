@@ -6,8 +6,9 @@ import NewsItemContent from 'features/ui/newsItemContent/NewsItemContent';
 import useNewsItemData from 'hooks/useNewsItemData';
 
 import AnnouncementsItemPlug from 'assets/images/AnnouncementsItemPlug.png';
+import { forwardRef } from 'react';
 
-const AnnouncementsItem = props => {
+const AnnouncementsItem = forwardRef(function AnnouncementsItemForwarded(props, ref) {
   const { itemData, id, creatorID } = props;
   const { createdAt, title, body, currentUserID, isAuth } = useNewsItemData(itemData);
   const dateInCorrectFormat = getDateInCorrectFormat(createdAt);
@@ -19,6 +20,7 @@ const AnnouncementsItem = props => {
                  md:rounded-3xl md:px-6
                  lg:p-4
                  2xl:max-w-[80%] 2xl:mx-auto"
+      ref={ref}
     >
       <NewsItemContent
         body={body}
@@ -34,7 +36,7 @@ const AnnouncementsItem = props => {
       />
     </li>
   );
-};
+});
 
 AnnouncementsItem.propTypes = {
   itemData: PropTypes.exact({

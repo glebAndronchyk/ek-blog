@@ -7,19 +7,31 @@ import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButto
 const AnnouncementsList = () => {
   const { data, getAdditionallyLoadedData } = useNewsListData('announcements');
 
-  useInfiniteScroll(getAdditionallyLoadedData);
+  const ref = useInfiniteScroll(getAdditionallyLoadedData);
 
-  const newsItems = data.map(item => {
+  const newsItems = data.map((item, index) => {
+    const props = {
+      id: item.id,
+      creatorID: item.userId,
+      itemData: {
+        createdAt: item.createdAt,
+        title: item.title,
+        body: item.body,
+      },
+    };
+    if (index === data.length - 1) {
+      return (
+        <AnnouncementsItem
+          {...props}
+          key={item.id}
+          ref={ref}
+        />
+      );
+    }
     return (
       <AnnouncementsItem
+        {...props}
         key={item.id}
-        id={item.id}
-        creatorID={item.userId}
-        itemData={{
-          createdAt: item.createdAt,
-          title: item.title,
-          body: item.body,
-        }}
       />
     );
   });

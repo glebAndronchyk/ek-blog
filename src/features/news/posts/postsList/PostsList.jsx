@@ -6,21 +6,32 @@ import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButto
 
 const PostsList = () => {
   const { data, getAdditionallyLoadedData } = useNewsListData('posts');
+  const ref = useInfiniteScroll(getAdditionallyLoadedData);
 
-  useInfiniteScroll(getAdditionallyLoadedData);
-
-  const newsItems = data.map(item => {
+  const newsItems = data.map((item, index) => {
+    const props = {
+      to: `/posts/${item.id}`,
+      id: item.id,
+      creatorID: item.userId,
+      itemData: {
+        createdAt: item.createdAt,
+        title: item.title,
+        body: item.body,
+      },
+    };
+    if (index === data.length - 1) {
+      return (
+        <PostsItem
+          {...props}
+          key={item.id}
+          ref={ref}
+        />
+      );
+    }
     return (
       <PostsItem
+        {...props}
         key={item.id}
-        to={`/posts/${item.id}`}
-        id={item.id}
-        creatorID={item.userId}
-        itemData={{
-          createdAt: item.createdAt,
-          title: item.title,
-          body: item.body,
-        }}
       />
     );
   });
