@@ -5,7 +5,7 @@ import StyledNavLinkGroup from 'features/ui/styledNavLink/StyledNavLinkGroup';
 const UserNewsPage = () => {
   return (
     <>
-      <ul className="flex justify-around py-2 max-w-[500px] w-full">
+      <ul className="flex justify-evenly items-center py-2">
         <StyledNavLinkGroup
           contentTable={[
             { label: 'Posts', path: 'posts' },
