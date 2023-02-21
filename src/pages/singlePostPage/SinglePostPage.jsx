@@ -3,8 +3,6 @@ import View from 'pages/singlePostPage/View';
 
 const SinglePostPage = () => {
   return (
-    // TODO: RETURN BUTTON
-    // TODO: REMOVE EDIT BUTTONS
     <article
       className="w-[95%] mx-auto pt-4
                  lg:w-8/12"

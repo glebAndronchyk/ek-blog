@@ -5,14 +5,15 @@ import getDateInCorrectFormat from 'helpers/getDateInCorrectFormat';
 import NewsController from 'features/news/newsControl/newsController/NewsController';
 import NewsItemContent from 'features/ui/newsItemContent/NewsItemContent';
 import useNewsItemData from 'hooks/useNewsItemData';
-import processLongText from 'helpers/processLongText';
+import useProcessLongTextWithWindowSize from 'hooks/useProcessLongTextWithWindowSize';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
+import { forwardRef } from 'react';
 
-const PostsItem = props => {
+const PostsItem = forwardRef(function PostsItemForwarded(props, ref) {
   const { itemData, to, id, creatorID } = props;
   const { createdAt, title, body, currentUserID, isAuth } = useNewsItemData(itemData);
-  const processedBody = processLongText(body);
+  const { processedText } = useProcessLongTextWithWindowSize(body);
   const dateInCorrectFormat = getDateInCorrectFormat(createdAt);
 
   return (
@@ -21,6 +22,7 @@ const PostsItem = props => {
                  sm:ring-0
                  md:hover:shadow-lg md:rounded-3xl md:duration-300
                  2xl:max-w-[80%] 2xl:mx-auto"
+      ref={ref}
     >
       <Link
         className="flex flex-row px-4 items-center justify-between
@@ -29,7 +31,7 @@ const PostsItem = props => {
         to={to}
       >
         <NewsItemContent
-          body={processedBody}
+          body={processedText}
           title={title}
           createdAt={dateInCorrectFormat}
           imagePlug={PostsItemPlug}
@@ -43,7 +45,7 @@ const PostsItem = props => {
       />
     </li>
   );
-};
+});
 
 PostsItem.propTypes = {
   itemData: PropTypes.exact({

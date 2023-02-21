@@ -1,22 +1,37 @@
 import useNewsListData from 'hooks/useNewstListData';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import AnnouncementsItem from 'features/news/announcements/announcementsItem/AnnouncementsItem';
 import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButtonView/LoadMoreButtonView';
 
 const AnnouncementsList = () => {
-  const { data, clickHandler } = useNewsListData('announcements');
+  const { data, getAdditionallyLoadedData } = useNewsListData('announcements');
 
-  const newsItems = data.map(item => {
+  const ref = useInfiniteScroll(getAdditionallyLoadedData);
+
+  const newsItems = data.map((item, index) => {
+    const props = {
+      id: item.id,
+      creatorID: item.userId,
+      itemData: {
+        createdAt: item.createdAt,
+        title: item.title,
+        body: item.body,
+      },
+    };
+    if (index === data.length - 1) {
+      return (
+        <AnnouncementsItem
+          {...props}
+          key={item.id}
+          ref={ref}
+        />
+      );
+    }
     return (
       <AnnouncementsItem
+        {...props}
         key={item.id}
-        id={item.id}
-        creatorID={item.userId}
-        itemData={{
-          createdAt: item.createdAt,
-          title: item.title,
-          body: item.body,
-        }}
       />
     );
   });
@@ -31,7 +46,7 @@ const AnnouncementsList = () => {
         {newsItems}
       </ul>
       <LoadMoreButtonView
-        onClick={clickHandler}
+        onClick={getAdditionallyLoadedData}
         entity="announcements"
         label="Announcements"
       />

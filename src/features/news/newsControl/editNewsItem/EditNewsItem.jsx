@@ -23,6 +23,7 @@ EditNewsItem.propTypes = {
     title: PropTypes.string,
     body: PropTypes.string,
     name: PropTypes.string,
+    isSinglePost: PropTypes.bool,
   }),
 };
 

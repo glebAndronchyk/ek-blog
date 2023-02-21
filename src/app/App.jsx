@@ -11,6 +11,7 @@ import {
   faCheck,
   faBars,
   faXmark,
+  faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
 
 import store from 'redux/store';
@@ -25,7 +26,7 @@ const Registration = lazy(() => import('pages/Registration'));
 const UserProfile = lazy(() => import('pages/userProfile/UserProfile'));
 const ProfileSettingsForm = lazy(() => import('pages/userProfile/ProfileSettingsForm'));
 
-library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck, faBars, faXmark);
+library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck, faBars, faXmark, faArrowLeft);
 
 const App = () => {
   return (

@@ -1,7 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { modalClosed } from 'redux/slices/modalSlice';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
+import { modalClosed } from 'redux/slices/modalSlice';
 import View from 'features/confirmation/View';
 import Spinner from 'features/ui/spinner/Spinner';
 import { tryToDeletePost, userActionLoadingReseted } from 'redux/slices/postsListSlice';
@@ -17,8 +18,9 @@ const deleteFunctions = {
 
 const Confirmation = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { configuration } = useSelector(state => state.modal);
-  const { id, entity } = configuration;
+  const { id, entity, isSinglePost = false } = configuration;
   const { userActionLoading } = useSelector(state => state[entity]);
 
   useEffect(() => {
@@ -27,6 +29,7 @@ const Confirmation = () => {
 
   const onConfirm = () => {
     dispatch(deleteFunctions[entity](id)).then(() => (userActionLoading === IDLE ? dispatch(modalClosed()) : null));
+    return isSinglePost ? navigate('/') : null;
   };
 
   const onDecline = () => {

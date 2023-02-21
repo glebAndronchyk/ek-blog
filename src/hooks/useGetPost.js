@@ -13,7 +13,7 @@ const useGetPost = id => {
       setLoading(LOADING);
       const response = await getItem('posts', id);
       const { title, body, createdAt, updatedAt, user } = response;
-      const { firstname, lastname } = user;
+      const { firstname, lastname, id: userId } = user;
       setPage({
         title,
         body,
@@ -23,6 +23,7 @@ const useGetPost = id => {
       setAuthor({
         firstname,
         lastname,
+        userId,
       });
       setLoading(IDLE);
     } catch (err) {
