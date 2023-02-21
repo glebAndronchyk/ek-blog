@@ -11,7 +11,7 @@ const HeaderLinksList = props => {
         <li className="">
           <StyledNavLink
             to="/posts"
-            type="header"
+            className="relative text-app-red font-inter font-[500] text-lg after:bg-app-red"
           >
             <span>Posts</span>
           </StyledNavLink>
@@ -19,7 +19,7 @@ const HeaderLinksList = props => {
         <li className="">
           <StyledNavLink
             to="/announcements"
-            type="header"
+            className="relative text-app-red font-inter font-[500] text-lg after:bg-app-red"
           >
             <span>Announcements</span>
           </StyledNavLink>
