@@ -27,6 +27,11 @@ export const getAdditionalPostsData = createAsyncThunk(
   pageNumber => getNews('posts', pageNumber),
 );
 
+export const getUserRelatedAdditionalPostsData = createAsyncThunk(
+  'posts/getUserRelatedAdditionalPostsData', //
+  pageNumber => getUserRelatedNews('posts', pageNumber),
+);
+
 export const tryToCreatePost = createAsyncThunk(
   'posts/tryToPostNews', //
   data => createNews('posts', data),
@@ -78,6 +83,18 @@ const postsListSlice = createSlice({
         state.data = [...state.data, ...action.payload];
       })
       .addCase(getAdditionalPostsData.rejected, state => {
+        state.additionalLoading = REJECTED;
+      })
+      .addCase(getUserRelatedAdditionalPostsData.pending, state => {
+        state.additionalLoading = LOADING;
+      })
+      .addCase(getUserRelatedAdditionalPostsData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
+        state.additionalLoading = IDLE;
+        state.page = ++state.page;
+        state.data = [...state.data, ...action.payload];
+      })
+      .addCase(getUserRelatedAdditionalPostsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToCreatePost.pending, state => {
