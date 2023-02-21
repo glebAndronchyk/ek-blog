@@ -3,9 +3,9 @@ import useGetInitialData from 'hooks/useGetInitialData';
 import { getInitialUserRelatedData } from 'redux/slices/postsListSlice';
 
 const UserPosts = () => {
-  const { initialLoading } = useGetInitialData('posts', getInitialUserRelatedData);
+  useGetInitialData('posts', getInitialUserRelatedData);
 
-  return <PostsList initialLoading={initialLoading} />;
+  return <PostsList isUserProfile />;
 };
 
 export default UserPosts;
