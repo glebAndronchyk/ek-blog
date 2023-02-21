@@ -6,7 +6,7 @@ const UserProfileMenu = () => {
       <StyledNavLinkGroup
         contentTable={[
           { label: 'Settings', path: 'settings' },
-          { label: 'Your posts', path: 'posts' },
+          { label: 'Your news', path: 'userNews' },
         ]}
         className="text-black after:bg-black after:bottom-[-2px]"
       />
