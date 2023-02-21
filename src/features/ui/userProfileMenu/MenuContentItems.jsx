@@ -1,20 +1,21 @@
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 
 const MenuContentItems = () => {
-  const menuContent = ['Settings', 'Your posts'];
+  const menuContent = [
+    { label: 'Settings', path: 'settings' },
+    { label: 'Your posts', path: 'posts' },
+  ];
 
   return menuContent.map((item, index) => {
     const key = index + 1;
+    const { label, path } = item;
     return (
-      <li
-        key={key}
-        className="font-inter font-[600] text-black"
-      >
+      <li key={key}>
         <StyledNavLink
-          to="settings"
-          type="profilePage"
+          to={path}
+          className="text-black after:bg-black after:bottom-[-2px]"
         >
-          {item}
+          {label}
         </StyledNavLink>
       </li>
     );
