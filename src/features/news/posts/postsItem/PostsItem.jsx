@@ -8,8 +8,9 @@ import useNewsItemData from 'hooks/useNewsItemData';
 import useProcessLongTextWithWindowSize from 'hooks/useProcessLongTextWithWindowSize';
 
 import PostsItemPlug from 'assets/images/PostsItemPlug.png';
+import { forwardRef } from 'react';
 
-const PostsItem = props => {
+const PostsItem = forwardRef(function PostsItemForwarded(props, ref) {
   const { itemData, to, id, creatorID } = props;
   const { createdAt, title, body, currentUserID, isAuth } = useNewsItemData(itemData);
   const { processedText } = useProcessLongTextWithWindowSize(body);
@@ -21,6 +22,7 @@ const PostsItem = props => {
                  sm:ring-0
                  md:hover:shadow-lg md:rounded-3xl md:duration-300
                  2xl:max-w-[80%] 2xl:mx-auto"
+      ref={ref}
     >
       <Link
         className="flex flex-row px-4 items-center justify-between
@@ -43,7 +45,7 @@ const PostsItem = props => {
       />
     </li>
   );
-};
+});
 
 PostsItem.propTypes = {
   itemData: PropTypes.exact({
