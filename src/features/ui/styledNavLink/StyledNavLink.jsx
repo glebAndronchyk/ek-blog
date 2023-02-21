@@ -3,19 +3,15 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const StyledNavLink = props => {
-  const { to, type, children, className } = props;
+  const { to, children, className } = props;
 
   const currentClassName = isActive => {
-    return classNames(
-      {
-        'nav-link': !isActive,
-        'nav-link-header__active': isActive && type === 'header',
-      },
-      className,
-    );
+    return classNames(className, 'nav-link', {
+      'nav-link__active': isActive,
+    });
   };
 
-  const getActive = value => {
+  const buildClassName = value => {
     const { isActive } = value;
     return currentClassName(isActive);
   };
@@ -23,7 +19,7 @@ const StyledNavLink = props => {
   return (
     <NavLink
       to={to}
-      className={getActive}
+      className={buildClassName}
     >
       {children}
     </NavLink>
@@ -33,7 +29,6 @@ const StyledNavLink = props => {
 StyledNavLink.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-  type: PropTypes.string,
   className: PropTypes.string,
 };
 

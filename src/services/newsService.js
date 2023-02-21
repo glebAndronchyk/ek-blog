@@ -1,3 +1,4 @@
+import filterUserRelatedNews from 'helpers/filterUserRelatedNews';
 import axiosInstance from './axiosService';
 
 export const getItem = async (entity, id) => {
@@ -10,6 +11,13 @@ export const getNews = async (entity, pageNumber = 1) => {
   const params = { _page: pageNumber, _sort: 'createdAt', _order: 'desc', _limit: 10 };
   const response = await axiosInstance.get(`/${entity}`, { params });
   return response.data.filter(item => item.body);
+};
+
+export const getUserRelatedNews = async (entity, pageNumber = 1) => {
+  const params = { _page: pageNumber, _sort: 'createdAt', _order: 'desc', _limit: 10 };
+  const response = await axiosInstance.get(`/${entity}`, { params });
+  const userRelatedNewsData = filterUserRelatedNews(response.data);
+  return userRelatedNewsData.filter(item => item.body);
 };
 
 export const createNews = async (entity, data) => {

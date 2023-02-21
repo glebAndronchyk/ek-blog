@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, getNews, deleteNews, editNews } from 'services/newsService';
+import { createNews, getNews, deleteNews, editNews, getUserRelatedNews } from 'services/newsService';
 
 const initialState = {
   data: [],
@@ -17,9 +17,19 @@ export const getInitialData = createAsyncThunk(
   () => getNews('posts'),
 );
 
+export const getInitialUserRelatedData = createAsyncThunk(
+  'posts/getInitialUserRelatedData', //
+  () => getUserRelatedNews('posts'),
+);
+
 export const getAdditionalPostsData = createAsyncThunk(
   'posts/getAdditionalData', //
   pageNumber => getNews('posts', pageNumber),
+);
+
+export const getUserRelatedAdditionalPostsData = createAsyncThunk(
+  'posts/getUserRelatedAdditionalPostsData', //
+  pageNumber => getUserRelatedNews('posts', pageNumber),
 );
 
 export const tryToCreatePost = createAsyncThunk(
@@ -58,6 +68,11 @@ const postsListSlice = createSlice({
       .addCase(getInitialData.rejected, state => {
         state.initialLoading = REJECTED;
       })
+      .addCase(getInitialUserRelatedData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
+        state.initialLoading = IDLE;
+        state.data = action.payload;
+      })
       .addCase(getAdditionalPostsData.pending, state => {
         state.additionalLoading = LOADING;
       })
@@ -68,6 +83,18 @@ const postsListSlice = createSlice({
         state.data = [...state.data, ...action.payload];
       })
       .addCase(getAdditionalPostsData.rejected, state => {
+        state.additionalLoading = REJECTED;
+      })
+      .addCase(getUserRelatedAdditionalPostsData.pending, state => {
+        state.additionalLoading = LOADING;
+      })
+      .addCase(getUserRelatedAdditionalPostsData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
+        state.additionalLoading = IDLE;
+        state.page = ++state.page;
+        state.data = [...state.data, ...action.payload];
+      })
+      .addCase(getUserRelatedAdditionalPostsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToCreatePost.pending, state => {
