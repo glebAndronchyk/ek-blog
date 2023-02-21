@@ -27,6 +27,7 @@ const UserProfile = lazy(() => import('pages/userProfile/UserProfile'));
 const ProfileSettingsForm = lazy(() => import('pages/userProfile/ProfileSettingsForm'));
 const UserNewsPage = lazy(() => import('pages/userProfile/UserNewsPage'));
 const UserPosts = lazy(() => import('pages/userProfile/userNews/UserPosts'));
+const UserAnnouncements = lazy(() => import('pages/userProfile/userNews/UserAnnouncements'));
 
 library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck, faBars, faXmark, faArrowLeft);
 
@@ -99,7 +100,11 @@ const App = () => {
                 />
                 <Route
                   path="announcements"
-                  element={<span>announcements</span>}
+                  element={
+                    <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                      <UserAnnouncements />
+                    </Suspense>
+                  }
                 />
 
                 <Route

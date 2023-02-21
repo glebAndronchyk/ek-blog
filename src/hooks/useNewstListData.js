@@ -6,7 +6,11 @@ import {
   getUserRelatedAdditionalPostsData,
   postsStateReseted,
 } from 'redux/slices/postsListSlice';
-import { getAdditionalAnnouncementsData, announcementsStateReseted } from 'redux/slices/announcementsListSlice';
+import {
+  getAdditionalAnnouncementsData,
+  announcementsStateReseted,
+  getUserRelatedAdditionalAnnouncementsData,
+} from 'redux/slices/announcementsListSlice';
 import { getAdditionalCommentsData, commentsStateReseted } from 'redux/slices/commentsSlice';
 
 const storeActions = {
@@ -18,7 +22,7 @@ const storeActions = {
   announcements: {
     stateReset: announcementsStateReseted,
     getAdditionalData: getAdditionalAnnouncementsData,
-    // getUserRelatedAdditionalData: getUserRelatedAdditionalAnnouncementsData,
+    getUserRelatedAdditionalData: getUserRelatedAdditionalAnnouncementsData,
   },
   comments: {
     stateReset: commentsStateReseted,
