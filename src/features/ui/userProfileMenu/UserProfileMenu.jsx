@@ -10,6 +10,12 @@ const UserProfileMenu = () => {
         >
           Settings
         </StyledNavLink>
+        <StyledNavLink
+          to="settings"
+          type="profilePage"
+        >
+          Your posts
+        </StyledNavLink>
       </li>
     </ul>
   );
