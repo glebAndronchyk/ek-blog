@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, getNews, deleteNews, editNews } from 'services/newsService';
+import { createNews, getNews, deleteNews, editNews, getUserRelatedNews } from 'services/newsService';
 
 const initialState = {
   data: [],
@@ -15,6 +15,11 @@ const initialState = {
 export const getInitialData = createAsyncThunk(
   'posts/getInitialData', //
   () => getNews('posts'),
+);
+
+export const getInitialUserRelatedData = createAsyncThunk(
+  'posts/getInitialUserRelatedData', //
+  () => getUserRelatedNews('posts'),
 );
 
 export const getAdditionalPostsData = createAsyncThunk(
@@ -57,6 +62,11 @@ const postsListSlice = createSlice({
       })
       .addCase(getInitialData.rejected, state => {
         state.initialLoading = REJECTED;
+      })
+      .addCase(getInitialUserRelatedData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
+        state.initialLoading = IDLE;
+        state.data = action.payload;
       })
       .addCase(getAdditionalPostsData.pending, state => {
         state.additionalLoading = LOADING;
