@@ -12,6 +12,7 @@ const Banner = props => {
     <section
       style={{ backgroundImage: `url(${image})` }}
       className="relative posts-banner-background z-0 flex items-center justify-center pt-24 pb-16"
+      data-testid="banner-component"
     >
       <div className="flex flex-col max-w-[640px] w-full items-center">
         {children ? (
