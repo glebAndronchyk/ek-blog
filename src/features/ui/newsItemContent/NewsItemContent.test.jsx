@@ -14,7 +14,7 @@ describe('NewsItemContent', () => {
     const createdAtElement = screen.getByText('1011-11-11');
     const titleElement = screen.getByText('test title');
     const bodyElement = screen.getByText('test body');
-    const imagePlugElement = screen.getByAltText('item');
+    const imagePlugElement = screen.getByRole('img');
 
     expect(createdAtElement).toBeInTheDocument();
     expect(titleElement).toBeInTheDocument();
