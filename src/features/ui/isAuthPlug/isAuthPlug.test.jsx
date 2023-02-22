@@ -5,7 +5,7 @@ import IsAuthPlug from 'features/ui/isAuthPlug/IsAuthPlug';
 describe('IsAuthPlug', () => {
   it('IsAuthPlug renders correctly', () => {
     render(<IsAuthPlug />);
-    const textElement = screen.getByTestId('is-auth-plug');
+    const textElement = screen.getByText('Login in order to make comments');
     expect(textElement).toBeInTheDocument();
   });
 });
