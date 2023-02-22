@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 
 import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
 
@@ -9,7 +10,7 @@ const StyledNavLinkGroup = props => {
     const key = index + 1;
     const { label, path } = item;
     return (
-      <>
+      <Fragment key={key}>
         <li key={key}>
           <StyledNavLink
             to={path}
@@ -19,7 +20,7 @@ const StyledNavLinkGroup = props => {
           </StyledNavLink>
         </li>
         {index === 0 && breaker}
-      </>
+      </Fragment>
     );
   });
 };
