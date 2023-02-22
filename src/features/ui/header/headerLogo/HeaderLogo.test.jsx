@@ -13,7 +13,7 @@ describe('HeaderLogo', () => {
   });
 
   it('renders correctly', () => {
-    const testLink = screen.getByRole('link');
+    const testLink = screen.getByRole('linkgit pull ');
     const logoImage = screen.getByRole('img');
     const logoName = screen.getByText('Blog');
     expect(testLink).toBeInTheDocument();
