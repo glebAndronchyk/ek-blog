@@ -11,6 +11,7 @@ const ButtonSpinner = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}
+      data-testid="button-spinner"
     />
   );
 };
