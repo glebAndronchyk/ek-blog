@@ -32,6 +32,7 @@
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.8",
     "react-textarea-autosize": "^8.4.0",
+    "redux-mock-store": "^1.5.4",
     "sort-by": "^1.2.0",
     "uuid": "^9.0.0",
     "web-vitals": "^2.1.4"
@@ -39,7 +40,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -68,6 +69,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^27.5.1",
     "prettier": "2.8.3",
     "prettier-eslint": "^15.0.1",
     "tailwindcss": "^3.2.4"
