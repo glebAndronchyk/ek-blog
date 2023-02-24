@@ -25,6 +25,9 @@ const SinglePostPage = lazy(() => import('pages/singlePostPage/SinglePostPage'))
 const Registration = lazy(() => import('pages/Registration'));
 const UserProfile = lazy(() => import('pages/userProfile/UserProfile'));
 const ProfileSettingsForm = lazy(() => import('pages/userProfile/ProfileSettingsForm'));
+const UserNewsPage = lazy(() => import('pages/userProfile/UserNewsPage'));
+const UserPosts = lazy(() => import('pages/userProfile/userNews/UserPosts'));
+const UserAnnouncements = lazy(() => import('pages/userProfile/userNews/UserAnnouncements'));
 
 library.add(faTrashCan, faPen, faLock, faRightFromBracket, faPaperPlane, faCheck, faBars, faXmark, faArrowLeft);
 
@@ -79,6 +82,41 @@ const App = () => {
                   </Suspense>
                 }
               />
+              <Route
+                path="userNews"
+                element={
+                  <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                    <UserNewsPage />
+                  </Suspense>
+                }
+              >
+                <Route
+                  path="posts"
+                  element={
+                    <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                      <UserPosts />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="announcements"
+                  element={
+                    <Suspense fallback={<Spinner wrapperClassName="pt-20" />}>
+                      <UserAnnouncements />
+                    </Suspense>
+                  }
+                />
+
+                <Route
+                  path="/profile/userNews"
+                  element={
+                    <Navigate
+                      to="posts"
+                      replace
+                    />
+                  }
+                />
+              </Route>
 
               <Route
                 path="/profile"

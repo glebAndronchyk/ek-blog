@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 import { LOADING, IDLE, REJECTED } from 'helpers/loadingStatus';
-import { createNews, deleteNews, editNews, getNews } from 'services/newsService';
+import { createNews, deleteNews, editNews, getNews, getUserRelatedNews } from 'services/newsService';
+import { getAdditionalPostsData } from 'redux/slices/postsListSlice';
 
 const initialState = {
   data: [],
@@ -17,9 +18,19 @@ export const getInitialData = createAsyncThunk(
   () => getNews('announcements'),
 );
 
+export const getInitialUserRelatedData = createAsyncThunk(
+  'announcements/getInitialUserRelatedData', //
+  () => getUserRelatedNews('announcements'),
+);
+
 export const getAdditionalAnnouncementsData = createAsyncThunk(
   'announcements/getAdditionalData', //
   pageNumber => getNews('announcements', pageNumber),
+);
+
+export const getUserRelatedAdditionalAnnouncementsData = createAsyncThunk(
+  'announcements/getUserRelatedAdditionalAnnouncementsData', //
+  pageNumber => getUserRelatedNews('announcements', pageNumber),
 );
 
 export const tryToCreateAnnouncement = createAsyncThunk(
@@ -55,6 +66,14 @@ const announcementsListSlice = createSlice({
       .addCase(getInitialData.rejected, state => {
         state.initialLoading = REJECTED;
       })
+      .addCase(getInitialUserRelatedData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
+        state.initialLoading = IDLE;
+        state.data = action.payload;
+      })
+      .addCase(getAdditionalPostsData.pending, state => {
+        state.additionalLoading = LOADING;
+      })
       .addCase(getAdditionalAnnouncementsData.pending, state => {
         state.additionalLoading = LOADING;
       })
@@ -65,6 +84,18 @@ const announcementsListSlice = createSlice({
         state.data = [...state.data, ...action.payload];
       })
       .addCase(getAdditionalAnnouncementsData.rejected, state => {
+        state.additionalLoading = REJECTED;
+      })
+      .addCase(getUserRelatedAdditionalAnnouncementsData.pending, state => {
+        state.additionalLoading = LOADING;
+      })
+      .addCase(getUserRelatedAdditionalAnnouncementsData.fulfilled, (state, action) => {
+        state.showLoadMoreButton = action.payload.length > 0;
+        state.additionalLoading = IDLE;
+        state.page = ++state.page;
+        state.data = [...state.data, ...action.payload];
+      })
+      .addCase(getUserRelatedAdditionalAnnouncementsData.rejected, state => {
         state.additionalLoading = REJECTED;
       })
       .addCase(tryToCreateAnnouncement.fulfilled, (state, action) => {

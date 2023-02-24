@@ -1,15 +1,18 @@
+import PropTypes from 'prop-types';
+
 import useNewsListData from 'hooks/useNewstListData';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import ComponentInitialStatus from 'features/ui/componentInitialStatus/ComponentInitialStatus';
 import PostsItem from 'features/news/posts/postsItem/PostsItem';
 import LoadMoreButtonView from 'features/ui/buttons/loadMoreButton/loadMoreButtonView/LoadMoreButtonView';
 
-const PostsList = () => {
-  const { data, getAdditionallyLoadedData } = useNewsListData('posts');
+const PostsList = props => {
+  const { isUserProfile } = props;
+  const { data, getAdditionallyLoadedData } = useNewsListData('posts', null, isUserProfile);
   const ref = useInfiniteScroll(getAdditionallyLoadedData);
 
   const newsItems = data.map((item, index) => {
-    const props = {
+    const itemProps = {
       to: `/posts/${item.id}`,
       id: item.id,
       creatorID: item.userId,
@@ -22,7 +25,7 @@ const PostsList = () => {
     if (index === data.length - 1) {
       return (
         <PostsItem
-          {...props}
+          {...itemProps}
           key={item.id}
           ref={ref}
         />
@@ -30,7 +33,7 @@ const PostsList = () => {
     }
     return (
       <PostsItem
-        {...props}
+        {...itemProps}
         key={item.id}
       />
     );
@@ -52,6 +55,10 @@ const PostsList = () => {
       />
     </ComponentInitialStatus>
   );
+};
+
+PostsList.propTypes = {
+  isUserProfile: PropTypes.bool,
 };
 
 export default PostsList;

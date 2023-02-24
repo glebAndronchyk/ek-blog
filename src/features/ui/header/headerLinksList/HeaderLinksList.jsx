@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import StyledNavLink from 'features/ui/styledNavLink/StyledNavLink';
+import StyledNavLinkGroup from 'features/ui/styledNavLink/StyledNavLinkGroup';
 
 const HeaderLinksList = props => {
   const { shownCondition } = props;
@@ -8,22 +8,13 @@ const HeaderLinksList = props => {
   return (
     !shownCondition && (
       <ul className="sm:flex sm:justify-between sm:items-center sm:max-w-[200px] sm:w-full">
-        <li className="">
-          <StyledNavLink
-            to="/posts"
-            type="header"
-          >
-            <span>Posts</span>
-          </StyledNavLink>
-        </li>
-        <li className="">
-          <StyledNavLink
-            to="/announcements"
-            type="header"
-          >
-            <span>Announcements</span>
-          </StyledNavLink>
-        </li>
+        <StyledNavLinkGroup
+          contentTable={[
+            { label: 'Posts', path: '/posts' },
+            { label: 'Announcements', path: '/announcements' },
+          ]}
+          className="relative text-app-red font-inter font-[500] text-lg after:bg-app-red"
+        />
       </ul>
     )
   );

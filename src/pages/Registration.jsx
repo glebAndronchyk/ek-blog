@@ -9,7 +9,7 @@ const Registration = () => {
     <div className="flex min-h-screen bg-[url('assets/images/registrationBg.png')] bg-center bg-cover flex justify-evenly items-center">
       <StyledNavLink
         to="/"
-        type="toPosts"
+        className="absolute z-[20] top-[2%] left-[1%] after:bg-app-red text-app-red"
       >
         &lt; Back to posts
       </StyledNavLink>
