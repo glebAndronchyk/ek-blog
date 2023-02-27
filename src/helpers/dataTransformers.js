@@ -1,20 +1,20 @@
 import { getUserDataFromStorage } from 'helpers/localStorage';
 
 export const transformRegistrationFormData = enteredData => {
-  const { age, avatar, email, fullName, password } = enteredData;
+  const { age = null, avatar = '', email = '', fullName = '', password = '' } = enteredData;
   const splittedFullName = fullName.split(' ');
   return {
     age,
     avatar,
     email,
-    firstname: splittedFullName[0],
-    lastname: splittedFullName[1],
+    firstname: splittedFullName[0] || '',
+    lastname: splittedFullName[1] || '',
     password,
   };
 };
 
 export const transformDataForPOST = data => {
-  const { title, body } = data;
+  const { title = '', body = '' } = data;
   return {
     title,
     body,
@@ -25,7 +25,7 @@ export const transformDataForPOST = data => {
 };
 
 export const transformDataForPATCH = (data, createdAt, entity) => {
-  const { title, body } = data;
+  const { title = '', body = '' } = data;
   const onPostsData =
     entity === 'posts'
       ? {
@@ -42,7 +42,7 @@ export const transformDataForPATCH = (data, createdAt, entity) => {
 };
 
 export const transformDataForComments = (data, postId) => {
-  const { body } = data;
+  const { body = '' } = data;
 
   return {
     body,
@@ -54,7 +54,7 @@ export const transformDataForComments = (data, postId) => {
 };
 
 export const transformDataForCommentsPATCH = data => {
-  const { body } = data;
+  const { body = '' } = data;
 
   return {
     body,

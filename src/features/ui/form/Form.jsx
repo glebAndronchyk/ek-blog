@@ -16,6 +16,7 @@ const Form = props => {
     <form
       className={formClassName}
       onSubmit={onSubmit}
+      data-testid='form'
     >
       {children}
       {type === 'modal' && <CloseButton />}
